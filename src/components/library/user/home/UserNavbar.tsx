@@ -10,7 +10,7 @@ const UserNavbar = () => {
   return (
     <Flex align="center" w="100%" py={{ base: 4, md: 8 }}>
       <Link to="/">
-        <RHeading text="Unicorn" />
+        <RHeading text="Unicorn Casita" />
       </Link>
       <Spacer />
       <Show above="md">

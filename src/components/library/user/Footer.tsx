@@ -6,7 +6,7 @@ const Footer = () => {
     <Box px={{ base: 6, md: 10, lg: 16 }} py={8} bg="primary.200">
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
         <VStack align="start" h="100%" w="70%">
-          <RHeading small text="Unicorn" />
+          <RHeading small text="Unicorn Casita" />
           <RText
             small
             text="Specialises in providing high quality & stylish products for you wardrobe"

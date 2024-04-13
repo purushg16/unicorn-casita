@@ -12,6 +12,10 @@
   display: none;
 }
 
+* {
+  font-family: "Archivo", sans-serif !important;
+}
+
 body {
   font-family: "Archivo", sans-serif !important;
 

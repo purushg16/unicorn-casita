@@ -1,18 +1,29 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { ChevronRightIcon } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Icon,
+} from "@chakra-ui/react";
+import { CornerUpRight } from "lucide-react";
 
 const BreadCrumbsTile = ({ crumbs }: { crumbs: string[] }) => {
   const length = crumbs.length;
 
   return (
-    <Breadcrumb spacing="8px" separator={<ChevronRightIcon color="gray.500" />}>
+    <Breadcrumb
+      lineHeight="normal"
+      spacing="8px"
+      separator={
+        <Icon as={CornerUpRight} color="gray.500" lineHeight="normal" />
+      }
+    >
       {crumbs.map((crumb, index) => (
-        <BreadcrumbItem>
+        <BreadcrumbItem key={index} isCurrentPage={index + 1 === length}>
           <BreadcrumbLink
-            href={"/" + crumb}
+            alignItems="end"
+            href={"/" + crumb.toLowerCase()}
             textTransform="capitalize"
-            color={index === length ? "gray" : "black"}
-            isCurrentPage={index === length}
+            color={index + 1 === length ? "gray" : "black"}
           >
             {crumb}
           </BreadcrumbLink>

@@ -3,6 +3,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
   useColorMode,
 } from "@chakra-ui/react";
 import { LucideIcon } from "lucide-react";
@@ -10,9 +11,10 @@ import { LucideIcon } from "lucide-react";
 interface Props {
   icon: LucideIcon;
   placeholder?: string;
+  iconPlacement?: "left" | "right";
 }
 
-const RInput = ({ icon, placeholder = "" }: Props) => {
+const RInput = ({ icon, placeholder = "", iconPlacement = "left" }: Props) => {
   const { colorMode } = useColorMode();
 
   const bg = colorMode === "dark" ? "primary.500" : "primary.50";
@@ -31,9 +33,17 @@ const RInput = ({ icon, placeholder = "" }: Props) => {
         _hover={{ borderColor: border, outline: "none", boxShadow: "none" }}
         placeholder={placeholder}
       />
-      <InputLeftElement>
-        <Icon as={icon} color={colorMode === "dark" ? "white" : "gray"} />
-      </InputLeftElement>
+      {iconPlacement === "left" && (
+        <InputLeftElement>
+          <Icon as={icon} color={colorMode === "dark" ? "white" : "gray"} />
+        </InputLeftElement>
+      )}
+
+      {iconPlacement === "right" && (
+        <InputRightElement>
+          <Icon as={icon} color={colorMode === "dark" ? "white" : "gray"} />
+        </InputRightElement>
+      )}
     </InputGroup>
   );
 };

@@ -6,6 +6,7 @@ interface Props {
   small?: boolean;
   weight?: "normal" | "bold" | "bolder";
   color?: "white" | "gray" | string;
+  nowrap?: boolean;
 }
 
 const RHeading = ({ text, big = false, small, color }: Props) => {
@@ -33,13 +34,14 @@ const RText = ({ text, small = false, weight = "normal", color }: Props) => {
     </Text>
   );
 };
-const Label = ({ text, color, weight = "normal" }: Props) => (
+const Label = ({ text, color, weight = "normal", nowrap = false }: Props) => (
   <Text
     fontSize={{ base: "xs", sm: "xs", md: "sm", lg: "sm" }}
     fontWeight={weight}
     color={color}
     m={0}
     p={0}
+    whiteSpace={nowrap ? "nowrap" : "normal"}
   >
     {text}
   </Text>

@@ -8,17 +8,17 @@ const UserNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex align="center" w="100%" py={{ base: 4, md: 8 }}>
+    <Flex align="center" w="100%" pt={8}>
       <Link to="/">
         <RHeading text="Unicorn Casita" />
       </Link>
       <Spacer />
       <Show above="md">
         <HStack gap={8} align="center">
-          <Link to="/shop">
-            <Label text="Shop" />
+          <Link to="/collections">
+            <Label text="Collections" />
           </Link>
-          <Link to="/shop">
+          <Link to="/categories">
             <Label text="Categories" />
           </Link>
           <Link to="/shop">

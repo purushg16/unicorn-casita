@@ -29,7 +29,9 @@ const SwiperContainer = forwardRef(
             minW={{ base: "100%", md: "50%", lg: "33.33%" }}
             w={{ base: "100%", md: "50%", lg: "33.33%" }}
           >
-            <Box p={4}>{child}</Box>
+            <Box pb={4} px={4}>
+              {child}
+            </Box>
           </GridItem>
         ))}
       </Flex>

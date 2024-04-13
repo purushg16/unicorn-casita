@@ -50,7 +50,7 @@ const ProductGrid = () => {
     <VStack align="start" gap={4}>
       <Flex w="100%" justify="space-between">
         <RHeading small text="Featured Products" />
-        <HStack gap={2}>
+        <HStack gap={2} align="center">
           <IconButton
             icon={<Icon as={ChevronLeft} />}
             onClick={scrollToLeft}

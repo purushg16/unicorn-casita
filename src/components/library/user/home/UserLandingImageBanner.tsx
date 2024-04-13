@@ -10,7 +10,7 @@ const UserLandingImageBanner = () => {
       //   aspectRatio="21/9"
       borderRadius={10}
       bgImage="
-      https://images.unsplash.com/photo-1620656798579-1984d9e87df7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      https://plus.unsplash.com/premium_photo-1678834778167-5b2172bccb6f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       bgSize="cover"
       bgPos="bottom center"
       align="center"

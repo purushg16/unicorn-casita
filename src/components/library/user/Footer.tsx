@@ -3,7 +3,12 @@ import { RHeading, RText } from "../../Utilities/Typography";
 
 const Footer = () => {
   return (
-    <Box px={{ base: 6, md: 10, lg: 16 }} py={8} bg="primary.200">
+    <Box
+      px={{ base: 6, md: 10, lg: 16 }}
+      py={8}
+      bg="primary.100"
+      color="primary.700"
+    >
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
         <VStack align="start" h="100%" w="70%">
           <RHeading text="Unicorn Casita" />

@@ -10,12 +10,7 @@ const ServiceGrid = () => {
         <RHeading color="gray" text="We Provide" small />
         <RHeading text="Best Customer Experience" small />
       </VStack>
-      <SimpleGrid
-        columns={{ base: 2, md: 2, lg: 4 }}
-        spacing={8}
-        w="100%"
-        px={4}
-      >
+      <SimpleGrid columns={{ base: 2, md: 2, lg: 4 }} spacing={8} w="100%">
         <Box flex={1}>
           <ServiceCard
             icon={Aperture}

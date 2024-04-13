@@ -25,12 +25,7 @@ const CuratedGrid = () => {
   return (
     <VStack align="start" gap={4}>
       <RHeading small text="Curated Picks" />
-      <SimpleGrid
-        columns={{ base: 2, md: 2, lg: 4 }}
-        spacing={8}
-        w="100%"
-        px={4}
-      >
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={8} w="100%">
         {categories.map((cat) => (
           <CategoryCard label={cat.label} img={cat.img} />
         ))}

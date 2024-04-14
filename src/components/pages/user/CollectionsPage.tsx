@@ -1,7 +1,7 @@
-import { Flex, HStack, Show, SimpleGrid, Spacer } from "@chakra-ui/react";
+import { Flex, Show, SimpleGrid, Spacer } from "@chakra-ui/react";
+import { RHeading } from "../../Utilities/Typography";
 import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import ProductCard from "../../library/user/Product/ProductCard";
-import { Label, RHeading } from "../../Utilities/Typography";
 import SortByMenu from "../../library/user/SortByMenu";
 
 const CollectionsPage = () => {
@@ -13,10 +13,7 @@ const CollectionsPage = () => {
           <RHeading small text="Collections 001" />
           <Spacer />
           <Show above="md">
-            <HStack gap={4} align="center">
-              <Label text="Sort By:" nowrap />
-              <SortByMenu />
-            </HStack>
+            <SortByMenu />
           </Show>
         </Flex>
         <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={4}>

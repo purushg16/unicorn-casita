@@ -6,11 +6,11 @@ import {
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import { ChevronDown } from "lucide-react";
+import { BlendIcon, ChevronDown } from "lucide-react";
 
 const SortByMenu = () => {
   return (
-    <Menu>
+    <Menu autoSelect={false}>
       <MenuButton
         as={Button}
         fontWeight="normal"
@@ -20,36 +20,35 @@ const SortByMenu = () => {
         rightIcon={<Icon as={ChevronDown} lineHeight="normal" />}
         alignItems="center"
       >
-        None
+        Sort By
       </MenuButton>
-      <MenuList p={2} borderRadius={20} borderColor="primary.200">
+      <MenuList
+        p={2}
+        borderRadius={10}
+        borderColor="primary.200"
+        boxShadow="rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;"
+      >
         <MenuItem
-          fontWeight="bold"
-          borderRadius={10}
-          color="primary.700"
-          _hover={{ bg: "primary.200" }}
-          _active={{ bg: "primary.200" }}
-          _focus={{ bg: "primary.200" }}
+          as={Button}
+          fontWeight="normal"
+          justifyContent="start"
+          leftIcon={<Icon as={BlendIcon} color="gray" />}
+          borderRadius={5}
+          _hover={{ bg: "primary.100" }}
+          _active={{ bg: "primary.100" }}
+          _focus={{ bg: "primary.100" }}
         >
           lorem ipsum
         </MenuItem>
         <MenuItem
-          fontWeight="bold"
-          borderRadius={10}
-          color="primary.700"
-          _hover={{ bg: "primary.200" }}
-          _active={{ bg: "primary.200" }}
-          _focus={{ bg: "primary.200" }}
-        >
-          lorem ipsum
-        </MenuItem>
-        <MenuItem
-          fontWeight="bold"
-          borderRadius={10}
-          color="primary.700"
-          _hover={{ bg: "primary.200" }}
-          _active={{ bg: "primary.200" }}
-          _focus={{ bg: "primary.200" }}
+          as={Button}
+          fontWeight="normal"
+          justifyContent="start"
+          leftIcon={<Icon as={BlendIcon} color="gray" />}
+          borderRadius={5}
+          _hover={{ bg: "primary.100" }}
+          _active={{ bg: "primary.100" }}
+          _focus={{ bg: "primary.100" }}
         >
           lorem ipsum
         </MenuItem>

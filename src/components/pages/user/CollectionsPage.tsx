@@ -8,7 +8,7 @@ const CollectionsPage = () => {
   return (
     <Flex gap={12} flexDir="column">
       <BreadCrumbsTile crumbs={["home", "collections", "Collections 001"]} />
-      <Flex gap={4} flexDir="column">
+      <Flex gap={8} flexDir="column">
         <Flex align="center">
           <RHeading small text="Collections 001" />
           <Spacer />

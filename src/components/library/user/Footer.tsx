@@ -15,7 +15,7 @@ const Footer = () => {
           <RText text="Specialises in providing high quality & stylish products for you wardrobe" />
         </VStack>
 
-        <SimpleGrid columns={{ base: 1, md: 3 }} h="100%">
+        <SimpleGrid columns={{ base: 1, md: 3 }} h="100%" spacingY={8}>
           <VStack align="start">
             <RText text="lorem ipsum" weight="bolder" />
             <RText text="lorem ipsum" small />

@@ -15,10 +15,10 @@ const SortByMenu = () => {
         as={Button}
         fontWeight="normal"
         variant="secondary"
-        // variant="outline"
         borderRadius={10}
         rightIcon={<Icon as={ChevronDown} lineHeight="normal" />}
         alignItems="center"
+        size="sm"
       >
         Sort By
       </MenuButton>

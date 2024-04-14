@@ -2,7 +2,7 @@ import { Box, Flex, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import { EmblaOptionsType } from "embla-carousel";
-import EmblaCarousel from "../../library/user/Embla/ProductSlider/Slider";
+import ProductSlider from "../../library/user/Embla/ProductSlider/Slider";
 import ProductHeader from "../../library/user/SingleProduct/ProductHeader";
 import SizeSelector from "../../library/user/SingleProduct/SizeSelector";
 import ColorSelector from "../../library/user/SingleProduct/ColorSelector";
@@ -25,7 +25,7 @@ const SingleProductPage = () => {
       <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
         <Box pos="relative">
           <Box pos="sticky" top={0}>
-            <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+            <ProductSlider slides={SLIDES} options={OPTIONS} />
           </Box>
         </Box>
         <VStack gap={8} align="start">

@@ -21,24 +21,28 @@ const UserNavbar = () => {
           <Link to="/categories">
             <Label text="Categories" />
           </Link>
-          <Link to="/shop">
+          <Link to="/collections">
             <Label text="New Arrivals" color="primary.600" />
           </Link>
         </HStack>
         <Spacer />
         <HStack gap={8} align="center">
           <RInput icon={SearchIcon} placeholder="Search" />
-          <Icon
-            cursor="pointer"
-            as={ShoppingCart}
-            boxSize={6}
-            onClick={() => navigate("/cart")}
-          />
+          <Link to="/cart">
+            <Icon
+              cursor="pointer"
+              as={ShoppingCart}
+              boxSize={6}
+              onClick={() => navigate("/cart")}
+            />
+          </Link>
         </HStack>
       </Show>
       <Show below="md">
         <HStack gap={4} align="center">
-          <Icon as={ShoppingCart} boxSize={4} />
+          <Link to="/cart">
+            <Icon as={ShoppingCart} boxSize={4} />
+          </Link>
           <Icon as={MenuIcon} boxSize={4} />
         </HStack>
       </Show>

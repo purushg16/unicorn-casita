@@ -7,6 +7,10 @@ export default {
         bg: "primary.800",
       },
     },
+    outline: {
+      borderColor: "primary.300",
+      color: "primary.700",
+    },
     secondary: {
       bg: "primary.100",
       color: "primary.700",

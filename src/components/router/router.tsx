@@ -3,6 +3,7 @@ import UserHomeLayout from "../layouts/UserHomeLayout";
 import HomePage from "../pages/user/HomePage";
 import CategoriesPage from "../pages/user/CategoriesPage";
 import CollectionsPage from "../pages/user/CollectionsPage";
+import SingleProductPage from "../pages/user/SingleProductPage";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "/categories", element: <CategoriesPage /> },
       { path: "/collections", element: <CollectionsPage /> },
+      { path: "/product/:id", element: <SingleProductPage /> },
     ],
   },
 ]);

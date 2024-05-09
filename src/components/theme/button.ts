@@ -7,6 +7,11 @@ export default {
         bg: "primary.800",
       },
     },
+    ghost: {
+      _hover: {
+        bg: "primary.200",
+      },
+    },
     outline: {
       borderColor: "primary.300",
       color: "primary.700",

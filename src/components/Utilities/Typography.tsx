@@ -1,4 +1,5 @@
 import { Heading, Text } from "@chakra-ui/react";
+import * as CSS from "csstype";
 
 interface Props {
   text: string;
@@ -7,6 +8,7 @@ interface Props {
   weight?: "normal" | "bold" | "bolder" | "semibold";
   color?: "white" | "gray" | string;
   nowrap?: boolean;
+  textTransform?: CSS.Property.TextTransform;
 }
 
 const RHeading = ({ text, big = false, small, color }: Props) => {
@@ -34,7 +36,13 @@ const RText = ({ text, small = false, weight = "normal", color }: Props) => {
     </Text>
   );
 };
-const Label = ({ text, color, weight = "normal", nowrap = false }: Props) => (
+const Label = ({
+  text,
+  color,
+  weight = "normal",
+  nowrap = false,
+  textTransform,
+}: Props) => (
   <Text
     fontSize={{ base: "xs", sm: "xs", md: "sm", lg: "sm" }}
     fontWeight={weight}
@@ -42,6 +50,7 @@ const Label = ({ text, color, weight = "normal", nowrap = false }: Props) => (
     m={0}
     p={0}
     whiteSpace={nowrap ? "nowrap" : "normal"}
+    textTransform={textTransform}
   >
     {text}
   </Text>

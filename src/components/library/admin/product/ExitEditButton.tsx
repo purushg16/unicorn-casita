@@ -1,4 +1,4 @@
-import { Tag, TagLeftIcon, Icon, TagLabel } from "@chakra-ui/react";
+import { Tag, TagLeftIcon, Icon, TagLabel, Show } from "@chakra-ui/react";
 import { CircleX } from "lucide-react";
 
 const ExitEditButton = ({ onClick }: { onClick: (value: boolean) => void }) => {
@@ -9,10 +9,12 @@ const ExitEditButton = ({ onClick }: { onClick: (value: boolean) => void }) => {
       cursor="pointer"
       onClick={() => onClick(false)}
     >
-      <TagLeftIcon>
-        <Icon as={CircleX} />
+      <TagLeftIcon m={{ base: 0, md: 2 }}>
+        <Icon as={CircleX} m={0} />
       </TagLeftIcon>
-      <TagLabel> Exit </TagLabel>
+      <Show above="md">
+        <TagLabel> Exit </TagLabel>
+      </Show>
     </Tag>
   );
 };

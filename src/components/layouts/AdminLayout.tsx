@@ -23,10 +23,10 @@ const AdminLayout = () => {
 
       <GridItem area="main" h="100%" p={4} bg="primary.100">
         <Box
-          p={4}
+          p={8}
           h="100%"
-          maxH="100%"
-          bg="primary.50"
+          maxH={720}
+          bg="white"
           overflowY="scroll"
           borderRadius={10}
         >

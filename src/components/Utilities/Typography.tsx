@@ -4,7 +4,7 @@ interface Props {
   text: string;
   big?: boolean;
   small?: boolean;
-  weight?: "normal" | "bold" | "bolder";
+  weight?: "normal" | "bold" | "bolder" | "semibold";
   color?: "white" | "gray" | string;
   nowrap?: boolean;
 }

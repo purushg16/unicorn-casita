@@ -1,4 +1,6 @@
-export default {
+import { defineStyleConfig } from "@chakra-ui/react";
+
+export default defineStyleConfig({
   variants: {
     primary: {
       bg: "primary.700",
@@ -31,4 +33,4 @@ export default {
       },
     },
   },
-};
+});

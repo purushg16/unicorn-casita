@@ -1,11 +1,21 @@
-import { Button, Divider, HStack, Icon, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Divider,
+  HStack,
+  Icon,
+  VStack,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { BadgePlus } from "lucide-react";
 import AdminGridCover from "../../Utilities/AdminGridCover";
 import { RHeading } from "../../Utilities/Typography";
 import ProductCard from "../../library/admin/product/ProductCard";
 import mockProducts from "../../mocks/mockProducts";
+import SingleProductModal from "../../library/admin/product/SingleProductModal";
 
 const AdminProductsPage = () => {
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   return (
     <VStack align="start">
       <HStack w="100%" justify="space-between">
@@ -21,9 +31,10 @@ const AdminProductsPage = () => {
       <Divider my={4} />
       <AdminGridCover>
         {mockProducts.map((product, i) => (
-          <ProductCard product={product} key={i} />
+          <ProductCard product={product} key={i} onClick={onOpen} />
         ))}
       </AdminGridCover>
+      <SingleProductModal isOpen={isOpen} onClose={onClose} />
     </VStack>
   );
 };

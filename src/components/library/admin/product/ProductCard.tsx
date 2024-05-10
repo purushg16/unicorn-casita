@@ -3,7 +3,13 @@ import { BadgeIndianRupee } from "lucide-react";
 import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  onClick,
+}: {
+  product: Product;
+  onClick: () => void;
+}) => {
   return (
     <VStack
       minH={280}
@@ -17,6 +23,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       boxShadow="sm"
       gap={0}
       cursor="pointer"
+      onClick={onClick}
     >
       <Box flex={1} w="100%" p={4}>
         <Box
@@ -26,6 +33,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           bgImg={`${product.imageLink[0]}/500/500`}
           bgPos="center"
           bgSize="cover"
+          boxShadow="lg"
         />
       </Box>
 

@@ -1,9 +1,9 @@
-import { Flex, HStack, Icon, IconButton, VStack } from "@chakra-ui/react";
-import { RHeading } from "../../../Utilities/Typography";
-import SwiperContainer from "../Swiper/SwiperContainer";
-import ProductCard from "../Product/ProductCard";
+import { Flex, VStack } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { RHeading } from "../../../Utilities/Typography";
+import ProductCard from "../Product/ProductCard";
+import SwiperButtons from "../Swiper/SwiperButtons";
+import SwiperContainer from "../Swiper/SwiperContainer";
 import SwiperProgressBar from "../Swiper/SwiperProgressBar";
 
 const ProductGrid = () => {
@@ -50,24 +50,12 @@ const ProductGrid = () => {
     <VStack align="start" gap={4}>
       <Flex w="100%" justify="space-between">
         <RHeading small text="Featured Products" />
-        <HStack gap={2} align="center">
-          <IconButton
-            icon={<Icon as={ChevronLeft} />}
-            onClick={scrollToLeft}
-            aria-label="left"
-            variant="secondary"
-            isDisabled={leftbtn}
-            size={{ base: "sm", md: "md", lg: "md" }}
-          />
-          <IconButton
-            icon={<Icon as={ChevronRight} />}
-            onClick={scrollToRight}
-            aria-label="right"
-            variant="secondary"
-            isDisabled={rightbtn}
-            size={{ base: "sm", md: "md", lg: "md" }}
-          />
-        </HStack>
+        <SwiperButtons
+          leftDisabled={leftbtn}
+          rightDisabled={rightbtn}
+          scrollToLeft={scrollToLeft}
+          scrollToRight={scrollToRight}
+        />
       </Flex>
 
       <SwiperContainer ref={ref} onScroll={controlButton}>

@@ -3,8 +3,8 @@ import { ForwardedRef, ReactNode, forwardRef } from "react";
 
 interface Props {
   children: ReactNode[];
-  ref: React.RefObject<HTMLDivElement>;
-  onScroll: () => void;
+  ref?: React.RefObject<HTMLDivElement>;
+  onScroll?: () => void;
   breakpoint?: {
     base: number; // 1
     md: number; // 2

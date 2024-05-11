@@ -1,5 +1,5 @@
-import { VStack, HStack, Icon, Box } from "@chakra-ui/react";
-import { BadgeIndianRupee } from "lucide-react";
+import { VStack, HStack, Icon, Box, IconButton } from "@chakra-ui/react";
+import { BadgeIndianRupee, Settings2 } from "lucide-react";
 import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 
@@ -22,8 +22,6 @@ const ProductCard = ({
       w="100%"
       boxShadow="sm"
       gap={0}
-      cursor="pointer"
-      onClick={onClick}
     >
       <Box flex={1} w="100%" p={4}>
         <Box
@@ -37,11 +35,20 @@ const ProductCard = ({
         />
       </Box>
 
-      <VStack align="start" gap={0} p={4} pt={0}>
+      <VStack align="start" gap={0} p={4} pt={0} w="100%">
         <RText text={product.name} weight="semibold" color="primary.700" />
-        <HStack>
-          <Icon as={BadgeIndianRupee} color="primary.500" boxSize={5} />
-          <RText text={` ${product.price}`} color="primary.600" />
+        <HStack w="100%" justify="space-between">
+          <HStack>
+            <Icon as={BadgeIndianRupee} color="primary.500" boxSize={5} />
+            <RText text={` ${product.price}`} color="primary.600" />
+          </HStack>
+          <IconButton
+            onClick={onClick}
+            aria-label="edit-category"
+            icon={<Icon as={Settings2} />}
+            size="sm"
+            colorScheme="primary"
+          />
         </HStack>
       </VStack>
     </VStack>

@@ -1,18 +1,17 @@
-import {
-  Box,
-  Divider,
-  HStack,
-  Icon,
-  IconButton,
-  VStack,
-} from "@chakra-ui/react";
-import { RHeading, RText } from "../../Utilities/Typography";
-import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
+import { Divider, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import AdminGridCover from "../../Utilities/AdminGridCover";
+import { RHeading } from "../../Utilities/Typography";
+import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
+import CategoryCard from "../../library/admin/category/CategoryCard";
 import mockCategories from "../../mocks/mockCategories";
-import { Cog } from "lucide-react";
+import useCategoryEntryStore from "../../store/admin/categoryEntryStore";
+import EditCategoryModal from "../../library/admin/category/EditCategoryModal";
 
 const AdminCategoriesPage = () => {
+  const category = useCategoryEntryStore((s) => s.category);
+  const setCategory = useCategoryEntryStore((s) => s.setCategory);
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   return (
     <VStack align="start">
       <HStack w="100%" justify="space-between">
@@ -22,34 +21,17 @@ const AdminCategoriesPage = () => {
       <Divider my={4} />
       <AdminGridCover>
         {mockCategories.map((category) => (
-          <VStack
-            bg="primary.50"
-            p={4}
-            borderRadius={10}
-            overflow="clip"
-            minH={200}
-            gap={4}
-          >
-            <Box
-              borderRadius={10}
-              flex={1}
-              w="100%"
-              bgImg={category.imageLink}
-              bgSize="cover"
-              bgPos="center"
-            />
-            <HStack w="100%" justify="space-between">
-              <RText text={category.name} weight="bold" color="primary.700" />
-              <IconButton
-                aria-label="edit-category"
-                icon={<Icon as={Cog} />}
-                size="sm"
-                colorScheme="primary"
-              />
-            </HStack>
-          </VStack>
+          <CategoryCard
+            key={category._id}
+            category={category}
+            onClick={() => {
+              onOpen();
+              setCategory(category);
+            }}
+          />
         ))}
       </AdminGridCover>
+      {category && <EditCategoryModal isOpen={isOpen} onClose={onClose} />}
     </VStack>
   );
 };

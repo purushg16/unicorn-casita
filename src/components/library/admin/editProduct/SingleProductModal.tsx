@@ -31,8 +31,8 @@ interface Props {
 
 const SingleProductModal = ({ isOpen, onClose }: Props) => {
   const product = useProductEntryStore((s) => s.product)!;
-  const resetEntry = useProductEntryStore((s) => s.resetEntry)!;
-  const removeImage = useProductEntryStore((s) => s.removeImage)!;
+  const resetEntry = useProductEntryStore((s) => s.resetEntry);
+  const removeImage = useProductEntryStore((s) => s.removeImage);
 
   const images = useImageStore((s) => s.images);
   const clearImages = useImageStore((s) => s.clearImages);
@@ -76,7 +76,7 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
             {!editMode && <EnterEditButton onClick={toggleEditMode} />}
             {editMode && (
               <HStack>
-                <ResetButton />
+                <ResetButton reset={resetState} />
                 <ExitEditButton onClick={exitEditMode} />
               </HStack>
             )}

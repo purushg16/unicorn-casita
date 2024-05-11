@@ -1,3 +1,4 @@
+import { VStack } from "@chakra-ui/react";
 import ImageUploader from "../../../Utilities/ImageUploader";
 import ImagesPreviewGrid from "../../../Utilities/ImagesPreviewGrid";
 import useImageStore from "../../../store/admin/imageStore";
@@ -8,7 +9,7 @@ const NewImageUploader = ({ limit }: { limit: number }) => {
   limit = limit >= 0 ? limit : 0;
 
   return (
-    <>
+    <VStack gap={0} w="100%">
       <ImageUploader
         limit={limit}
         title="Upload Images"
@@ -20,7 +21,7 @@ const NewImageUploader = ({ limit }: { limit: number }) => {
         onDelete={deleteImage}
         viewOnly={false}
       />
-    </>
+    </VStack>
   );
 };
 

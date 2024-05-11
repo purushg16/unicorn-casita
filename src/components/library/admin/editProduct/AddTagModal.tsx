@@ -47,7 +47,7 @@ const AddTagModal = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalCloseButton />
+          <ModalCloseButton bg="primary.100" />
           <ModalHeader color="primary.700"> New Tag </ModalHeader>
           <ModalBody>
             {tags && <TagContainer editMode />}

@@ -1,19 +1,12 @@
-import {
-  Button,
-  Divider,
-  HStack,
-  Icon,
-  VStack,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { BadgePlus } from "lucide-react";
+import { Divider, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import AdminGridCover from "../../Utilities/AdminGridCover";
 import { RHeading } from "../../Utilities/Typography";
-import ProductCard from "../../library/admin/editProduct/ProductCard";
-import mockProducts from "../../mocks/mockProducts";
-import SingleProductModal from "../../library/admin/editProduct/SingleProductModal";
-import useProductEntryStore from "../../store/admin/productEntryStore";
 import Product from "../../entities/product";
+import AddProductModal from "../../library/admin/addProduct/AddProductModal";
+import ProductCard from "../../library/admin/editProduct/ProductCard";
+import SingleProductModal from "../../library/admin/editProduct/SingleProductModal";
+import mockProducts from "../../mocks/mockProducts";
+import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminProductsPage = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -28,13 +21,7 @@ const AdminProductsPage = () => {
     <VStack align="start">
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Products" color="primary.700" small />
-        <Button
-          size="sm"
-          colorScheme="primary"
-          leftIcon={<Icon as={BadgePlus} />}
-        >
-          New Product
-        </Button>
+        <AddProductModal />
       </HStack>
       <Divider my={4} />
       <AdminGridCover>

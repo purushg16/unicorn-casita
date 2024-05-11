@@ -1,5 +1,4 @@
 import { FormLabel, Highlight, VStack } from "@chakra-ui/react";
-import { FileWithPath } from "react-dropzone";
 import useImageStore from "../store/admin/imageStore";
 import Uploader from "./Uploader/Uploader";
 
@@ -14,14 +13,7 @@ const ImageUploader = ({
   small?: boolean;
   isDisabled?: boolean;
 }) => {
-  const images = useImageStore((s) => s.images);
   const setImages = useImageStore((s) => s.setImages);
-  const clearImages = useImageStore((s) => s.clearImages);
-
-  const handleImages = (files: FileWithPath[]) => {
-    clearImages();
-    setImages(files);
-  };
 
   return (
     <VStack align="start" w="100%" h="100%">
@@ -41,11 +33,7 @@ const ImageUploader = ({
         </Highlight>
       </FormLabel>
 
-      <Uploader
-        isDisabled={images.length === limit || isDisabled}
-        limit={limit}
-        callback={handleImages}
-      />
+      <Uploader isDisabled={isDisabled} limit={limit} callback={setImages} />
     </VStack>
   );
 };

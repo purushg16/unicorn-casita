@@ -9,9 +9,9 @@ import {
 import { BadgePlus } from "lucide-react";
 import AdminGridCover from "../../Utilities/AdminGridCover";
 import { RHeading } from "../../Utilities/Typography";
-import ProductCard from "../../library/admin/product/ProductCard";
+import ProductCard from "../../library/admin/editProduct/ProductCard";
 import mockProducts from "../../mocks/mockProducts";
-import SingleProductModal from "../../library/admin/product/SingleProductModal";
+import SingleProductModal from "../../library/admin/editProduct/SingleProductModal";
 
 const AdminProductsPage = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();

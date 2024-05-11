@@ -17,10 +17,11 @@ interface ImageStore {
 const useImageStore = create<ImageStore>((set) => ({
   images: [],
   setImages: (images) =>
-    set(() => ({
-      images: images.map((img) => {
-        return { id: v4(), image: img };
-      }),
+    set((store) => ({
+      images: [
+        ...store.images,
+        ...images.map((img) => ({ id: v4(), image: img })),
+      ],
     })),
   deleteImage: (id) =>
     set((store) => ({ images: store.images.filter((img) => img.id !== id) })),

@@ -12,6 +12,7 @@ export default [
     ],
     price: 99.99,
     productType: "buyable",
+    tags: ["yellow", "green", "ring"],
   },
   {
     name: "Product 2",
@@ -24,6 +25,7 @@ export default [
     ],
     price: 49.99,
     productType: "viewable",
+    tags: ["black", "earing"],
   },
   {
     name: "Product 3",
@@ -40,6 +42,7 @@ export default [
     imageLink: ["https://picsum.photos"],
     price: 149.99,
     productType: "buyable",
+    tags: ["stone"],
   },
   {
     name: "Product 5",
@@ -48,6 +51,7 @@ export default [
     imageLink: ["https://picsum.photos"],
     price: 149.99,
     productType: "buyable",
+    tags: ["bracelet", "black"],
   },
   {
     name: "Product 6",
@@ -56,5 +60,6 @@ export default [
     imageLink: ["https://picsum.photos"],
     price: 149.99,
     productType: "buyable",
+    tags: ["violet", "one-time"],
   },
 ] as Product[];

@@ -1,7 +1,5 @@
 import {
   Button,
-  FormLabel,
-  HStack,
   Modal,
   ModalBody,
   ModalContent,
@@ -11,16 +9,15 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import LabelledInput from "../../../Utilities/LabelledInput";
-import { RText } from "../../../Utilities/Typography";
-import EditModeAlert from "./EditModeAlert";
-import EnterEditButton from "./EnterEditButton";
-import ExitEditButton from "./ExitEditButton";
-import ImageUploader from "../../../Utilities/ImageUploader";
 import ImagesPreviewGrid from "../../../Utilities/ImagesPreviewGrid";
+import LabelledInput from "../../../Utilities/LabelledInput";
 import mockProducts from "../../../mocks/mockProducts";
 import useImageStore from "../../../store/admin/imageStore";
-import ResetButton from "./ResetButton";
+import EditModeAlert from "./EditModeAlert";
+import EditProductModalHeader from "./EditProductModalHeader";
+import NewImageUploader from "./NewImageUploader";
+import RetriveImageButton from "./RetriveImageButton";
+import TagsHug from "./TagsHug";
 
 interface Props {
   isOpen: boolean;
@@ -30,6 +27,9 @@ interface Props {
 const SingleProductModal = ({ isOpen, onClose }: Props) => {
   const product = mockProducts[0];
 
+  const images = useImageStore((s) => s.images);
+  const clearImages = useImageStore((s) => s.clearImages);
+
   const [name, setName] = useState<string>(product.name);
   const [price, setPrice] = useState<number>(product.price);
   const [editMode, toggleEditMode] = useState<boolean>(false);
@@ -37,11 +37,26 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
     product.imageLink
   );
 
+  const [tags, setTags] = useState<string[]>(product.tags || []);
+  const removeTag = (tag: string) => setTags(tags.filter((t) => t !== tag));
+
   const removeImage = (id: string) =>
     setProductImages(productImages.filter((img) => img !== id));
 
-  const images = useImageStore((s) => s.images);
-  const deleteImage = useImageStore((s) => s.deleteImage);
+  const retrieveImages = () => setProductImages(product.imageLink);
+
+  const resetState = () => {
+    setName(product.name);
+    setPrice(product.price);
+    setTags(product.tags || []);
+    setProductImages(product.imageLink);
+    clearImages();
+  };
+
+  const exitEditMode = () => {
+    toggleEditMode(false);
+    resetState();
+  };
 
   return (
     <Modal
@@ -55,19 +70,15 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
       <ModalOverlay />
       <ModalContent
         overflowY="auto"
-        maxH={{ base: "100%", md: "100%", lg: 700 }}
+        maxH={{ base: "100%", md: "100%", lg: 500 }}
       >
         <ModalHeader color="primary.700" w="100%" bg="primary.50">
-          <HStack justify="space-between" w="100%">
-            <RText text="Product Details" weight="bold" />
-            {!editMode && <EnterEditButton onClick={toggleEditMode} />}
-            {editMode && (
-              <HStack>
-                <ResetButton onClick={() => {}} />
-                <ExitEditButton onClick={toggleEditMode} />
-              </HStack>
-            )}
-          </HStack>
+          <EditProductModalHeader
+            editMode={editMode}
+            enterEditMode={toggleEditMode}
+            exitEditMode={exitEditMode}
+            reset={resetState}
+          />
           {editMode && <EditModeAlert />}
         </ModalHeader>
 
@@ -86,39 +97,30 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
               onNumberChange={setPrice}
               type="number"
             />
-            {editMode && (
-              <VStack w="100%" align="start" color="primary.600">
-                <ImageUploader
-                  limit={4 - (images.length + productImages.length)}
-                  title="Upload Images"
-                  isDisabled={!editMode}
-                />
-                <ImagesPreviewGrid
-                  images={images}
-                  viewOnly={false}
-                  onDelete={deleteImage}
-                />
-                {productImages.length > 0 && (
-                  <VStack w="100%" align="start" color="primary.600" mt={4}>
-                    <FormLabel m={0}> Pre-Uploaded Images </FormLabel>
-                    <ImagesPreviewGrid
-                      images={productImages}
-                      onDelete={removeImage}
-                      viewOnly={false}
-                    />
-                  </VStack>
-                )}
-              </VStack>
-            )}
 
-            {!editMode && (
-              <VStack w="100%" align="start" color="primary.600">
-                <FormLabel m={0}> Images </FormLabel>
-                <ImagesPreviewGrid images={productImages} viewOnly />
-              </VStack>
-            )}
+            <TagsHug tags={tags} removeTag={removeTag} editMode={editMode} />
+
+            <VStack w="100%" align="start" color="primary.600">
+              {editMode && (
+                <NewImageUploader
+                  limit={4 - (images.length + productImages.length)}
+                />
+              )}
+
+              {productImages.length > 0 ? (
+                <ImagesPreviewGrid
+                  title={editMode ? "Pre-Uploaded Images" : "Images"}
+                  images={productImages}
+                  onDelete={editMode ? removeImage : undefined}
+                  viewOnly={!editMode}
+                />
+              ) : (
+                <RetriveImageButton onClick={retrieveImages} />
+              )}
+            </VStack>
           </VStack>
         </ModalBody>
+
         <ModalFooter
           mt={4}
           pos="sticky"

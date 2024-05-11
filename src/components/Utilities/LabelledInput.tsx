@@ -42,7 +42,7 @@ const LabelledInput = ({
         type={type}
         onChange={(e) =>
           type === "number"
-            ? onNumberChange && onNumberChange(parseInt(e.target.value || ""))
+            ? onNumberChange && onNumberChange(parseFloat(e.target.value || ""))
             : onTextChange && onTextChange(e.target.value)
         }
         value={value}

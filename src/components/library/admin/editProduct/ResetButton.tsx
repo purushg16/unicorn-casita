@@ -4,7 +4,7 @@ import { RotateCcw } from "lucide-react";
 const ResetButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <Tag size="lg" colorScheme="gray" cursor="pointer" onClick={onClick}>
-      <TagLeftIcon m={{ base: 0, md: 2 }}>
+      <TagLeftIcon mr={{ base: 0, md: 2 }}>
         <Icon as={RotateCcw} />
       </TagLeftIcon>
       <Show above="md">

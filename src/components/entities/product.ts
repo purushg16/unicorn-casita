@@ -5,5 +5,5 @@ export default interface Product {
   imageLink: string[];
   price: number;
   productType?: "viewable" | "buyable";
-  tags?: string[];
+  tags: string[];
 }

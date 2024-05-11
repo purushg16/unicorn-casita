@@ -1,60 +1,21 @@
-import {
-  Tag,
-  VStack,
-  FormLabel,
-  HStack,
-  TagLabel,
-  TagRightIcon,
-  Icon,
-  IconButton,
-} from "@chakra-ui/react";
-import { CircleX, BadgePlus } from "lucide-react";
+import { FormLabel, HStack, VStack } from "@chakra-ui/react";
+import useProductEntryStore from "../../../store/admin/productEntryStore";
+import AddTagModal from "./AddTagModal";
+import TagContainer from "./TagContainer";
 
-const TagsHug = ({
-  tags,
-  editMode,
-  removeTag,
-}: {
-  tags: string[];
-  editMode: boolean;
-  removeTag: (tag: string) => void;
-}) => {
-  return (
-    <VStack align="start" color="primary.600" w="100%">
-      <FormLabel m={0}> Tags </FormLabel>
-      <HStack
-        w="100%"
-        maxW="100%"
-        gap={4}
-        flexWrap="wrap"
-        p={4}
-        bg="primary.50"
-        borderRadius={10}
-        border="1px dashed"
-        borderColor="primary.200"
-      >
-        {tags.map((tag, i) => (
-          <Tag colorScheme="primary" key={i}>
-            <TagLabel textTransform="capitalize"> {tag} </TagLabel>
-            {editMode && (
-              <TagRightIcon onClick={() => removeTag(tag)} cursor="pointer">
-                <Icon as={CircleX} />
-              </TagRightIcon>
-            )}
-          </Tag>
-        ))}
+const TagsHug = ({ editMode }: { editMode: boolean }) => {
+  const tags = useProductEntryStore((s) => s.product)?.tags;
 
-        {editMode && (
-          <IconButton
-            colorScheme="purple"
-            size="sm"
-            aria-label="Add-tag"
-            icon={<Icon as={BadgePlus} />}
-          />
-        )}
-      </HStack>
-    </VStack>
-  );
+  if (tags)
+    return (
+      <VStack align="start" color="primary.600" w="100%">
+        <HStack w="100%" justify="space-between">
+          <FormLabel m={0}> Tags </FormLabel>
+          {editMode && <AddTagModal />}
+        </HStack>
+        <TagContainer editMode={editMode} />
+      </VStack>
+    );
 };
 
 export default TagsHug;

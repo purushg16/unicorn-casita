@@ -1,8 +1,11 @@
 import { VStack, Button, Icon } from "@chakra-ui/react";
 import { Repeat2 } from "lucide-react";
 import { Label } from "../../../Utilities/Typography";
+import useProductEntryStore from "../../../store/admin/productEntryStore";
 
-const RetriveImageButton = ({ onClick }: { onClick: () => void }) => {
+const RetriveImageButton = () => {
+  const resetImage = useProductEntryStore((s) => s.resetImage);
+
   return (
     <VStack
       w="100%"
@@ -18,7 +21,7 @@ const RetriveImageButton = ({ onClick }: { onClick: () => void }) => {
         colorScheme="primary"
         size="sm"
         leftIcon={<Icon as={Repeat2} />}
-        onClick={onClick}
+        onClick={resetImage}
       >
         Retrieve
       </Button>

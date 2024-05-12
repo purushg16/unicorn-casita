@@ -1,5 +1,4 @@
 import { Divider, HStack, VStack, useDisclosure } from "@chakra-ui/react";
-import AdminGridCover from "../../Utilities/AdminGridCover";
 import { RHeading } from "../../Utilities/Typography";
 import Product from "../../entities/product";
 import AddProductModal from "../../library/admin/addProduct/AddProductModal";
@@ -7,6 +6,7 @@ import ProductCard from "../../library/admin/editProduct/ProductCard";
 import SingleProductModal from "../../library/admin/editProduct/SingleProductModal";
 import mockProducts from "../../mocks/mockProducts";
 import useProductEntryStore from "../../store/admin/productEntryStore";
+import SlideInGrid from "../../motions/SlideInGrid";
 
 const AdminProductsPage = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -24,7 +24,7 @@ const AdminProductsPage = () => {
         <AddProductModal />
       </HStack>
       <Divider my={4} />
-      <AdminGridCover>
+      <SlideInGrid>
         {mockProducts.map((product, i) => (
           <ProductCard
             product={product}
@@ -35,7 +35,7 @@ const AdminProductsPage = () => {
             }}
           />
         ))}
-      </AdminGridCover>
+      </SlideInGrid>
       {product && <SingleProductModal isOpen={isOpen} onClose={onClose} />}
     </VStack>
   );

@@ -27,7 +27,7 @@ const ProductCard = ({
         <Box
           borderRadius={10}
           w="100%"
-          h="100%"
+          minH={200}
           bgImg={`${product.imageLink[0]}/500/500`}
           bgPos="center"
           bgSize="cover"

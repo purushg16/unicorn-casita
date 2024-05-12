@@ -2,10 +2,11 @@ import { Divider, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import AdminGridCover from "../../Utilities/AdminGridCover";
 import { RHeading } from "../../Utilities/Typography";
 import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
-import CategoryCard from "../../library/admin/category/CategoryCard";
 import mockCategories from "../../mocks/mockCategories";
 import useCategoryEntryStore from "../../store/admin/categoryEntryStore";
 import EditCategoryModal from "../../library/admin/category/EditCategoryModal";
+import CategoryCard from "../../library/admin/category/CategoryCard";
+// import CategoryCardSkeleton from "../../Utilities/Skeletons/CategoryCardSkeleton";
 
 const AdminCategoriesPage = () => {
   const category = useCategoryEntryStore((s) => s.category);
@@ -21,6 +22,7 @@ const AdminCategoriesPage = () => {
       <Divider my={4} />
       <AdminGridCover>
         {mockCategories.map((category) => (
+          // <CategoryCardSkeleton />
           <CategoryCard
             key={category._id}
             category={category}

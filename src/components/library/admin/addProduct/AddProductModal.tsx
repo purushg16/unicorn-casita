@@ -47,9 +47,10 @@ const AddProductModal = () => {
   return (
     <>
       <Button
+        id="new-product-btn"
         onClick={handleOpen}
         size="sm"
-        colorScheme="primary"
+        variant="primary"
         leftIcon={<Icon as={BadgePlus} />}
       >
         New Product
@@ -99,7 +100,7 @@ const AddProductModal = () => {
             >
               Cancel
             </Button>
-            <Button colorScheme="primary"> Submit </Button>
+            <Button variant="primary"> Submit </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

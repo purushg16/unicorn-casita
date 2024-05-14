@@ -8,7 +8,7 @@ const SideBarBtn = ({ label, icon }: { label: string; icon: LucideIcon }) => {
 
   return (
     <Button
-      variant={label === pathname ? "solid" : "ghost"}
+      variant={label === pathname ? "primary" : "ghost"}
       colorScheme="primary"
       w="100%"
       justifyContent="start"

@@ -29,9 +29,10 @@ const AddCategoryModal = () => {
   return (
     <>
       <Button
+        id="new-category-btn"
         onClick={onOpen}
         size="sm"
-        colorScheme="primary"
+        variant="primary"
         leftIcon={<Icon as={BadgePlus} />}
       >
         New Category

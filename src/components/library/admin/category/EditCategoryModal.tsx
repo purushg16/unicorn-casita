@@ -124,7 +124,7 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
             >
               Cancel
             </Button>
-            <Button colorScheme="primary">Cancel</Button>
+            <Button variant="primary"> Update Changes </Button>
           </HStack>
         </ModalFooter>
       </ModalContent>

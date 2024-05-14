@@ -56,7 +56,7 @@ const AddTagModal = () => {
           </ModalBody>
           <ModalFooter>
             <Button
-              colorScheme="primary"
+              variant="primary"
               onClick={() => {
                 addTag(tag);
                 setTag("");

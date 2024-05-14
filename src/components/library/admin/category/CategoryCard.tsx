@@ -37,7 +37,7 @@ const CategoryCard = ({
           aria-label="edit-category"
           icon={<Icon as={Settings2} />}
           size="sm"
-          colorScheme="primary"
+          variant="primary"
         />
       </HStack>
     </VStack>

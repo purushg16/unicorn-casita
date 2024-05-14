@@ -23,6 +23,9 @@ const theme = extendTheme({
       ".chakra-modal__content": {
         borderRadius: "2xl !important",
       },
+      ".chakra-menu__menu-list": {
+        borderRadius: "2xl !important",
+      },
       // ".chakra-input": {
       //   borderRadius: "xl !important",
       // },

@@ -134,7 +134,7 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
           >
             Close
           </Button>
-          <Button colorScheme="primary" isDisabled={!editMode}>
+          <Button variant="primary" isDisabled={!editMode}>
             Update Changes
           </Button>
         </ModalFooter>

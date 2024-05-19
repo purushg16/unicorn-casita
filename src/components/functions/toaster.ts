@@ -1,15 +1,8 @@
 import { UseToastOptions } from "@chakra-ui/react";
 
-export default function Toaster(
-  status: "success" | "error",
-  title?: string,
-  defualtError?: boolean
-) {
+export default function Toaster(status: "success" | "error", title?: string) {
   return {
-    title:
-      defualtError && status === "error"
-        ? "Something went wrong, Try again Later!"
-        : title,
+    title: title,
     duration: 2000,
     position: "top",
     status: status,

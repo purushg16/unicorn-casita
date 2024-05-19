@@ -3,3 +3,7 @@ export default interface Category {
   name: string;
   imageLink: string;
 }
+
+export interface DeleteCategory {
+  categoryId: string;
+}

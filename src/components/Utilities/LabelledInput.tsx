@@ -22,8 +22,8 @@ const LabelledInput = ({
   isDisabled = false,
 }: Props) => {
   return (
-    <FormControl _focus={{ outlineColor: "primary.700" }}>
-      <FormLabel color="primary.600" mb={0}>
+    <FormControl _focus={{ outlineColor: "primary.800" }}>
+      <FormLabel color="primary.800" fontSize="xs">
         {label}
       </FormLabel>
       <Input

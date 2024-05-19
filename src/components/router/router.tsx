@@ -12,6 +12,7 @@ import AdminReviewsPage from "../pages/admin/AdminReviewsPage";
 import AdminCategoriesPage from "../pages/admin/AdminCategoriesPage";
 import AdminLoginPage from "../pages/admin/AdminLoginPage";
 import AdminSingleProductPage from "../pages/admin/AdminSingleProductPage";
+import AdminAddProductPage from "../pages/admin/AdminAddProductPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/admin/products" /> },
       { path: "products", element: <AdminProductsPage /> },
+      { path: "products/new", element: <AdminAddProductPage /> },
       { path: "products/:id", element: <AdminSingleProductPage /> },
       { path: "categories", element: <AdminCategoriesPage /> },
       { path: "orders", element: <AdminOrdersPage /> },

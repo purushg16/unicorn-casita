@@ -29,9 +29,9 @@ const AddProductModal = () => {
   const handleOpen = () => {
     appendNewEntry({
       name: "",
-      category: "",
+      categoryId: "",
       imageLink: [],
-      price: 0,
+      mrp: 0,
       specifications: "",
       tags: [],
     });

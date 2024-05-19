@@ -25,6 +25,7 @@ const theme = extendTheme({
       },
       ".chakra-menu__menu-list": {
         borderRadius: "2xl !important",
+        padding: "0 !important",
       },
       // ".chakra-input": {
       //   borderRadius: "xl !important",

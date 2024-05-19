@@ -1,10 +1,19 @@
 export default interface Product {
   _id?: string;
   name: string;
-  category: string;
+  categoryId: string;
+  description: string;
+  isAttribute: boolean;
+  attributeName: string;
+  attributes: ProductAttribute[];
   specifications: string;
   imageLink: string[];
-  price: number;
-  productType?: "viewable" | "buyable";
-  tags: string[];
+  mrp: number;
+  salesPrice: number;
+  stock: "in-stock" | "sold-out";
+}
+
+export interface ProductAttribute {
+  value: string;
+  salesPrice: number;
 }

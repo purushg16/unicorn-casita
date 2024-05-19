@@ -40,7 +40,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               color="primary.500"
               boxSize={{ base: 3, md: 5 }}
             />
-            <RText text={` ${product.price}`} color="primary.600" />
+            <RText text={` ${product.mrp}`} color="primary.600" />
           </HStack>
           <Link to={`${product._id}`}>
             <IconButton

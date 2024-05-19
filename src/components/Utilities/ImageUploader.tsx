@@ -5,7 +5,6 @@ import Uploader from "./Uploader/Uploader";
 const ImageUploader = ({
   limit,
   title,
-  small,
   isDisabled = false,
 }: {
   limit: number;
@@ -17,7 +16,7 @@ const ImageUploader = ({
 
   return (
     <VStack align="start" w="100%" h="100%">
-      <FormLabel fontSize={small ? "xs" : "md"} color="primary.600">
+      <FormLabel fontSize="xs" color="primary.800">
         <Highlight
           query={limit === 0 ? `(Limit Reached)` : `(max. ${limit} image(s))`}
           styles={{

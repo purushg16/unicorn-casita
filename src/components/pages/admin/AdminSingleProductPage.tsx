@@ -13,7 +13,6 @@ import NewImageUploader from "../../library/admin/editProduct/NewImageUploader";
 import ProductNameInput from "../../library/admin/editProduct/ProductNameInput";
 import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput";
 import RetriveImageButton from "../../library/admin/editProduct/RetriveImageButton";
-import TagsHug from "../../library/admin/editProduct/TagsHug";
 import EditModeAlert from "../../library/admin/editProduct/EditModeAlert";
 
 const AdminSingleProductPage = () => {
@@ -59,7 +58,6 @@ const AdminSingleProductPage = () => {
         <VStack gap={6} w="100%">
           <ProductNameInput editMode={editMode} />
           <ProductPriceInput editMode={editMode} />
-          <TagsHug editMode={editMode} />
 
           <VStack w="100%" align="start" color="primary.600">
             {editMode && (

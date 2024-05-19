@@ -36,7 +36,6 @@ export default [
     specifications: "Specs for Product 3",
     imageLink: ["https://picsum.photos"],
     mrp: 149.99,
-    productType: "buyable",
   },
   {
     _id: "004",
@@ -46,7 +45,6 @@ export default [
     imageLink: ["https://picsum.photos"],
     mrp: 149.99,
     productType: "buyable",
-    tags: ["stone"],
   },
   {
     _id: "005",
@@ -56,7 +54,6 @@ export default [
     imageLink: ["https://picsum.photos"],
     mrp: 149.99,
     productType: "buyable",
-    tags: ["bracelet", "black"],
   },
   {
     _id: "006",
@@ -66,6 +63,5 @@ export default [
     imageLink: ["https://picsum.photos"],
     mrp: 149.99,
     productType: "buyable",
-    tags: ["violet", "one-time"],
   },
 ] as Product[];

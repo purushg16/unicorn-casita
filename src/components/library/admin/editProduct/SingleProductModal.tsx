@@ -18,7 +18,6 @@ import NewImageUploader from "./NewImageUploader";
 import ProductNameInput from "./ProductNameInput";
 import ProductPriceInput from "./ProductPriceInput";
 import RetriveImageButton from "./RetriveImageButton";
-import TagsHug from "./TagsHug";
 import { RText } from "../../../Utilities/Typography";
 import EnterEditButton from "./EnterEditButton";
 import ExitEditButton from "./ExitEditButton";
@@ -89,7 +88,6 @@ const SingleProductModal = ({ isOpen, onClose }: Props) => {
           <VStack gap={6}>
             <ProductNameInput editMode={editMode} />
             <ProductPriceInput editMode={editMode} />
-            <TagsHug editMode={editMode} />
 
             <VStack w="100%" align="start" color="primary.600">
               {editMode && (

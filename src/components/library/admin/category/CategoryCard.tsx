@@ -16,27 +16,27 @@ const CategoryCard = ({
       border="1px solid"
       borderColor="primary.100"
       bg="primary.50"
-      p={4}
+      p={2}
       borderRadius={20}
       overflow="clip"
       minH={200}
-      gap={4}
+      gap={2}
     >
       <Box
-        borderRadius={10}
+        borderRadius={15}
         flex={1}
         w="100%"
         bgImg={category.imageLink}
         bgSize="cover"
         bgPos="center"
       />
-      <HStack w="100%" justify="space-between">
+      <HStack w="100%" justify="space-between" p={2}>
         <RText text={category.name} weight="semibold" color="primary.700" />
         <IconButton
           onClick={onClick}
           aria-label="edit-category"
           icon={<Icon as={Settings2} />}
-          size="sm"
+          size={{ base: "xs", md: "sm" }}
           variant="primary"
         />
       </HStack>

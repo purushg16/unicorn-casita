@@ -2,6 +2,7 @@ import Product from "../entities/product";
 
 export default [
   {
+    _id: "001",
     name: "Product 1",
     category: "Category A",
     specifications: "Specs for Product 1",
@@ -15,6 +16,7 @@ export default [
     tags: ["yellow", "green", "ring"],
   },
   {
+    _id: "002",
     name: "Product 2",
     category: "Category B",
     specifications: "Specs for Product 2",
@@ -28,6 +30,7 @@ export default [
     tags: ["black", "earing"],
   },
   {
+    _id: "003",
     name: "Product 3",
     category: "Category A",
     specifications: "Specs for Product 3",
@@ -36,6 +39,7 @@ export default [
     productType: "buyable",
   },
   {
+    _id: "004",
     name: "Product 4",
     category: "Category X",
     specifications: "Specs for Product 3",
@@ -45,6 +49,7 @@ export default [
     tags: ["stone"],
   },
   {
+    _id: "005",
     name: "Product 5",
     category: "Category YY",
     specifications: "Specs for Product 3",
@@ -54,6 +59,7 @@ export default [
     tags: ["bracelet", "black"],
   },
   {
+    _id: "006",
     name: "Product 6",
     category: "Category P",
     specifications: "Specs for Product 3",

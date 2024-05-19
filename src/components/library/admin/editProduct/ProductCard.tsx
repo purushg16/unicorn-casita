@@ -2,17 +2,12 @@ import { VStack, HStack, Icon, Box, IconButton } from "@chakra-ui/react";
 import { BadgeIndianRupee, Settings2 } from "lucide-react";
 import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
+import { Link } from "react-router-dom";
 
-const ProductCard = ({
-  product,
-  onClick,
-}: {
-  product: Product;
-  onClick: () => void;
-}) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <VStack
-      minH={280}
+      minH={{ base: 200, md: 280 }}
       bg="primary.50"
       borderRadius={20}
       overflow="clip"
@@ -21,13 +16,14 @@ const ProductCard = ({
       borderColor="primary.100"
       w="100%"
       boxShadow="sm"
-      gap={0}
+      gap={{ base: 2, md: 0 }}
     >
-      <Box flex={1} w="100%" p={4}>
+      <Box flex={1} w="100%" p={2}>
         <Box
-          borderRadius={10}
           w="100%"
-          minH={200}
+          minH={{ base: 0, md: 200 }}
+          borderRadius={15}
+          aspectRatio={{ base: "1/1", md: "auto" }}
           bgImg={`${product.imageLink[0]}/500/500`}
           bgPos="center"
           bgSize="cover"
@@ -35,20 +31,25 @@ const ProductCard = ({
         />
       </Box>
 
-      <VStack align="start" gap={0} p={4} pt={0} w="100%">
+      <VStack align="start" gap={0} p={{ base: 3, md: 4 }} pt={0} w="100%">
         <RText text={product.name} weight="semibold" color="primary.700" />
         <HStack w="100%" justify="space-between">
-          <HStack>
-            <Icon as={BadgeIndianRupee} color="primary.500" boxSize={5} />
+          <HStack gap={{ base: 1, md: 2 }}>
+            <Icon
+              as={BadgeIndianRupee}
+              color="primary.500"
+              boxSize={{ base: 3, md: 5 }}
+            />
             <RText text={` ${product.price}`} color="primary.600" />
           </HStack>
-          <IconButton
-            onClick={onClick}
-            aria-label="edit-category"
-            icon={<Icon as={Settings2} />}
-            size="sm"
-            variant="primary"
-          />
+          <Link to={`${product._id}`}>
+            <IconButton
+              aria-label="edit-category"
+              icon={<Icon as={Settings2} />}
+              size={{ base: "xs", md: "sm" }}
+              variant="primary"
+            />
+          </Link>
         </HStack>
       </VStack>
     </VStack>

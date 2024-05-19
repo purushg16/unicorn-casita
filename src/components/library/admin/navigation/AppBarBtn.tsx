@@ -13,7 +13,7 @@ const AppBarBtn = ({ route, icon }: Props) => {
 
   return (
     <Box
-      lineHeight="normal"
+      lineHeight={0}
       p={2}
       bg={pathname === route ? "white" : "none"}
       boxShadow={pathname === route ? "md" : "none"}

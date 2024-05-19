@@ -1,5 +1,6 @@
-import { Box, Divider, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Box, Divider, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 import { RHeading, RText } from "../../Utilities/Typography";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,30 +16,35 @@ const Footer = () => {
           <RText text="Specialises in providing high quality & stylish products for you wardrobe" />
         </VStack>
 
-        <SimpleGrid columns={{ base: 1, md: 3 }} h="100%" spacingY={8}>
+        <HStack w="100%" flexWrap="wrap" justify="space-between" spacing={20}>
           <VStack align="start">
-            <RText text="lorem ipsum" weight="bolder" />
+            <RText text="Brand" weight="bolder" small />
+            <RText text="New Arrivals" small />
+            <RText text="Categories" small />
+            <RText text="Collections" small />
+          </VStack>
+
+          <VStack align="start">
+            <RText text="Customer Policies" weight="bolder" small />
+            <Link to="/termsandcondtions">
+              <RText text="Terms & Conditions" small />
+            </Link>
+            <Link to="/shippinganddeliverypolicy">
+              <RText text="Shipping & Delivery" small />
+            </Link>
+            <Link to="/cancellationorrefundpolicy">
+              <RText text="Cancellation or Refund policy" small />
+            </Link>
+          </VStack>
+
+          <VStack align="start">
+            <RText text="lorem ipsum" weight="bolder" small />
+
             <RText text="lorem ipsum" small />
             <RText text="lorem ipsum" small />
             <RText text="lorem ipsum" small />
           </VStack>
-
-          <VStack align="start">
-            <RText text="lorem ipsum" weight="bolder" />
-
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
-          </VStack>
-
-          <VStack align="start">
-            <RText text="lorem ipsum" weight="bolder" />
-
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
-          </VStack>
-        </SimpleGrid>
+        </HStack>
       </SimpleGrid>
 
       <Divider my={8} />

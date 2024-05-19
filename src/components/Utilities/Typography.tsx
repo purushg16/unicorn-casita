@@ -25,13 +25,26 @@ const RHeading = ({ text, big = false, small, color }: Props) => {
   );
 };
 
-const RText = ({ text, small = false, weight = "normal", color }: Props) => {
+const RText = ({
+  text,
+  small = false,
+  weight = "normal",
+  color,
+  textTransform,
+}: Props) => {
   const fontSize = small
     ? { base: "xs", sm: "xs", md: "sm", lg: "sm" }
     : { base: "xs", sm: "sm", md: "md", lg: "lg" };
 
   return (
-    <Text fontSize={fontSize} fontWeight={weight} m={0} p={0} color={color}>
+    <Text
+      fontSize={fontSize}
+      fontWeight={weight}
+      m={0}
+      p={0}
+      color={color}
+      textTransform={textTransform}
+    >
       {text}
     </Text>
   );

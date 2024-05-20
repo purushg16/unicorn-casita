@@ -4,6 +4,8 @@ import AddReviewModal from "../../library/admin/review/AddReviewModal";
 import useGetAllReviews from "../../hooks/user/useReview";
 import ReviewsGrid from "../../library/admin/review/ReviewsGrid";
 import ReviewsSkeleton from "../../Utilities/Skeletons/ReviewsSkeleton";
+import NoDataDisplay from "../../Utilities/NoDataDisplay";
+import img from "../../../assets/empty_reviews.svg";
 
 const AdminReviewsPage = () => {
   const { data: reviews, status } = useGetAllReviews();
@@ -16,7 +18,10 @@ const AdminReviewsPage = () => {
       </HStack>
       <Divider my={4} />
       {status === "success" && <ReviewsGrid reviews={reviews} />}
-      {status !== "pending" && <ReviewsSkeleton />}
+      {status === "success" && reviews.length === 0 && (
+        <NoDataDisplay img={img} />
+      )}
+      {status === "pending" && <ReviewsSkeleton />}
     </VStack>
   );
 };

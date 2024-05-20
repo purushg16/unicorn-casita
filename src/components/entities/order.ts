@@ -9,9 +9,15 @@ export interface VerifyOrder {
   "X-razorpay-signature": string;
 }
 
-export default interface Order {
+export interface AdminOrder {
+  _id?: string;
+  createdAt?: string;
   orderId: string;
-  customerId: string;
+  customerId: {
+    email: string;
+    name: string;
+    _id: string;
+  };
   product: OrderProduct[];
   totalBill: number;
   paymentStatus:
@@ -23,4 +29,19 @@ export default interface Order {
   orderStatus: "pending" | "confirmed" | "completed" | "cancelled";
   shippingStatus: "unshipped" | "shipped";
   paymentId: string;
+}
+
+export interface UserOrder {
+  _id: string;
+  createdAt: string;
+  orderId: string;
+  totalBill: number;
+  paymentStatus:
+    | "created"
+    | "success"
+    | "failed"
+    | "refunded"
+    | "partial-refund";
+  orderStatus: "pending" | "confirmed" | "completed" | "cancelled";
+  shippingStatus: "unshipped" | "shipped";
 }

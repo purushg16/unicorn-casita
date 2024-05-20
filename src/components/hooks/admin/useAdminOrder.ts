@@ -2,7 +2,6 @@ import { useInfiniteQuery, useQuery, useMutation } from "@tanstack/react-query";
 import APIClient, { SinglePropertyResponse } from "../../services/api-client";
 import { useToast } from "@chakra-ui/react";
 import Toaster from "../../functions/toaster";
-import Order from "../../entities/order";
 import { PaginatedResponse } from "../../entities/paginatedResponse";
 import {
   CACHE_KEY_ALLORDERS,
@@ -10,6 +9,13 @@ import {
 } from "../../constants/cache_keys";
 import { ErrorResponse } from "react-router-dom";
 import { SuccessResponse } from "../../entities/response";
+import { AdminOrder } from "../../entities/order";
+import {
+  _allOrders,
+  _confirmOrder,
+  _shipOrder,
+  _singleOrders,
+} from "../../services/endpoints";
 
 interface AdminConfirmOrder {
   mongooseOrderId: string;
@@ -19,9 +25,7 @@ interface AdminShipOrder extends AdminConfirmOrder {
   trackingNumber: string;
 }
 
-const adminConfirmOrder = new APIClient<AdminConfirmOrder>(
-  "/orders/confirmOrder"
-);
+const adminConfirmOrder = new APIClient<AdminConfirmOrder>(_confirmOrder);
 const useAdminConfirmOrder = () => {
   const toast = useToast();
   return useMutation({
@@ -33,7 +37,7 @@ const useAdminConfirmOrder = () => {
   });
 };
 
-const adminShipOrder = new APIClient<AdminShipOrder>("/orders/shipped");
+const adminShipOrder = new APIClient<AdminShipOrder>(_shipOrder);
 const useAdminShipOrder = () => {
   const toast = useToast();
   return useMutation({
@@ -45,12 +49,12 @@ const useAdminShipOrder = () => {
   });
 };
 
-const adminGetAllOrders = new APIClient<PaginatedResponse<Order>>(
-  "/orders/allOrders"
+const adminGetAllOrders = new APIClient<PaginatedResponse<AdminOrder>>(
+  _allOrders
 );
 const useAdminGetAllOrders = () => {
   return useInfiniteQuery<
-    SinglePropertyResponse<PaginatedResponse<Order>>,
+    SinglePropertyResponse<PaginatedResponse<AdminOrder>>,
     Error
   >({
     queryKey: CACHE_KEY_ALLORDERS,
@@ -67,7 +71,7 @@ const useAdminGetAllOrders = () => {
   });
 };
 
-const adminSingleOrder = new APIClient<Order>("/orders/singleOrder");
+const adminSingleOrder = new APIClient<AdminOrder>(_singleOrders);
 const useAdminGetSingleOrder = (mongooseOrderId: string) => {
   return useQuery({
     queryKey: [...CACHE_KEY_SINGLEORDER, mongooseOrderId],

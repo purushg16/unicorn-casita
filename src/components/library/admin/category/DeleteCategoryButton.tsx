@@ -48,10 +48,11 @@ const DeleteCategoryButton = ({
         leastDestructiveRef={cancelRef}
         onClose={onClose}
         isCentered
+        motionPreset="slideInBottom"
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            <AlertDialogHeader fontSize="lg" fontWeight="bold" color="red">
               Delete Category
             </AlertDialogHeader>
 
@@ -60,7 +61,12 @@ const DeleteCategoryButton = ({
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button
+                ref={cancelRef}
+                onClick={onClose}
+                colorScheme="red"
+                variant="ghost"
+              >
                 Cancel
               </Button>
               <Button

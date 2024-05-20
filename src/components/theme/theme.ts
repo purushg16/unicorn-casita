@@ -22,6 +22,7 @@ const theme = extendTheme({
     global: {
       ".chakra-modal__content": {
         borderRadius: "2xl !important",
+        overflow: "clip",
       },
       ".chakra-menu__menu-list": {
         borderRadius: "2xl !important",

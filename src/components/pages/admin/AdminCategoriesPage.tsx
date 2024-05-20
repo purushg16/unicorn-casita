@@ -17,7 +17,7 @@ const AdminCategoriesPage = () => {
       </HStack>
       <Divider my={4} />
       {status === "pending" && <CategoriesSkeleton />}
-      {status === "success" && categories.length !== 0 && (
+      {status === "success" && categories.length === 0 && (
         <Flex
           w="100%"
           h="100%"

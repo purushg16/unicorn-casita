@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 import { AdminLogin, ChangePassword } from "../../entities/credentials";
 import Toaster from "../../functions/toaster";
 import { _adminChangePassword, _adminLogin } from "../../services/endpoints";
-import { ErrorResponse } from "react-router-dom";
-import { SuccessResponse } from "../../entities/response";
+import { SuccessResponse, ErrorResponse } from "../../entities/response";
 
 const adminLogin = new APIClient<AdminLogin>(_adminLogin);
 const adminChangePassword = new APIClient<ChangePassword>(_adminChangePassword);
@@ -19,19 +18,22 @@ const useAdminLogin = () => {
     mutationFn: adminLogin.authorizationPost,
     onSuccess: () => navigate("/admin"),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 
-const useAdminChangePassword = () => {
+const useAdminChangePassword = (callback: () => void) => {
   const toast = useToast();
 
   return useMutation({
-    mutationFn: adminChangePassword.authorizationPost,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+    mutationFn: adminChangePassword.changePassword,
+    onSuccess: (data: SuccessResponse) => {
+      console.log(data);
+      toast(Toaster("success", data.data.message));
+      callback();
+    },
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 

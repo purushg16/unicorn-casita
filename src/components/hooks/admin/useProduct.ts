@@ -61,7 +61,7 @@ const useAddProduct = () => {
   return useMutation({
     mutationFn: addProduct.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });
@@ -73,7 +73,7 @@ const useEditProduct = () => {
   return useMutation({
     mutationFn: editProduct.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });
@@ -84,7 +84,7 @@ const useDeleteProduct = () => {
   return useMutation({
     mutationFn: delProduct.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });

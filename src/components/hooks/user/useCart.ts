@@ -14,7 +14,7 @@ const useCartCheckout = () => {
   return useMutation({
     mutationFn: cartCheckout.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });

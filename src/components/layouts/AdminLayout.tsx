@@ -2,12 +2,14 @@ import { Show, GridItem, Box, Grid } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../library/admin/navigation/Sidebar";
 import AppBar from "../library/admin/navigation/AppBar";
+import TopBar from "../library/admin/navigation/TopBar";
 
 const AdminLayout = () => {
   return (
     <Grid
       templateAreas={{
-        base: `"main"`,
+        base: `"topbar"
+                "main"`,
         lg: `"aside main"`,
       }}
       templateColumns={{
@@ -22,10 +24,17 @@ const AdminLayout = () => {
         </GridItem>
       </Show>
 
+      <Show below="lg">
+        <GridItem area="topbar" p={4} bg="primary.100" h="100%">
+          <TopBar />
+        </GridItem>
+      </Show>
+
       <GridItem
         area="main"
         h="100%"
         p={{ base: 0, md: 4 }}
+        px={{ base: 2, md: 4 }}
         bg="primary.100"
         mb={{ base: 32, md: 32, lg: 0 }}
       >

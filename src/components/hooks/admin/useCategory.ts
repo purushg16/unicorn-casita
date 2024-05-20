@@ -37,7 +37,7 @@ const useAddCategory = (callback: () => void) => {
   return useMutation({
     mutationFn: addCategory.postRequest,
     onSuccess: (data: SuccessResponse) => {
-      toast(Toaster("success", data.data.msg));
+      toast(Toaster("success", data.data.message));
       queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLCATEGORIES });
 
       // setName("");
@@ -55,7 +55,7 @@ const useDeleteCategory = () => {
   return useMutation({
     mutationFn: delCategory.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });

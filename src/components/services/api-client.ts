@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-const baseURL = "https://krishtex-server.onrender.com";
+const baseURL = "https://server-ozyr.onrender.com";
 
 export interface FetchResponse<T> {
   data: T[];
@@ -71,4 +71,18 @@ export default class APIClient<T> {
       .then((res) => {
         return res;
       });
+
+  changePassword = (data: T) => {
+    return axiosAuthInstance
+      .post(this.endpoint, data, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        axiosInstance.defaults.headers.common["Authorization"] = res.data.token;
+        return res;
+      });
+  };
 }

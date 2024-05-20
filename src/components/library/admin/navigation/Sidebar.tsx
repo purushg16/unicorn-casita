@@ -3,14 +3,14 @@ import {
   Blocks,
   CircleUser,
   Eclipse,
-  LockIcon,
-  LogOut,
   ShoppingBag,
   Smile,
   Snowflake,
 } from "lucide-react";
 import { RHeading } from "../../../Utilities/Typography";
 import SideBarBtn from "./SideBarBtn";
+import ChangePasswordModal from "../auth/ChangePasswordModal";
+import LogoutButton from "../auth/LogoutButton";
 
 const Sidebar = () => {
   return (
@@ -45,26 +45,8 @@ const Sidebar = () => {
           Account
         </Button>
         <Divider />
-        <Button
-          color="black"
-          variant="link"
-          w="100%"
-          justifyContent="space-between"
-          rightIcon={<Icon as={LockIcon} />}
-          size="sm"
-        >
-          Change Password
-        </Button>
-        <Button
-          colorScheme="red"
-          variant="link"
-          w="100%"
-          justifyContent="space-between"
-          rightIcon={<Icon as={LogOut} />}
-          size="sm"
-        >
-          Logout
-        </Button>
+        <ChangePasswordModal />
+        <LogoutButton />
       </VStack>
     </VStack>
   );

@@ -20,9 +20,9 @@ const useAddReview = () => {
   return useMutation({
     mutationFn: addReview.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 
@@ -32,9 +32,9 @@ const useEditReview = () => {
   return useMutation({
     mutationFn: editReview.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 
@@ -44,9 +44,9 @@ const useDeleteReview = () => {
   return useMutation({
     mutationFn: deleteReview.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 

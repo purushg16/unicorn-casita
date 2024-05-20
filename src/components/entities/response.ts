@@ -1,7 +1,7 @@
-import { AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 
 interface Success {
-  msg: string;
+  message: string;
   stack: string;
 }
 
@@ -11,4 +11,4 @@ interface Error {
 }
 
 export type SuccessResponse = AxiosResponse<Success>;
-export type ErrorResponse = AxiosResponse<Error>;
+export type ErrorResponse = AxiosError<Error>;

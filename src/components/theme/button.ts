@@ -8,6 +8,22 @@ export default defineStyleConfig({
       _hover: {
         bg: "primary.800",
       },
+      _disabled: {
+        background: "primary.500",
+        backgroundColor: "primary.500",
+        _focus: {
+          background: "primary.500 !important",
+          backgroundColor: "primary.500 !important",
+        },
+        _active: {
+          background: "primary.500 !important",
+          backgroundColor: "primary.500 !important",
+        },
+        _hover: {
+          background: "primary.500 !important",
+          backgroundColor: "primary.500 !important",
+        },
+      },
     },
     ghost: {
       _hover: {

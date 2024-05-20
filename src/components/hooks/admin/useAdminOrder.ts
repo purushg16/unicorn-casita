@@ -27,7 +27,7 @@ const useAdminConfirmOrder = () => {
   return useMutation({
     mutationFn: adminConfirmOrder.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });
@@ -39,7 +39,7 @@ const useAdminShipOrder = () => {
   return useMutation({
     mutationFn: adminShipOrder.postRequest,
     onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.msg)),
+      toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });

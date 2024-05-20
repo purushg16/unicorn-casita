@@ -26,6 +26,8 @@ const AdminCategoriesPage = () => {
           pos="absolute"
           flexDir="column"
           gap={12}
+          left={0}
+          top={0}
         >
           <Image src={img} alt="" w={200} />
           <RText

@@ -4,7 +4,7 @@ import ReviewSkeletonCard from "./ReviewSkeletonCard";
 const ReviewsSkeleton = () => {
   return (
     <SimpleGrid w="100%" my={4} columns={{ base: 2, md: 3, lg: 4 }} spacing={4}>
-      {Array.from({ length: 6 }).map((_a, i) => (
+      {Array.from({ length: 4 }).map((_a, i) => (
         <ReviewSkeletonCard key={i} />
       ))}
     </SimpleGrid>

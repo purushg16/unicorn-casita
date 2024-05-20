@@ -16,7 +16,7 @@ const AdminReviewsPage = () => {
       </HStack>
       <Divider my={4} />
       {status === "success" && <ReviewsGrid reviews={reviews} />}
-      {status === "pending" && <ReviewsSkeleton />}
+      {status !== "pending" && <ReviewsSkeleton />}
     </VStack>
   );
 };

@@ -24,6 +24,7 @@ const AdminProductsPage = () => {
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Products" color="primary.700" small />
         <Button
+          zIndex={999}
           id="new-product-btn"
           onClick={() => navigate("new")}
           size="sm"
@@ -44,6 +45,8 @@ const AdminProductsPage = () => {
           pos="absolute"
           flexDir="column"
           gap={12}
+          left={0}
+          top={0}
         >
           <Image src={img} alt="" w={200} />
           <RText

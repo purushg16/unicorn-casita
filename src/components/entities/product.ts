@@ -1,3 +1,5 @@
+import Specification from "./specification";
+
 export default interface Product {
   _id?: string;
   name: string;
@@ -6,7 +8,7 @@ export default interface Product {
   isAttribute: boolean;
   attributeName: string;
   attributes: ProductAttribute[];
-  specifications: string;
+  specifications: Specification[];
   imageLink: string[];
   mrp: number;
   salesPrice: number;

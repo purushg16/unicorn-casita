@@ -1,11 +1,13 @@
 import { Button, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
+import AttributeSelector from "../../library/admin/addProduct/AttributeSelector";
+import CategorySelector from "../../library/admin/addProduct/CategorySelector";
+import DescriptionInput from "../../library/admin/addProduct/DescriptionInput";
+import StockSelector from "../../library/admin/addProduct/StockSelector";
 import NewImageUploader from "../../library/admin/editProduct/NewImageUploader";
 import ProductNameInput from "../../library/admin/editProduct/ProductNameInput";
 import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput";
 import useImageStore from "../../store/admin/imageStore";
-import CategorySelector from "../../library/admin/addProduct/CategorySelector";
-import StockSelector from "../../library/admin/addProduct/StockSelector";
-import AttributeSelector from "../../library/admin/addProduct/AttributeSelector";
+import SpecificationsTable from "../../library/admin/addProduct/SpecificationsTable";
 // import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminAddProductPage = () => {
@@ -19,20 +21,17 @@ const AdminAddProductPage = () => {
   //   };
 
   return (
-    <VStack gap={8}>
-      <VStack w="100%" align="start">
-        <ProductNameInput editMode />
-      </VStack>
-
-      <SimpleGrid columns={{ base: 1, md: 3 }} w="100%" spacing={8}>
+    <VStack gap={12}>
+      <ProductNameInput editMode />
+      <DescriptionInput />
+      <SimpleGrid columns={{ base: 1, md: 3 }} w="100%" spacing={12}>
         <ProductPriceInput editMode />
         <StockSelector />
         <CategorySelector />
       </SimpleGrid>
-
       <AttributeSelector />
-
       <NewImageUploader limit={4 - images.length} />
+      <SpecificationsTable />
 
       <HStack
         w="100%"

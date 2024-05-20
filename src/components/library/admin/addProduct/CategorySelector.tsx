@@ -10,9 +10,12 @@ import {
   VStack,
   useDisclosure,
 } from "@chakra-ui/react";
+import CategoriesSelectionList from "./CategoriesSelectionList";
+import useCategorySelectorStore from "../../../store/admin/categorySelectorStore";
 
 const CategorySelector = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const selectedCategory = useCategorySelectorStore((s) => s.category);
 
   return (
     <VStack align="start" gap={0}>
@@ -23,16 +26,36 @@ const CategorySelector = () => {
         Select Category
       </Button>
       <Modal
+        isCentered
         isOpen={isOpen}
         onClose={onClose}
-        // closeOnOverlayClick={false}
+        closeOnOverlayClick={false}
         closeOnEsc={false}
+        size={{ base: "full", md: "xl" }}
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader></ModalHeader>
-          <ModalBody></ModalBody>
-          <ModalFooter></ModalFooter>
+          <ModalHeader color="primary.800"> Select Category </ModalHeader>
+          <ModalBody>
+            <CategoriesSelectionList />
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              colorScheme="primary"
+              variant="ghost"
+              onClick={onClose}
+              mr={4}
+            >
+              Close
+            </Button>
+            <Button
+              variant="primary"
+              isDisabled={!selectedCategory}
+              onClick={onClose}
+            >
+              Select
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </VStack>

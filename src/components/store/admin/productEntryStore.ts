@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import Product, { ProductAttribute } from "../../entities/product";
+import { v4 } from "uuid";
 
 interface ProductEntry {
   product: Product | undefined;
@@ -17,6 +18,11 @@ interface ProductEntryAction {
   addAttributes: (attribute: ProductAttribute) => void;
   removeAttribute: (attribute: ProductAttribute) => void;
 
+  setSpecifications: (id: string, key: string, value: string) => void;
+  addSpecifications: () => void;
+  removeSpecifications: (id: string) => void;
+  clearSpecs: () => void;
+
   setMrp: (mrp: number) => void;
   toggleStockAvaiability: () => void;
   setCategory: (category: string) => void;
@@ -32,7 +38,7 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       categoryId: "",
       imageLink: [],
       salesPrice: 0,
-      specifications: "",
+      specifications: [{ id: v4(), key: "", value: "" }],
       attributeName: "",
       attributes: [],
       description: "",
@@ -45,7 +51,7 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       categoryId: "",
       imageLink: [],
       salesPrice: 0,
-      specifications: "",
+      specifications: [{ id: v4(), key: "", value: "" }],
       attributeName: "",
       attributes: [],
       description: "",
@@ -53,6 +59,43 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       mrp: 0,
       stock: "in-stock",
     },
+
+    setSpecifications: (id, key, value) =>
+      set((store) => ({
+        product: {
+          ...store.product!,
+          specifications:
+            store.product?.specifications.map((specification) => {
+              return specification.id === id
+                ? { ...specification, key: key, value: value }
+                : specification;
+            }) || [],
+        },
+      })),
+
+    addSpecifications: () =>
+      set((store) => ({
+        product:
+          {
+            ...store.product!,
+            specifications: [
+              ...(store.product?.specifications || []),
+              { id: v4(), key: "", value: "" },
+            ],
+          } || [],
+      })),
+
+    removeSpecifications: (id) =>
+      set((store) => ({
+        product: {
+          ...store.product!,
+          specifications:
+            store.product?.specifications.filter((s) => s.id !== id) || [],
+        },
+      })),
+
+    clearSpecs: () =>
+      set((store) => ({ product: { ...store.product!, specifications: [] } })),
 
     setName: (name) =>
       set((store) => ({ product: { ...store.product!, name: name } })),
@@ -90,6 +133,15 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       set((store) => ({
         product: {
           ...store.product!,
+          salesPrice: !store.product?.isAttribute
+            ? 0
+            : store.product?.salesPrice,
+          attributeName: store.product?.isAttribute
+            ? ""
+            : store.product?.attributeName || "",
+          attributes: store.product?.isAttribute
+            ? []
+            : store.product?.attributes || [],
           isAttribute: !store.product?.isAttribute,
         },
       })),

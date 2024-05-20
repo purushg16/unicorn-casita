@@ -50,7 +50,7 @@ const useGetSingleProduct = (productId: string, enabled: boolean) =>
     queryKey: CACHE_KEY_SINGLEPRODUCT,
     queryFn: () =>
       getSingleProduct
-        .getRequest({ params: { productId: productId } })
+        .getSingleItem({ params: { productId: productId } })
         .then((res) => res.data),
     enabled: enabled,
   });

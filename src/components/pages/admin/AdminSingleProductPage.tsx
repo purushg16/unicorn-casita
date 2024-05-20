@@ -1,5 +1,4 @@
 import { Navigate, useParams } from "react-router-dom";
-import mockProducts from "../../mocks/mockProducts";
 import { useState } from "react";
 import useImageStore from "../../store/admin/imageStore";
 import useProductEntryStore from "../../store/admin/productEntryStore";
@@ -14,10 +13,11 @@ import ProductNameInput from "../../library/admin/editProduct/ProductNameInput";
 import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput";
 import RetriveImageButton from "../../library/admin/editProduct/RetriveImageButton";
 import EditModeAlert from "../../library/admin/editProduct/EditModeAlert";
+import { useGetSingleProduct } from "../../hooks/admin/useProduct";
 
 const AdminSingleProductPage = () => {
   const productId = useParams().id;
-  const product = mockProducts.find((pr) => pr._id === productId);
+  const product = useGetSingleProduct(productId!, !!productId).data;
 
   const resetEntry = useProductEntryStore((s) => s.resetEntry);
   const removeImage = useProductEntryStore((s) => s.removeImage);

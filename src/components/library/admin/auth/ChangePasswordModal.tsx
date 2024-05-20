@@ -66,7 +66,12 @@ const ChangePasswordModal = ({ small }: { small?: boolean }) => {
             </VStack>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onClose} mr={4}>
+            <Button
+              variant="ghost"
+              colorScheme="primary"
+              onClick={onClose}
+              mr={4}
+            >
               Close
             </Button>
             <Button

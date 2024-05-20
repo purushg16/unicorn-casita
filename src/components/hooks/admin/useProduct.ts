@@ -3,7 +3,7 @@ import APIClient, { SinglePropertyResponse } from "../../services/api-client";
 import { useQuery, useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import Toaster from "../../functions/toaster";
 import Product from "../../entities/product";
-import { AddProduct, DeleteProduct } from "../../entities/serviceProduct";
+import { DeleteProduct } from "../../entities/serviceProduct";
 import { EditProduct } from "../../entities/editProduct";
 import { PaginatedResponse } from "../../entities/paginatedResponse";
 import {
@@ -17,10 +17,9 @@ import {
   CACHE_KEY_ALLPRODUCTS,
   CACHE_KEY_SINGLEPRODUCT,
 } from "../../constants/cache_keys";
-import { ErrorResponse } from "react-router-dom";
-import { SuccessResponse } from "../../entities/response";
+import { SuccessResponse, ErrorResponse } from "../../entities/response";
 
-const addProduct = new APIClient<AddProduct>(_addProduct);
+const addProduct = new APIClient<Product>(_addProduct);
 const editProduct = new APIClient<EditProduct>(_editProduct);
 const delProduct = new APIClient<DeleteProduct>(_deleteProduct);
 const getSingleProduct = new APIClient<Product>(_singleProduct);
@@ -55,15 +54,22 @@ const useGetSingleProduct = (productId: string, enabled: boolean) =>
     enabled: enabled,
   });
 
-const useAddProduct = () => {
+const useAddProduct = (
+  successCallback: () => void,
+  failureCallback: () => void
+) => {
   const toast = useToast();
 
   return useMutation({
     mutationFn: addProduct.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
-    onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+    onSuccess: (data: SuccessResponse) => {
+      successCallback();
+      toast(Toaster("success", data.data.message));
+    },
+    onError: (error: ErrorResponse) => {
+      failureCallback();
+      toast(Toaster("error", error.response?.data.error));
+    },
   });
 };
 
@@ -75,7 +81,7 @@ const useEditProduct = () => {
     onSuccess: (data: SuccessResponse) =>
       toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 
@@ -86,7 +92,7 @@ const useDeleteProduct = () => {
     onSuccess: (data: SuccessResponse) =>
       toast(Toaster("success", data.data.message)),
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 

@@ -8,6 +8,7 @@ import ProductNameInput from "../../library/admin/editProduct/ProductNameInput";
 import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput";
 import useImageStore from "../../store/admin/imageStore";
 import SpecificationsTable from "../../library/admin/addProduct/SpecificationsTable";
+import AddProductSubmitButton from "../../library/admin/SubmitButtons/AddProductSubmitButton";
 // import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminAddProductPage = () => {
@@ -39,8 +40,10 @@ const AdminAddProductPage = () => {
         gap={4}
         borderRadius={10}
       >
-        <Button variant="secondary"> Cancel </Button>
-        <Button variant="primary"> Add Product </Button>
+        <Button variant="secondary" size={{ base: "sm", md: "md" }}>
+          Cancel
+        </Button>
+        <AddProductSubmitButton />
       </HStack>
     </VStack>
   );

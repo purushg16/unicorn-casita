@@ -12,18 +12,33 @@ import {
 } from "@chakra-ui/react";
 import CategoriesSelectionList from "./CategoriesSelectionList";
 import useCategorySelectorStore from "../../../store/admin/categorySelectorStore";
+import useProductEntryStore from "../../../store/admin/productEntryStore";
 
 const CategorySelector = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const selectedCategory = useCategorySelectorStore((s) => s.category);
+
+  const setCategory = useProductEntryStore((s) => s.setCategory);
+
+  const handleClick = () => {
+    if (selectedCategory?._id) {
+      setCategory(selectedCategory._id);
+      onClose();
+    }
+  };
 
   return (
     <VStack align="start" gap={0}>
       <FormLabel fontSize="xs" color="primary.800">
         Category
       </FormLabel>
-      <Button onClick={onOpen} variant="secondary">
-        Select Category
+      <Button
+        onClick={onOpen}
+        variant="secondary"
+        minW={150}
+        textTransform="capitalize"
+      >
+        {selectedCategory ? selectedCategory.name : "Select Category"}
       </Button>
       <Modal
         isCentered
@@ -51,7 +66,7 @@ const CategorySelector = () => {
             <Button
               variant="primary"
               isDisabled={!selectedCategory}
-              onClick={onClose}
+              onClick={handleClick}
             >
               Select
             </Button>

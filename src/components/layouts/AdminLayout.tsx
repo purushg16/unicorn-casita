@@ -50,6 +50,7 @@ const AdminLayout = () => {
           bg="white"
           overflowY="scroll"
           borderRadius={10}
+          pos="relative"
         >
           <Outlet />
         </Box>

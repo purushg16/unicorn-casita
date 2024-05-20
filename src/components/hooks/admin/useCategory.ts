@@ -10,8 +10,7 @@ import {
   _deleteCategory,
 } from "../../services/endpoints";
 import { CACHE_KEY_ALLCATEGORIES } from "../../constants/cache_keys";
-import { ErrorResponse } from "react-router-dom";
-import { SuccessResponse } from "../../entities/response";
+import { SuccessResponse, ErrorResponse } from "../../entities/response";
 // import useAddCategoryStore from "../../store/admin/addCategoryStore";
 
 const addCategory = new APIClient<Category>(_addCategory);
@@ -46,18 +45,23 @@ const useAddCategory = (callback: () => void) => {
       callback();
     },
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 
-const useDeleteCategory = () => {
+const useDeleteCategory = (callback: () => void) => {
   const toast = useToast();
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: delCategory.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
+    onSuccess: (data: SuccessResponse) => {
+      toast(Toaster("success", data.data.message));
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLCATEGORIES });
+      callback();
+    },
     onError: (error: ErrorResponse) =>
-      toast(Toaster("error", error.data.error)),
+      toast(Toaster("error", error.response?.data.error)),
   });
 };
 

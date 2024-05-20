@@ -15,15 +15,33 @@ import NewImageUploader from "../editProduct/NewImageUploader";
 import LabelledInput from "../../../Utilities/LabelledInput";
 import { useState } from "react";
 import useImageStore from "../../../store/admin/imageStore";
+import { useAddCategory } from "../../../hooks/admin/useCategory";
+import cloudinaryUpload from "../../../functions/cloudinaryUpload";
 
 const AddCategoryModal = () => {
-  const [category, setCategory] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [isLoading, setLoading] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const images = useImageStore((s) => s.images);
   const clearImages = useImageStore((s) => s.clearImages);
 
   const handleClose = () => {
+    setName("");
     onClose();
     clearImages();
+    setLoading(false);
+  };
+
+  const { mutate } = useAddCategory(handleClose);
+
+  const handleSubmit = () => {
+    setLoading(true);
+    cloudinaryUpload(images.map((img) => img.image)).then((res) =>
+      mutate({
+        name,
+        imageLink: res[0]?.secure_url || "",
+      })
+    );
   };
 
   return (
@@ -63,8 +81,8 @@ const AddCategoryModal = () => {
             <VStack gap={8}>
               <LabelledInput
                 label="Category"
-                value={category}
-                onTextChange={setCategory}
+                value={name}
+                onTextChange={setName}
               />
               <NewImageUploader limit={1} />
             </VStack>
@@ -84,7 +102,14 @@ const AddCategoryModal = () => {
             >
               Cancel
             </Button>
-            <Button colorScheme="primary"> Submit </Button>
+            <Button
+              variant="primary"
+              isDisabled={!name}
+              onClick={handleSubmit}
+              isLoading={isLoading}
+            >
+              Submit
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

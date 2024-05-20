@@ -1,4 +1,5 @@
 import { FormControl, Input, FormLabel } from "@chakra-ui/react";
+import * as CSS from "csstype";
 
 interface Props {
   label: string;
@@ -9,6 +10,7 @@ interface Props {
   onTextChange?: (value: string) => void;
   onNumberChange?: (value: number) => void;
   isDisabled?: boolean;
+  textTransform?: CSS.Property.TextTransform;
 }
 
 const LabelledInput = ({
@@ -20,6 +22,7 @@ const LabelledInput = ({
   placeholder,
   required = false,
   isDisabled = false,
+  textTransform = "unset",
 }: Props) => {
   return (
     <FormControl _focus={{ outlineColor: "primary.800" }}>
@@ -27,6 +30,7 @@ const LabelledInput = ({
         {label}
       </FormLabel>
       <Input
+        textTransform={textTransform}
         isDisabled={isDisabled}
         name={label}
         borderRadius="xl"

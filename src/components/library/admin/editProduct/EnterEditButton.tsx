@@ -1,4 +1,4 @@
-import { Tag, TagLeftIcon, Icon, TagLabel } from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 import { Settings2 } from "lucide-react";
 
 const EnterEditButton = ({
@@ -7,17 +7,13 @@ const EnterEditButton = ({
   onClick: (value: boolean) => void;
 }) => {
   return (
-    <Tag
-      size="lg"
-      colorScheme="primary"
-      cursor="pointer"
+    <Button
+      variant="primary"
       onClick={() => onClick(true)}
+      leftIcon={<Icon as={Settings2} />}
     >
-      <TagLeftIcon>
-        <Icon as={Settings2} />
-      </TagLeftIcon>
-      <TagLabel> Edit </TagLabel>
-    </Tag>
+      Edit
+    </Button>
   );
 };
 

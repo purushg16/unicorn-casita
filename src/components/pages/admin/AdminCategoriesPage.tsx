@@ -1,17 +1,18 @@
-import { Divider, HStack, VStack, useDisclosure } from "@chakra-ui/react";
+import { Divider, HStack, VStack } from "@chakra-ui/react";
+import CategoriesSkeleton from "../../Utilities/Skeletons/CategoriesSkeleton";
 import { RHeading } from "../../Utilities/Typography";
+import { useGetAllCategories } from "../../hooks/admin/useCategory";
 import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
-import mockCategories from "../../mocks/mockCategories";
-import useCategoryEntryStore from "../../store/admin/categoryEntryStore";
-import EditCategoryModal from "../../library/admin/category/EditCategoryModal";
-import CategoryCard from "../../library/admin/category/CategoryCard";
-import SlideInGrid from "../../motions/SlideInGrid";
-// import CategoryCardSkeleton from "../../Utilities/Skeletons/CategoryCardSkeleton";
+import CategoriesGrid from "../../library/admin/category/CategoriesGrid";
 
 const AdminCategoriesPage = () => {
-  const category = useCategoryEntryStore((s) => s.category);
-  const setCategory = useCategoryEntryStore((s) => s.setCategory);
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    data: categories,
+    isSuccess,
+    isLoading,
+    isFetching,
+    isRefetching,
+  } = useGetAllCategories();
 
   return (
     <VStack align="start">
@@ -20,20 +21,8 @@ const AdminCategoriesPage = () => {
         <AddCategoryModal />
       </HStack>
       <Divider my={4} />
-      <SlideInGrid>
-        {mockCategories.map((category) => (
-          // <CategoryCardSkeleton />
-          <CategoryCard
-            key={category._id}
-            category={category}
-            onClick={() => {
-              onOpen();
-              setCategory(category);
-            }}
-          />
-        ))}
-      </SlideInGrid>
-      {category && <EditCategoryModal isOpen={isOpen} onClose={onClose} />}
+      {(isLoading || isFetching || isRefetching) && <CategoriesSkeleton />}
+      {isSuccess && <CategoriesGrid categories={categories} />}
     </VStack>
   );
 };

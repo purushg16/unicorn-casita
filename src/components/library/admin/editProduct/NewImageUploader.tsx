@@ -13,7 +13,7 @@ const NewImageUploader = ({ limit }: { limit: number }) => {
       <ImageUploader
         limit={limit}
         title="Upload Images"
-        isDisabled={limit === 0}
+        isDisabled={limit === images.length}
       />
       <ImagesPreviewGrid
         title=""

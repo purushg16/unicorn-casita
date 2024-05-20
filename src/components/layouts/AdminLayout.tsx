@@ -16,6 +16,8 @@ const AdminLayout = () => {
         base: "1fr",
         lg: "250px 1fr",
       }}
+      templateRows="max-content"
+      bg="primary.100"
       h="100vh"
     >
       <Show above="lg">
@@ -25,7 +27,7 @@ const AdminLayout = () => {
       </Show>
 
       <Show below="lg">
-        <GridItem area="topbar" p={4} bg="primary.100" h="100%">
+        <GridItem area="topbar" p={4} bg="primary.100">
           <TopBar />
         </GridItem>
       </Show>

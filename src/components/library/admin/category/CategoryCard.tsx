@@ -31,7 +31,12 @@ const CategoryCard = ({
         bgPos="center"
       />
       <HStack w="100%" justify="space-between" p={2}>
-        <RText text={category.name} weight="semibold" color="primary.700" />
+        <RText
+          textTransform="capitalize"
+          text={category.name}
+          weight="semibold"
+          color="primary.700"
+        />
         <IconButton
           onClick={onClick}
           aria-label="edit-category"

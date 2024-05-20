@@ -20,6 +20,7 @@ import LabelledInput from "../../../Utilities/LabelledInput";
 import useCategoryEntryStore from "../../../store/admin/categoryEntryStore";
 import ImagesPreviewGrid from "../../../Utilities/ImagesPreviewGrid";
 import NewImageUploader from "../editProduct/NewImageUploader";
+import DeleteCategoryButton from "./DeleteCategoryButton";
 
 interface Props {
   isOpen: boolean;
@@ -67,8 +68,14 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
           top={0}
         >
           <HStack justify="space-between" w="100%">
-            <RText text="Category Details" weight="bold" />
-            {!editMode && <EnterEditButton onClick={toggleEditMode} />}
+            <RText
+              text="Category Details"
+              weight="bold"
+              textTransform="capitalize"
+            />
+            {!editMode && (
+              <DeleteCategoryButton category={category} closeModal={onClose} />
+            )}
             {editMode && (
               <HStack>
                 <ResetButton reset={resetState} />
@@ -83,6 +90,7 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
           <VStack gap={8} align="start">
             <LabelledInput
               label="Name"
+              textTransform="capitalize"
               value={category.name}
               onTextChange={setName}
               isDisabled={!editMode}
@@ -124,7 +132,8 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
             >
               Cancel
             </Button>
-            <Button variant="primary"> Update Changes </Button>
+            {editMode && <Button variant="primary"> Update Changes </Button>}
+            {!editMode && <EnterEditButton onClick={toggleEditMode} />}
           </HStack>
         </ModalFooter>
       </ModalContent>

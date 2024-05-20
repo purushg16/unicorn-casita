@@ -16,7 +16,10 @@ const AdminLayout = () => {
         base: "1fr",
         lg: "250px 1fr",
       }}
-      templateRows="max-content"
+      templateRows={{
+        base: "max-content",
+        lg: "100%",
+      }}
       bg="primary.100"
       h="100vh"
     >

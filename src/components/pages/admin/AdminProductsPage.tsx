@@ -1,13 +1,14 @@
 import { Button, Divider, HStack, Icon, VStack } from "@chakra-ui/react";
-import { RHeading } from "../../Utilities/Typography";
-import ProductCard from "../../library/admin/editProduct/ProductCard";
-import mockProducts from "../../mocks/mockProducts";
-import SlideInGrid from "../../motions/SlideInGrid";
 import { BadgePlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { RHeading } from "../../Utilities/Typography";
+import { useGetAllProducts } from "../../hooks/admin/useProduct";
+import ProductsGrid from "../../library/admin/product/ProductsGrid";
+import ProductsSkeleton from "../../Utilities/Skeletons/ProductsSkeleton";
 
 const AdminProductsPage = () => {
   const navigate = useNavigate();
+  const { data: products, status } = useGetAllProducts();
 
   return (
     <VStack align="start">
@@ -24,11 +25,10 @@ const AdminProductsPage = () => {
         </Button>
       </HStack>
       <Divider my={4} />
-      <SlideInGrid>
-        {mockProducts.map((product, i) => (
-          <ProductCard product={product} key={i} />
-        ))}
-      </SlideInGrid>
+      {status === "pending" && <ProductsSkeleton />}
+      {status === "success" && (
+        <ProductsGrid products={products.pages[0].data.docs} />
+      )}
     </VStack>
   );
 };

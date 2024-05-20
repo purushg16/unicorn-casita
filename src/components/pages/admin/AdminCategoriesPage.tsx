@@ -6,13 +6,7 @@ import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
 import CategoriesGrid from "../../library/admin/category/CategoriesGrid";
 
 const AdminCategoriesPage = () => {
-  const {
-    data: categories,
-    isSuccess,
-    isLoading,
-    isFetching,
-    isRefetching,
-  } = useGetAllCategories();
+  const { data: categories, status } = useGetAllCategories();
 
   return (
     <VStack align="start">
@@ -21,8 +15,8 @@ const AdminCategoriesPage = () => {
         <AddCategoryModal />
       </HStack>
       <Divider my={4} />
-      {(isLoading || isFetching || isRefetching) && <CategoriesSkeleton />}
-      {isSuccess && <CategoriesGrid categories={categories} />}
+      {status === "pending" && <CategoriesSkeleton />}
+      {status === "success" && <CategoriesGrid categories={categories} />}
     </VStack>
   );
 };

@@ -35,6 +35,7 @@ const useGetAllProducts = () => {
       getProducts.getSingleItem({
         params: {
           page: pageParam,
+          itemsPerPage: 10,
         },
       }),
     initialPageParam: 1,

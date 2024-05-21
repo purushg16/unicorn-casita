@@ -9,7 +9,7 @@ import {
 } from "../../constants/cache_keys";
 import { ErrorResponse } from "react-router-dom";
 import { SuccessResponse } from "../../entities/response";
-import { AdminOrder } from "../../entities/order";
+import { Order } from "../../entities/order";
 import {
   _allOrders,
   _confirmOrder,
@@ -49,12 +49,10 @@ const useAdminShipOrder = () => {
   });
 };
 
-const adminGetAllOrders = new APIClient<PaginatedResponse<AdminOrder>>(
-  _allOrders
-);
+const adminGetAllOrders = new APIClient<PaginatedResponse<Order>>(_allOrders);
 const useAdminGetAllOrders = () => {
   return useInfiniteQuery<
-    SinglePropertyResponse<PaginatedResponse<AdminOrder>>,
+    SinglePropertyResponse<PaginatedResponse<Order>>,
     Error
   >({
     queryKey: CACHE_KEY_ALLORDERS,
@@ -62,6 +60,7 @@ const useAdminGetAllOrders = () => {
       adminGetAllOrders.getSingleItem({
         params: {
           page: pageParam,
+          itemsPerPage: 10,
         },
       }),
     initialPageParam: 1,
@@ -71,7 +70,7 @@ const useAdminGetAllOrders = () => {
   });
 };
 
-const adminSingleOrder = new APIClient<AdminOrder>(_singleOrders);
+const adminSingleOrder = new APIClient<Order>(_singleOrders);
 const useAdminGetSingleOrder = (mongooseOrderId: string) => {
   return useQuery({
     queryKey: [...CACHE_KEY_SINGLEORDER, mongooseOrderId],

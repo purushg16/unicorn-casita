@@ -37,7 +37,14 @@ const AddProductSubmitButton = () => {
   const handleSubmit = () => {
     setLoading(true);
     cloudinaryUpload(images.map((img) => img.image)).then((res) =>
-      mutate({ ...product!, imageLink: res.map((r) => r?.secure_url || "") })
+      mutate({
+        ...product!,
+        imageLink: res.map((r) => r?.secure_url || ""),
+        // specifications:
+        //   product?.specifications.map((spec) => {
+        //     return { key: spec.key, value: spec.value };
+        //   }),
+      })
     );
   };
 

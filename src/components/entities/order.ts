@@ -1,6 +1,7 @@
 interface OrderProduct {
   productId: string;
   quantity: number;
+  attrValue: string;
 }
 
 export interface VerifyOrder {
@@ -9,15 +10,12 @@ export interface VerifyOrder {
   "X-razorpay-signature": string;
 }
 
-export interface AdminOrder {
+export interface Order {
   _id?: string;
   createdAt?: string;
   orderId: string;
-  customerId: {
-    email: string;
-    name: string;
-    _id: string;
-  };
+  razorpayOrderId: string;
+  customerName: string;
   product: OrderProduct[];
   totalBill: number;
   paymentStatus:
@@ -29,6 +27,14 @@ export interface AdminOrder {
   orderStatus: "pending" | "confirmed" | "completed" | "cancelled";
   shippingStatus: "unshipped" | "shipped";
   paymentId: string;
+  address: string;
+  district: string;
+  state: string;
+  pincode: string;
+  contact: number;
+  shippingProvider: string;
+  trackingNumber: string;
+  email: string;
 }
 
 export interface UserOrder {

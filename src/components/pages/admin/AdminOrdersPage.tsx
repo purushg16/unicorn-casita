@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import img from "../../../assets/empty_orders.svg";
 import NoDataDisplay from "../../Utilities/NoDataDisplay";
 import { RHeading } from "../../Utilities/Typography";
-import { useAdminGetAllOrders } from "../../hooks/admin/useAdminOrder";
+import { useAdminGetAllOrders } from "../../hooks/admin/useOrder";
 import OrdersTable from "../../library/admin/order/OrdersTable";
 import OrdersSkeleton from "../../Utilities/Skeletons/OrdersSkeleton";
 

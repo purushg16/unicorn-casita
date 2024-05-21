@@ -11,7 +11,7 @@ export default async function cloudinaryUpload(files: FileWithPath[]) {
 
     try {
       const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dlzkzqskt/image/upload/?folder=krishtex",
+        "https://api.cloudinary.com/v1_1/dlzkzqskt/image/upload/?folder=unicorn",
 
         {
           method: "POST",

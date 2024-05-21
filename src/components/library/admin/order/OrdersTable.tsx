@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import ColorSchemeDetector from "../../../functions/colorSchemeDetector";
 import currencyFormatter from "../../../functions/currencyFormatter";
-import { AdminOrder } from "../../../entities/order";
+import { Order } from "../../../entities/order";
 
 const tableHeadings = [
   "order id",
@@ -22,7 +22,7 @@ const tableHeadings = [
   "amount",
 ];
 
-const OrdersTable = ({ orders }: { orders: AdminOrder[] }) => {
+const OrdersTable = ({ orders }: { orders: Order[] }) => {
   return (
     <TableContainer>
       <Table>
@@ -45,7 +45,7 @@ const OrdersTable = ({ orders }: { orders: AdminOrder[] }) => {
               <Td color="blue.400">
                 <Link to={order._id!}>{order.orderId}</Link>
               </Td>
-              <Td textTransform="capitalize"> {order.customerId.name} </Td>
+              <Td textTransform="capitalize"> {order.customerName} </Td>
               <Td>
                 <Tag
                   colorScheme={ColorSchemeDetector(order.orderStatus)}

@@ -1,18 +1,29 @@
 import { Flex, HStack, Icon, Show, Spacer } from "@chakra-ui/react";
-import { Label, RHeading } from "../../../Utilities/Typography";
+import { MenuIcon, ShoppingBasket } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { MenuIcon, SearchIcon, ShoppingCart } from "lucide-react";
-import RInput from "../../../Utilities/Input";
+import { Label, RHeading } from "../../../Utilities/Typography";
 
 const UserNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex align="center" w="100%" pt={8}>
+    <Flex
+      align="center"
+      w="100%"
+      px={{ base: 4, md: 12 }}
+      py={4}
+      gap={8}
+      pos="sticky"
+      top={0}
+      bg="white"
+      zIndex={1000000}
+      borderBottom="1px solid"
+      borderColor="gray.200"
+      justify="space-between"
+    >
       <Link to="/">
-        <RHeading text="Unicorn Casita" />
+        <RHeading text="Unicorn Casita" small />
       </Link>
-      <Spacer />
       <Show above="md">
         <HStack gap={8} align="center">
           <Link to="/collections">
@@ -27,11 +38,11 @@ const UserNavbar = () => {
         </HStack>
         <Spacer />
         <HStack gap={8} align="center">
-          <RInput icon={SearchIcon} placeholder="Search" />
           <Link to="/cart">
             <Icon
               cursor="pointer"
-              as={ShoppingCart}
+              strokeWidth={1}
+              as={ShoppingBasket}
               boxSize={6}
               onClick={() => navigate("/cart")}
             />
@@ -41,7 +52,7 @@ const UserNavbar = () => {
       <Show below="md">
         <HStack gap={4} align="center">
           <Link to="/cart">
-            <Icon as={ShoppingCart} boxSize={4} />
+            <Icon as={ShoppingBasket} boxSize={4} strokeWidth={1} />
           </Link>
           <Icon as={MenuIcon} boxSize={4} />
         </HStack>

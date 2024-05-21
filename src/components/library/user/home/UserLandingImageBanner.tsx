@@ -6,13 +6,10 @@ const UserLandingImageBanner = () => {
   return (
     <Flex
       w="100%"
-      h={550}
-      //   aspectRatio="21/9"
-      borderRadius={10}
-      bgImage="
-      https://plus.unsplash.com/premium_photo-1678834778167-5b2172bccb6f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      h="95svh"
+      bgImage="https://plus.unsplash.com/premium_photo-1678834778167-5b2172bccb6f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       bgSize="cover"
-      bgPos="bottom center"
+      bgPos="center"
       align="center"
       justify="center"
       color="white"
@@ -24,7 +21,7 @@ const UserLandingImageBanner = () => {
         <RHeading big text="Make yourself more lovable with our collections" />
       </Box>
       <Button
-        variant="secondary"
+        variant="primary"
         rightIcon={<Icon as={ArrowRight} boxSize={4} />}
         gap={4}
       >

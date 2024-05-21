@@ -68,12 +68,12 @@ const AddProductSubmitButton = () => {
               fontWeight="bold"
               color="primary.800"
             >
-              Add New Product
+              Add New Product?
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Are you sure? Check all the details are fair & Click "Proceed" to
-              create a new product.
+              Are you sure? Check whether the details are fair & Click "Proceed"
+              to create a new product.
             </AlertDialogBody>
 
             <AlertDialogFooter>
@@ -84,7 +84,7 @@ const AddProductSubmitButton = () => {
                 onClick={onClose}
                 mr={4}
               >
-                Back
+                Review
               </Button>
               <Button
                 size={{ base: "sm", md: "md" }}
@@ -92,7 +92,7 @@ const AddProductSubmitButton = () => {
                 isLoading={isLoading}
                 onClick={handleSubmit}
               >
-                Delete
+                Add Product
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

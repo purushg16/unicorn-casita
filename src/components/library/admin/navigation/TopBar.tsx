@@ -25,7 +25,7 @@ const TopBar = () => {
           aria-label="account-btn"
           icon={<Icon as={User} />}
         />
-        <MenuList>
+        <MenuList zIndex={1000}>
           <MenuItem>
             <ChangePasswordModal small />
           </MenuItem>

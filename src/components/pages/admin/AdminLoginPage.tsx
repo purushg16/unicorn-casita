@@ -9,7 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import LabelledInput from "../../Utilities/LabelledInput";
 import { RHeading } from "../../Utilities/Typography";
 import { Info } from "lucide-react";
@@ -21,6 +21,7 @@ const AdminLoginPage = () => {
   const [userId, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  if (localStorage.getItem("token")) return <Navigate to="/admin" />;
   return (
     <Flex w="100%" h="100svh" align="center" justify="center">
       <Box

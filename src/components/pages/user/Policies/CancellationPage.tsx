@@ -1,6 +1,6 @@
 import { Box, Image, VStack } from "@chakra-ui/react";
-import { RText } from "../../Utilities/Typography";
-import img from "../../../assets/feeling_blue.svg";
+import { RText } from "../../../Utilities/Typography";
+import img from "../../../../assets/feeling_blue.svg";
 
 const CancellationPage = () => {
   return (

@@ -16,16 +16,33 @@ const Footer = () => {
           <RText text="Specialises in providing high quality & stylish products for you wardrobe" />
         </VStack>
 
-        <HStack w="100%" flexWrap="wrap" justify="space-between" spacing={20}>
+        <HStack
+          w="100%"
+          flexWrap="wrap"
+          align="start"
+          justify="space-between"
+          spacing={20}
+        >
           <VStack align="start">
-            <RText text="Brand" weight="bolder" small />
+            <RText text="Useful Links" weight="bolder" small />
             <RText text="New Arrivals" small />
             <RText text="Categories" small />
             <RText text="Collections" small />
           </VStack>
 
           <VStack align="start">
+            <RText text="Brand" weight="bolder" small />
+
+            <RText text="About Us" small />
+            <RText text="Contact Us" small />
+            <RText text="Gallery" small />
+          </VStack>
+
+          <VStack align="start">
             <RText text="Customer Policies" weight="bolder" small />
+            <Link to="/privacypolicy">
+              <RText text="Privacy Policy" small />
+            </Link>
             <Link to="/termsandcondtions">
               <RText text="Terms & Conditions" small />
             </Link>
@@ -35,14 +52,6 @@ const Footer = () => {
             <Link to="/cancellationorrefundpolicy">
               <RText text="Cancellation or Refund policy" small />
             </Link>
-          </VStack>
-
-          <VStack align="start">
-            <RText text="lorem ipsum" weight="bolder" small />
-
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
-            <RText text="lorem ipsum" small />
           </VStack>
         </HStack>
       </SimpleGrid>

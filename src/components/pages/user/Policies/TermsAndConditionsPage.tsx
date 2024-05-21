@@ -1,5 +1,5 @@
 import { VStack } from "@chakra-ui/react";
-import { RText } from "../../Utilities/Typography";
+import { RText } from "../../../Utilities/Typography";
 
 const TermsAndConditionsPage = () => {
   return (

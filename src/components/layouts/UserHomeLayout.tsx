@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import UserNavbar from "../library/user/home/UserNavbar";
 import Footer from "../library/user/Footer";
 const UserHomeLayout = () => {
@@ -14,6 +14,7 @@ const UserHomeLayout = () => {
         <Outlet />
       </Flex>
       <Footer />
+      <ScrollRestoration />
     </Flex>
   );
 };

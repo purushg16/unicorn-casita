@@ -1,5 +1,5 @@
 import { Show, GridItem, Box, Grid } from "@chakra-ui/react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, ScrollRestoration } from "react-router-dom";
 import Sidebar from "../library/admin/navigation/Sidebar";
 import AppBar from "../library/admin/navigation/AppBar";
 import TopBar from "../library/admin/navigation/TopBar";
@@ -59,6 +59,7 @@ const AdminLayout = () => {
       <Show below="lg">
         <AppBar />
       </Show>
+      <ScrollRestoration />
     </Grid>
   );
 };

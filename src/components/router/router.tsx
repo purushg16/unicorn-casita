@@ -13,9 +13,10 @@ import AdminCategoriesPage from "../pages/admin/AdminCategoriesPage";
 import AdminLoginPage from "../pages/admin/AdminLoginPage";
 import AdminSingleProductPage from "../pages/admin/AdminSingleProductPage";
 import AdminAddProductPage from "../pages/admin/AdminAddProductPage";
-import TermsAndConditionsPage from "../pages/user/TermsAndConditionsPage";
-import ShippingPolicyPage from "../pages/user/ShippingPolicyPage";
-import CancellationPage from "../pages/user/CancellationPage";
+import TermsAndConditionsPage from "../pages/user/Policies/TermsAndConditionsPage";
+import ShippingPolicyPage from "../pages/user/Policies/ShippingPolicyPage";
+import CancellationPage from "../pages/user/Policies/CancellationPage";
+import PrivacyPolicyPage from "../pages/user/Policies/PrivacyPolicyPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "/collections", element: <CollectionsPage /> },
       { path: "/product/:id", element: <SingleProductPage /> },
       { path: "/cart", element: <CartPage /> },
+      { path: "/privacypolicy", element: <PrivacyPolicyPage /> },
       { path: "/termsandcondtions", element: <TermsAndConditionsPage /> },
       { path: "/shippinganddeliverypolicy", element: <ShippingPolicyPage /> },
       { path: "/cancellationorrefundpolicy", element: <CancellationPage /> },

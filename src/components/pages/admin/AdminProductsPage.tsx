@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Divider,
   HStack,
@@ -46,18 +47,20 @@ const AdminProductsPage = () => {
       )}
 
       {status === "success" && data.pages[0].data.docs.length > 0 && (
-        <InfiniteScroll
-          dataLength={fetchedOrdersLength}
-          hasMore={hasNextPage}
-          next={() => fetchNextPage()}
-          loader={<Spinner />}
-        >
-          {data.pages.map((page) => (
-            <React.Fragment>
-              <ProductsGrid products={page.data.docs} />
-            </React.Fragment>
-          ))}
-        </InfiniteScroll>
+        <Box w="100%">
+          <InfiniteScroll
+            dataLength={fetchedOrdersLength}
+            hasMore={hasNextPage}
+            next={() => fetchNextPage()}
+            loader={<Spinner />}
+          >
+            {data.pages.map((page) => (
+              <React.Fragment>
+                <ProductsGrid products={page.data.docs} />
+              </React.Fragment>
+            ))}
+          </InfiniteScroll>
+        </Box>
       )}
     </VStack>
   );

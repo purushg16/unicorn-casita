@@ -20,7 +20,7 @@ import LabelledInput from "../../../Utilities/LabelledInput";
 import useCategoryEntryStore from "../../../store/admin/categoryEntryStore";
 import ImagesPreviewGrid from "../../../Utilities/ImagesPreviewGrid";
 import NewImageUploader from "../editProduct/NewImageUploader";
-import DeleteCategoryButton from "./DeleteCategoryButton";
+import DeleteCategoryButton from "../ActionButtons/DeleteCategoryButton";
 
 interface Props {
   isOpen: boolean;

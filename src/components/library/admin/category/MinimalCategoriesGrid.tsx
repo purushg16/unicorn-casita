@@ -9,7 +9,7 @@ const MinimalCategoriesGrid = ({ categories }: { categories: Category[] }) => {
   const removeCategory = useCategorySelectorStore((s) => s.removeCategory);
 
   return (
-    <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4} w="100%">
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4} w="100%">
       {categories.map((category) => (
         <VStack
           key={category._id}

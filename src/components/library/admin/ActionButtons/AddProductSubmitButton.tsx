@@ -14,6 +14,7 @@ import { useAddProduct } from "../../../hooks/admin/useProduct";
 import cloudinaryUpload from "../../../functions/cloudinaryUpload";
 import { useRef, useState } from "react";
 import useProductSubmission from "../../../hooks/admin/useProductSubmission";
+import useCategorySelectorStore from "../../../store/admin/categorySelectorStore";
 
 const AddProductSubmitButton = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -21,13 +22,17 @@ const AddProductSubmitButton = () => {
   const cancelRef = useRef(null);
 
   const product = useProductEntryStore((s) => s.product);
+  const removeCategory = useCategorySelectorStore((s) => s.removeCategory);
   const resetEntry = useProductEntryStore((s) => s.resetEntry);
   const images = useImageStore((s) => s.images);
+  const clearImages = useImageStore((s) => s.clearImages);
 
   const handleSuccess = () => {
     resetEntry();
     setLoading(false);
     onClose();
+    clearImages();
+    removeCategory();
   };
 
   const handleFailure = () => {

@@ -8,7 +8,7 @@ import ProductNameInput from "../../library/admin/editProduct/ProductNameInput";
 import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput";
 import useImageStore from "../../store/admin/imageStore";
 import SpecificationsTable from "../../library/admin/addProduct/SpecificationsTable";
-import AddProductSubmitButton from "../../library/admin/SubmitButtons/AddProductSubmitButton";
+import AddProductSubmitButton from "../../library/admin/ActionButtons/AddProductSubmitButton";
 // import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminAddProductPage = () => {

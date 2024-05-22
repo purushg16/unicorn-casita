@@ -1,6 +1,11 @@
 import { useToast } from "@chakra-ui/react";
 import APIClient, { SinglePropertyResponse } from "../../services/api-client";
-import { useQuery, useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import {
+  useQuery,
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import Toaster from "../../functions/toaster";
 import Product from "../../entities/product";
 import { DeleteProduct } from "../../entities/serviceProduct";
@@ -35,7 +40,7 @@ const useGetAllProducts = () => {
       getProducts.getSingleItem({
         params: {
           page: pageParam,
-          itemsPerPage: 10,
+          itemPerPage: 10,
         },
       }),
     initialPageParam: 1,
@@ -60,12 +65,15 @@ const useAddProduct = (
   failureCallback: () => void
 ) => {
   const toast = useToast();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: addProduct.postRequest,
     onSuccess: (data: SuccessResponse) => {
       successCallback();
       toast(Toaster("success", data.data.message));
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLPRODUCTS });
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_SINGLEPRODUCT });
     },
     onError: (error: ErrorResponse) => {
       failureCallback();
@@ -76,22 +84,34 @@ const useAddProduct = (
 
 const useEditProduct = () => {
   const toast = useToast();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: editProduct.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
+    onSuccess: (data: SuccessResponse) => {
+      toast(Toaster("success", data.data.message));
+
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLPRODUCTS });
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_SINGLEPRODUCT });
+    },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.response?.data.error)),
   });
 };
 
-const useDeleteProduct = () => {
+const useDeleteProduct = (callback: () => void) => {
   const toast = useToast();
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: delProduct.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
+    onSuccess: (data: SuccessResponse) => {
+      toast(Toaster("success", data.data.message));
+      callback();
+
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLPRODUCTS });
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_SINGLEPRODUCT });
+    },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.response?.data.error)),
   });

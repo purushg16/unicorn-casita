@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import { RText } from "../../../Utilities/Typography";
 import { Review } from "../../../entities/review";
-import DeleteReviewButton from "./DeleteReviewButton";
+import DeleteReviewButton from "../ActionButtons/DeleteReviewButton";
 import RatingShower from "./RatingShower";
 
 const ReviewCard = ({ review }: { review: Review }) => {

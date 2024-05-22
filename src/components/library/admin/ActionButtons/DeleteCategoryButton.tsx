@@ -66,7 +66,7 @@ const DeleteCategoryButton = ({ category }: { category: Category }) => {
                 ml={4}
                 isLoading={isPending}
               >
-                Delete
+                Delete Category
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

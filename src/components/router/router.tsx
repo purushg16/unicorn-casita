@@ -17,6 +17,8 @@ import TermsAndConditionsPage from "../pages/user/Policies/TermsAndConditionsPag
 import ShippingPolicyPage from "../pages/user/Policies/ShippingPolicyPage";
 import CancellationPage from "../pages/user/Policies/CancellationPage";
 import PrivacyPolicyPage from "../pages/user/Policies/PrivacyPolicyPage";
+import ContactPage from "../pages/user/ContactPage";
+import AboutPage from "../pages/user/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,8 @@ const router = createBrowserRouter([
       { path: "/collections", element: <CollectionsPage /> },
       { path: "/product/:id", element: <SingleProductPage /> },
       { path: "/cart", element: <CartPage /> },
+      { path: "/about", element: <AboutPage /> },
+      { path: "/contact", element: <ContactPage /> },
       { path: "/privacypolicy", element: <PrivacyPolicyPage /> },
       { path: "/termsandcondtions", element: <TermsAndConditionsPage /> },
       { path: "/shippinganddeliverypolicy", element: <ShippingPolicyPage /> },

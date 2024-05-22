@@ -1,4 +1,4 @@
-import { Box, Divider, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Box, Divider, SimpleGrid, VStack } from "@chakra-ui/react";
 import { RHeading, RText } from "../../Utilities/Typography";
 import { Link } from "react-router-dom";
 
@@ -10,19 +10,13 @@ const Footer = () => {
       bg="primary.100"
       color="primary.700"
     >
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+      <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
         <VStack align="start" h="100%" w="70%">
           <RHeading text="Unicorn Casita" />
           <RText text="Specialises in providing high quality & stylish products for you wardrobe" />
         </VStack>
 
-        <HStack
-          w="100%"
-          flexWrap="wrap"
-          align="start"
-          justify="space-between"
-          spacing={20}
-        >
+        <SimpleGrid w="100%" columns={{ base: 1, md: 1, lg: 3 }} spacingY={12}>
           <VStack align="start">
             <RText text="Useful Links" weight="bolder" small />
             <RText text="New Arrivals" small />
@@ -32,9 +26,12 @@ const Footer = () => {
 
           <VStack align="start">
             <RText text="Brand" weight="bolder" small />
-
-            <RText text="About Us" small />
-            <RText text="Contact Us" small />
+            <Link to="/about">
+              <RText text="About Us" small />
+            </Link>
+            <Link to="/contact">
+              <RText text="Contact Us" small />
+            </Link>
             <RText text="Gallery" small />
           </VStack>
 
@@ -53,7 +50,7 @@ const Footer = () => {
               <RText text="Cancellation or Refund policy" small />
             </Link>
           </VStack>
-        </HStack>
+        </SimpleGrid>
       </SimpleGrid>
 
       <Divider my={8} />

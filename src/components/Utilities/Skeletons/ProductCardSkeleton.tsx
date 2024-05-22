@@ -1,4 +1,4 @@
-import { Box, Skeleton, VStack } from "@chakra-ui/react";
+import { Box, HStack, Skeleton, VStack } from "@chakra-ui/react";
 
 const ProductCardSkeleton = () => {
   return (
@@ -24,15 +24,22 @@ const ProductCardSkeleton = () => {
           boxShadow="lg"
         />
       </Box>
-      <Box w="100%" p={4} pt={0}>
+      <HStack w="100%" p={4} pt={0} justify="space-between">
         <Skeleton
           borderRadius={10}
-          w="100%"
+          w="50%"
           height="30px"
           startColor="primary.200"
           endColor="primary.100"
         />
-      </Box>
+        <Skeleton
+          borderRadius={10}
+          w="40px"
+          height="30px"
+          startColor="primary.200"
+          endColor="primary.100"
+        />
+      </HStack>
     </VStack>
   );
 };

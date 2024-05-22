@@ -33,6 +33,7 @@ const DeleteProductButton = ({ productId }: { productId: string }) => {
         isOpen={isOpen}
         onClose={onClose}
         leastDestructiveRef={cancelRef}
+        motionPreset="slideInBottom"
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
@@ -45,7 +46,12 @@ const DeleteProductButton = ({ productId }: { productId: string }) => {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button
+                ref={cancelRef}
+                onClick={onClose}
+                variant="ghost"
+                colorScheme="red"
+              >
                 Cancel
               </Button>
               <Button
@@ -54,7 +60,7 @@ const DeleteProductButton = ({ productId }: { productId: string }) => {
                 onClick={() => mutate({ productId })}
                 ml={4}
               >
-                Delete
+                Delete Product
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

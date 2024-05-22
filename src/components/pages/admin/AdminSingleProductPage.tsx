@@ -95,7 +95,9 @@ const AdminSingleProductPage = () => {
                     viewOnly={!editMode}
                   />
                 ) : (
-                  product.imageLink.length !== 0 && <RetriveImageButton />
+                  product.imageLink.length !== 0 && (
+                    <RetriveImageButton of="product" />
+                  )
                 )}
               </>
             )}

@@ -1,4 +1,4 @@
-import { Button, Icon, useDisclosure } from "@chakra-ui/react";
+import { Button, Icon, IconButton, useDisclosure } from "@chakra-ui/react";
 import { Trash } from "lucide-react";
 import {
   AlertDialog,
@@ -12,22 +12,11 @@ import { useRef } from "react";
 import Category from "../../../entities/category";
 import { useDeleteCategory } from "../../../hooks/admin/useCategory";
 
-const DeleteCategoryButton = ({
-  category,
-  closeModal,
-}: {
-  category: Category;
-  closeModal: () => void;
-}) => {
+const DeleteCategoryButton = ({ category }: { category: Category }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
 
-  const onDelete = () => {
-    onClose();
-    closeModal();
-  };
-
-  const { mutate, isPending } = useDeleteCategory(onDelete);
+  const { mutate, isPending } = useDeleteCategory(onClose);
 
   const handleDelete = () => {
     if (category._id) mutate({ categoryId: category._id });
@@ -35,14 +24,16 @@ const DeleteCategoryButton = ({
 
   return (
     <>
-      <Button
-        colorScheme="red"
-        leftIcon={<Icon as={Trash} />}
-        onClick={onOpen}
-        size="sm"
-      >
-        Delete
-      </Button>
+      <IconButton
+        onClick={(e) => {
+          e.stopPropagation();
+          onOpen();
+        }}
+        aria-label="edit-category"
+        icon={<Icon as={Trash} />}
+        size={{ base: "xs", md: "sm" }}
+        variant="secondary"
+      />
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}

@@ -2,12 +2,16 @@ import { useToast } from "@chakra-ui/react";
 import APIClient from "../../services/api-client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Toaster from "../../functions/toaster";
-import Category, { DeleteCategory } from "../../entities/category";
+import Category, {
+  DeleteCategory,
+  EditCategory,
+} from "../../entities/category";
 import useImageStore from "../../store/admin/imageStore";
 import {
   _addCategory,
   _allCategories,
   _deleteCategory,
+  _editCategory,
   _singleCategory,
 } from "../../services/endpoints";
 import {
@@ -15,10 +19,10 @@ import {
   CACHE_KEY_SINGLECATEGORY,
 } from "../../constants/cache_keys";
 import { SuccessResponse, ErrorResponse } from "../../entities/response";
-// import useAddCategoryStore from "../../store/admin/addCategoryStore";
 
 const addCategory = new APIClient<Category>(_addCategory);
 const delCategory = new APIClient<DeleteCategory>(_deleteCategory);
+const editCategory = new APIClient<EditCategory>(_editCategory);
 const getCategories = new APIClient<Category>(_allCategories);
 const singleCategory = new APIClient<Category>(_singleCategory);
 
@@ -68,6 +72,22 @@ const useAddCategory = (callback: () => void) => {
   });
 };
 
+const useEditCategory = (callback: () => void) => {
+  const toast = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: editCategory.postRequest,
+    onSuccess: (data: SuccessResponse) => {
+      toast(Toaster("success", data.data.message));
+      queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLCATEGORIES });
+      callback();
+    },
+    onError: (error: ErrorResponse) =>
+      toast(Toaster("error", error.response?.data.error)),
+  });
+};
+
 const useDeleteCategory = (callback: () => void) => {
   const toast = useToast();
   const queryClient = useQueryClient();
@@ -87,6 +107,7 @@ const useDeleteCategory = (callback: () => void) => {
 export {
   useAddCategory,
   useDeleteCategory,
+  useEditCategory,
   useGetAllCategories,
   useGetSingleCategory,
 };

@@ -1,46 +1,67 @@
-import { Button, useDisclosure } from "@chakra-ui/react";
 import {
+  useDisclosure,
   AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogHeader,
   AlertDialogBody,
   AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
+  Button,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { useEditProduct } from "../../../hooks/admin/useProduct";
+import { useEditCategory } from "../../../hooks/admin/useCategory";
+import Category from "../../../entities/category";
 import useImageStore from "../../../store/admin/imageStore";
 import cloudinaryUpload from "../../../functions/cloudinaryUpload";
-import useProductEntryStore from "../../../store/admin/productEntryStore";
 
-const EditProductSubmitButton = ({ exitEdit }: { exitEdit: () => void }) => {
+const EditCategorySubmitButton = ({
+  category,
+  isDisabled,
+}: {
+  category: Category;
+  isDisabled: boolean;
+}) => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
-  const product = useProductEntryStore((s) => s.product);
   const images = useImageStore((s) => s.images);
 
-  const { mutate } = useEditProduct(() => {
+  const { mutate } = useEditCategory(() => {
     onClose();
-    exitEdit();
     setLoading(false);
   });
 
-  const handleSubmit = () => {
+  const onSubmit = () => {
     setLoading(true);
-    cloudinaryUpload(images.map((img) => img.image)).then((res) => {
+    if (images.length > 0)
+      cloudinaryUpload(images.map((i) => i.image)).then((res) =>
+        mutate({
+          categoryId: category._id!,
+          imageLink: res[0]?.secure_url || "",
+          name: category.name,
+        })
+      );
+    else
       mutate({
-        ...product,
-        productId: product?._id || "",
-        imageLink: res.map((r) => r?.secure_url || ""),
+        categoryId: category._id!,
+        imageLink: category.imageLink,
+        name: category.name,
       });
-    });
   };
 
   return (
     <>
-      <Button variant="primary" onClick={onOpen}>
-        Save Changes
+      <Button
+        variant="primary"
+        onClick={onOpen}
+        isDisabled={
+          isDisabled ||
+          (category.imageLink === ""
+            ? images.length !== 1
+            : category.imageLink === "")
+        }
+      >
+        Update Changes
       </Button>
       <AlertDialog
         motionPreset="slideInBottom"
@@ -77,7 +98,7 @@ const EditProductSubmitButton = ({ exitEdit }: { exitEdit: () => void }) => {
               variant="primary"
               ml={4}
               isLoading={isLoading}
-              onClick={handleSubmit}
+              onClick={onSubmit}
             >
               Confirm
             </Button>
@@ -88,4 +109,4 @@ const EditProductSubmitButton = ({ exitEdit }: { exitEdit: () => void }) => {
   );
 };
 
-export default EditProductSubmitButton;
+export default EditCategorySubmitButton;

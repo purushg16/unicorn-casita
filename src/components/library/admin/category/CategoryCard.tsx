@@ -1,7 +1,7 @@
-import { VStack, HStack, IconButton, Icon, Box } from "@chakra-ui/react";
-import { Settings2 } from "lucide-react";
+import { Box, HStack, VStack } from "@chakra-ui/react";
 import { RText } from "../../../Utilities/Typography";
 import Category from "../../../entities/category";
+import DeleteCategoryButton from "../ActionButtons/DeleteCategoryButton";
 
 const CategoryCard = ({
   category,
@@ -21,6 +21,7 @@ const CategoryCard = ({
       overflow="clip"
       minH={200}
       gap={2}
+      onClick={onClick}
     >
       <Box
         borderRadius={15}
@@ -37,13 +38,7 @@ const CategoryCard = ({
           weight="semibold"
           color="primary.700"
         />
-        <IconButton
-          onClick={onClick}
-          aria-label="edit-category"
-          icon={<Icon as={Settings2} />}
-          size={{ base: "xs", md: "sm" }}
-          variant="primary"
-        />
+        <DeleteCategoryButton category={category} />
       </HStack>
     </VStack>
   );

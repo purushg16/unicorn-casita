@@ -4,6 +4,12 @@ export default interface Category {
   imageLink: string;
 }
 
+export interface EditCategory {
+  categoryId: string;
+  name: string;
+  imageLink: string;
+}
+
 export interface DeleteCategory {
   categoryId: string;
 }

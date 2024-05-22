@@ -4,6 +4,7 @@ export const _adminChangePassword = "/admin/account/changePassword";
 
 export const _addCategory = "/admin/category/add";
 export const _deleteCategory = "/admin/category/delete";
+export const _editCategory = "/admin/category/edit";
 export const _allCategories = "/admin/category/all";
 export const _singleCategory = "/admin/category/single";
 

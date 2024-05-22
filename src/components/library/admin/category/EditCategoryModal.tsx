@@ -20,7 +20,8 @@ import LabelledInput from "../../../Utilities/LabelledInput";
 import useCategoryEntryStore from "../../../store/admin/categoryEntryStore";
 import ImagesPreviewGrid from "../../../Utilities/ImagesPreviewGrid";
 import NewImageUploader from "../editProduct/NewImageUploader";
-import DeleteCategoryButton from "../ActionButtons/DeleteCategoryButton";
+import RetriveImageButton from "../editProduct/RetriveImageButton";
+import EditCategorySubmitButton from "../ActionButtons/EditCategorySubmitButton";
 
 interface Props {
   isOpen: boolean;
@@ -30,7 +31,7 @@ interface Props {
 const EditCategoryModal = ({ isOpen, onClose }: Props) => {
   const category = useCategoryEntryStore((s) => s.category)!;
   const setName = useCategoryEntryStore((s) => s.setName);
-  const setImageLink = useCategoryEntryStore((s) => s.setImageLink);
+  const removeImageLink = useCategoryEntryStore((s) => s.removeImageLink);
   const reset = useCategoryEntryStore((s) => s.resetCategory);
 
   const images = useImageStore((s) => s.images);
@@ -73,15 +74,13 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
               weight="bold"
               textTransform="capitalize"
             />
-            {!editMode && (
-              <DeleteCategoryButton category={category} closeModal={onClose} />
-            )}
             {editMode && (
               <HStack>
                 <ResetButton reset={resetState} />
                 <ExitEditButton onClick={exitEditMode} />
               </HStack>
             )}
+            {!editMode && <EnterEditButton onClick={toggleEditMode} />}
           </HStack>
 
           {editMode && <EditModeAlert />}
@@ -104,12 +103,16 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
                 />
               </VStack>
             )}
-            <ImagesPreviewGrid
-              title="Image"
-              images={category.imageLink !== "" ? [category.imageLink] : []}
-              onDelete={() => editMode && setImageLink("")}
-              viewOnly={!editMode}
-            />
+            {category.imageLink !== "" ? (
+              <ImagesPreviewGrid
+                title="Image"
+                images={category.imageLink !== "" ? [category.imageLink] : []}
+                onDelete={removeImageLink}
+                viewOnly={!editMode}
+              />
+            ) : (
+              <> {editMode && <RetriveImageButton of="category" />}</>
+            )}
           </VStack>
         </ModalBody>
         <ModalFooter
@@ -132,8 +135,12 @@ const EditCategoryModal = ({ isOpen, onClose }: Props) => {
             >
               Cancel
             </Button>
-            {editMode && <Button variant="primary"> Update Changes </Button>}
-            {!editMode && <EnterEditButton onClick={toggleEditMode} />}
+            {editMode && (
+              <EditCategorySubmitButton
+                category={category}
+                isDisabled={!category.name}
+              />
+            )}
           </HStack>
         </ModalFooter>
       </ModalContent>

@@ -10,6 +10,8 @@ interface CategoryEntryAction {
   setCategory: (category: Category | undefined) => void;
   setName: (name: string) => void;
   setImageLink: (img: string) => void;
+  removeImageLink: () => void;
+  resetImage: () => void;
   resetCategory: () => void;
   clearEntry: () => void;
 }
@@ -24,6 +26,15 @@ const useCategoryEntryStore = create<CategoryEntry & CategoryEntryAction>(
       set((store) => ({ category: { ...store.category!, name: name } })),
     setImageLink: (link: string) =>
       set((store) => ({ category: { ...store.category!, imageLink: link } })),
+    removeImageLink: () =>
+      set((store) => ({ category: { ...store.category!, imageLink: "" } })),
+    resetImage: () =>
+      set((store) => ({
+        category: {
+          ...store.category!,
+          imageLink: store.referenceCategory?.imageLink || "",
+        },
+      })),
     resetCategory: () =>
       set((store) => ({ category: store.referenceCategory })),
     clearEntry: () =>

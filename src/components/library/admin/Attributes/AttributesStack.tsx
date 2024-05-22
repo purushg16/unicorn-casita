@@ -3,7 +3,7 @@ import useProductEntryStore from "../../../store/admin/productEntryStore";
 import AddAttributeModal from "./AddAttributeModal";
 import AttributePill from "./AttributePill";
 
-const AttributesStack = () => {
+const AttributesStack = ({ editMode }: { editMode: boolean }) => {
   const attributes = useProductEntryStore((s) => s.product)?.attributes;
 
   return (
@@ -17,10 +17,9 @@ const AttributesStack = () => {
       minW="100%"
     >
       {attributes?.map((attribute, i) => (
-        <AttributePill key={i} attribute={attribute} />
+        <AttributePill key={i} attribute={attribute} editMode={editMode} />
       ))}
-
-      <AddAttributeModal />
+      {editMode && <AddAttributeModal />}
     </HStack>
   );
 };

@@ -1,3 +1,4 @@
+import Category from "./category";
 import Specification from "./specification";
 
 export default interface Product {
@@ -13,6 +14,10 @@ export default interface Product {
   mrp: number;
   salesPrice: number;
   stock: "in-stock" | "sold-out";
+}
+
+export interface ProductResponse extends Product {
+  category: Category;
 }
 
 export interface ProductAttribute {

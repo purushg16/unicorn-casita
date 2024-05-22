@@ -72,6 +72,7 @@ const AddProductSubmitButton = () => {
         onClose={onClose}
         closeOnOverlayClick={false}
         closeOnEsc={false}
+        motionPreset="slideInBottom"
       >
         <AlertDialogOverlay>
           <AlertDialogContent>

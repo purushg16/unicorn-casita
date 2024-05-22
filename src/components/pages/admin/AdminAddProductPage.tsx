@@ -24,15 +24,15 @@ const AdminAddProductPage = () => {
   return (
     <VStack gap={12}>
       <ProductNameInput editMode />
-      <DescriptionInput />
+      <DescriptionInput editMode />
       <SimpleGrid columns={{ base: 1, md: 3 }} w="100%" spacing={12}>
         <ProductPriceInput editMode />
-        <StockSelector />
-        <CategorySelector />
+        <StockSelector editMode />
+        <CategorySelector editMode />
       </SimpleGrid>
-      <AttributeSelector />
+      <AttributeSelector editMode />
       <NewImageUploader limit={4 - images.length} />
-      <SpecificationsTable />
+      <SpecificationsTable editMode />
 
       <HStack
         w="100%"

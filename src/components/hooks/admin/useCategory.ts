@@ -8,14 +8,19 @@ import {
   _addCategory,
   _allCategories,
   _deleteCategory,
+  _singleCategory,
 } from "../../services/endpoints";
-import { CACHE_KEY_ALLCATEGORIES } from "../../constants/cache_keys";
+import {
+  CACHE_KEY_ALLCATEGORIES,
+  CACHE_KEY_SINGLECATEGORY,
+} from "../../constants/cache_keys";
 import { SuccessResponse, ErrorResponse } from "../../entities/response";
 // import useAddCategoryStore from "../../store/admin/addCategoryStore";
 
 const addCategory = new APIClient<Category>(_addCategory);
 const delCategory = new APIClient<DeleteCategory>(_deleteCategory);
 const getCategories = new APIClient<Category>(_allCategories);
+const singleCategory = new APIClient<Category>(_singleCategory);
 
 const useGetAllCategories = () => {
   return useQuery({
@@ -25,6 +30,20 @@ const useGetAllCategories = () => {
     refetchOnWindowFocus: false,
   });
 };
+
+const useGetSingleCategory = (
+  categoryId: string | undefined,
+  enabled: boolean
+) =>
+  useQuery({
+    queryKey: CACHE_KEY_SINGLECATEGORY,
+    queryFn: () =>
+      singleCategory
+        .getSingleItem({ params: { categoryId: categoryId } })
+        .then((res) => res.data),
+    retry: 2,
+    enabled: enabled,
+  });
 
 const useAddCategory = (callback: () => void) => {
   const toast = useToast();
@@ -65,4 +84,9 @@ const useDeleteCategory = (callback: () => void) => {
   });
 };
 
-export { useAddCategory, useDeleteCategory, useGetAllCategories };
+export {
+  useAddCategory,
+  useDeleteCategory,
+  useGetAllCategories,
+  useGetSingleCategory,
+};

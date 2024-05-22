@@ -13,8 +13,15 @@ import {
 import CategoriesSelectionList from "./CategoriesSelectionList";
 import useCategorySelectorStore from "../../../store/admin/categorySelectorStore";
 import useProductEntryStore from "../../../store/admin/productEntryStore";
+import Category from "../../../entities/category";
 
-const CategorySelector = () => {
+const CategorySelector = ({
+  category,
+  editMode,
+}: {
+  editMode: boolean;
+  category?: Category;
+}) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const selectedCategory = useCategorySelectorStore((s) => s.category);
 
@@ -33,12 +40,17 @@ const CategorySelector = () => {
         Category
       </FormLabel>
       <Button
-        onClick={onOpen}
+        isDisabled={!editMode}
+        onClick={() => editMode && onOpen()}
         variant="secondary"
         minW={150}
         textTransform="capitalize"
       >
-        {selectedCategory ? selectedCategory.name : "Select Category"}
+        {selectedCategory
+          ? selectedCategory.name
+          : category
+          ? category.name
+          : "Select Category"}
       </Button>
       <Modal
         isCentered
@@ -55,14 +67,6 @@ const CategorySelector = () => {
             <CategoriesSelectionList />
           </ModalBody>
           <ModalFooter>
-            <Button
-              colorScheme="primary"
-              variant="ghost"
-              onClick={onClose}
-              mr={4}
-            >
-              Close
-            </Button>
             <Button
               variant="primary"
               isDisabled={!selectedCategory}

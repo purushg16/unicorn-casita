@@ -1,7 +1,7 @@
 import { FormLabel, Textarea, VStack } from "@chakra-ui/react";
 import useProductEntryStore from "../../../store/admin/productEntryStore";
 
-const DescriptionInput = () => {
+const DescriptionInput = ({ editMode }: { editMode: boolean }) => {
   const description = useProductEntryStore((s) => s.product)?.description;
   const setDescription = useProductEntryStore((s) => s.setDescription);
 
@@ -11,6 +11,7 @@ const DescriptionInput = () => {
         Product Description
       </FormLabel>
       <Textarea
+        isDisabled={!editMode}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         borderRadius="xl"

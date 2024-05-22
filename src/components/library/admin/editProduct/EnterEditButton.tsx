@@ -8,7 +8,8 @@ const EnterEditButton = ({
 }) => {
   return (
     <Button
-      variant="primary"
+      size="sm"
+      variant="secondary"
       onClick={() => onClick(true)}
       leftIcon={<Icon as={Settings2} />}
     >

@@ -11,7 +11,7 @@ import { PlusCircle } from "lucide-react";
 import SpecificationsField from "./SpecificationsField";
 import useProductEntryStore from "../../../store/admin/productEntryStore";
 
-const SpecificationsTable = () => {
+const SpecificationsTable = ({ editMode }: { editMode: boolean }) => {
   const addSpecifications = useProductEntryStore((s) => s.addSpecifications);
 
   return (
@@ -29,27 +29,31 @@ const SpecificationsTable = () => {
           Specifications
         </FormLabel>
         <Show above="md">
-          <Button
-            variant="secondary"
-            size="xs"
-            leftIcon={<Icon as={PlusCircle} />}
-            onClick={addSpecifications}
-          >
-            Add New Specification
-          </Button>
+          {editMode && (
+            <Button
+              variant="secondary"
+              size="xs"
+              leftIcon={<Icon as={PlusCircle} />}
+              onClick={addSpecifications}
+            >
+              Add New Specification
+            </Button>
+          )}
         </Show>
         <Show below="md">
-          <IconButton
-            aria-label="add-spec"
-            variant="primary"
-            size="xs"
-            icon={<Icon as={PlusCircle} />}
-            onClick={addSpecifications}
-          />
+          {editMode && (
+            <IconButton
+              aria-label="add-spec"
+              variant="primary"
+              size="xs"
+              icon={<Icon as={PlusCircle} />}
+              onClick={addSpecifications}
+            />
+          )}
         </Show>
       </HStack>
 
-      <SpecificationsField />
+      <SpecificationsField editMode={editMode} />
     </VStack>
   );
 };

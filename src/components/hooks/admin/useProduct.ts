@@ -7,7 +7,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import Toaster from "../../functions/toaster";
-import Product from "../../entities/product";
+import Product, { ProductResponse } from "../../entities/product";
 import { DeleteProduct } from "../../entities/serviceProduct";
 import { EditProduct } from "../../entities/editProduct";
 import { PaginatedResponse } from "../../entities/paginatedResponse";
@@ -23,11 +23,12 @@ import {
   CACHE_KEY_SINGLEPRODUCT,
 } from "../../constants/cache_keys";
 import { SuccessResponse, ErrorResponse } from "../../entities/response";
+import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const addProduct = new APIClient<Product>(_addProduct);
 const editProduct = new APIClient<EditProduct>(_editProduct);
 const delProduct = new APIClient<DeleteProduct>(_deleteProduct);
-const getSingleProduct = new APIClient<Product>(_singleProduct);
+const getSingleProduct = new APIClient<ProductResponse>(_singleProduct);
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allProducts);
 
 const useGetAllProducts = () => {
@@ -50,16 +51,22 @@ const useGetAllProducts = () => {
   });
 };
 
-const useGetSingleProduct = (productId: string, enabled: boolean) =>
-  useQuery({
+const useGetSingleProduct = (productId: string, enabled: boolean) => {
+  const appendProductEntry = useProductEntryStore((s) => s.appendNewEntry);
+
+  return useQuery({
     queryKey: CACHE_KEY_SINGLEPRODUCT,
     queryFn: () =>
       getSingleProduct
         .getSingleItem({ params: { productId: productId } })
-        .then((res) => res.data),
+        .then((res) => {
+          appendProductEntry(res.data);
+          return res.data;
+        }),
     enabled: enabled,
+    refetchOnWindowFocus: false,
   });
-
+};
 const useAddProduct = (
   successCallback: () => void,
   failureCallback: () => void
@@ -82,17 +89,19 @@ const useAddProduct = (
   });
 };
 
-const useEditProduct = () => {
+const useEditProduct = (callback: () => void) => {
   const toast = useToast();
   const queryClient = useQueryClient();
+  const resetEntry = useProductEntryStore((s) => s.resetEntry);
 
   return useMutation({
     mutationFn: editProduct.postRequest,
     onSuccess: (data: SuccessResponse) => {
       toast(Toaster("success", data.data.message));
-
       queryClient.invalidateQueries({ queryKey: CACHE_KEY_ALLPRODUCTS });
       queryClient.invalidateQueries({ queryKey: CACHE_KEY_SINGLEPRODUCT });
+      callback();
+      resetEntry();
     },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.response?.data.error)),

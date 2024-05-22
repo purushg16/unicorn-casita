@@ -1,11 +1,5 @@
-import Specification from "./specification";
+import Product from "./product";
 
-export interface EditProduct {
+export interface EditProduct extends Partial<Product> {
   productId: string;
-  name?: string;
-  categoryId?: string;
-  Specifications?: Specification[];
-  imageLink?: string;
-  price?: number;
-  productType?: string;
 }

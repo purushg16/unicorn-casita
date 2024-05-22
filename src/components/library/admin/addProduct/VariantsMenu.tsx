@@ -11,7 +11,7 @@ import useProductEntryStore from "../../../store/admin/productEntryStore";
 
 const variants = ["size", "color"];
 
-const VariantsMenu = () => {
+const VariantsMenu = ({ editMode }: { editMode: boolean }) => {
   const isDisabled = !useProductEntryStore((s) => s.product)?.isAttribute;
   const variant = useProductEntryStore((s) => s.product)?.attributeName;
   const setVariant = useProductEntryStore((s) => s.setAttributeName);
@@ -25,7 +25,7 @@ const VariantsMenu = () => {
         rightIcon={<Icon as={ChevronDown} />}
         textAlign="start"
         textTransform="capitalize"
-        isDisabled={isDisabled}
+        isDisabled={isDisabled || !editMode}
       >
         {variant || "Select Variant"}
       </MenuButton>

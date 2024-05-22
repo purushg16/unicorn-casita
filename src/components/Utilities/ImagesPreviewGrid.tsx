@@ -18,9 +18,8 @@ const ImagesPreviewGrid = ({
 }: Props) => {
   return (
     <VStack w="100%" align="start">
-      <FormLabel m={0} color="primary.600">
-        {" "}
-        {title}{" "}
+      <FormLabel fontSize="xs" m={0} color="primary.800">
+        {title}
       </FormLabel>
       <VStack
         align="start"
@@ -34,7 +33,7 @@ const ImagesPreviewGrid = ({
       >
         {images.length > 0 ? (
           <SimpleGrid
-            columns={2}
+            columns={{ base: 2, md: 3 }}
             spacing={4}
             w="100%"
             maxH="100%"

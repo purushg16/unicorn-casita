@@ -4,7 +4,7 @@ import AttributesStack from "../Attributes/AttributesStack";
 import VariantsMenu from "./VariantsMenu";
 import ProductSalesPriceInput from "../editProduct/ProductSalesPriceInput";
 
-const AttributeSelector = () => {
+const AttributeSelector = ({ editMode }: { editMode: boolean }) => {
   const hasVariant = useProductEntryStore((s) => s.product)?.isAttribute;
   const toggleVariant = useProductEntryStore((s) => s.toggleAttribute);
 
@@ -21,6 +21,7 @@ const AttributeSelector = () => {
         Variant
       </FormLabel>
       <Checkbox
+        isDisabled={!editMode}
         colorScheme="primary"
         ml={1}
         mb={4}
@@ -32,11 +33,11 @@ const AttributeSelector = () => {
       </Checkbox>
       {hasVariant ? (
         <VStack align="start" w="100%">
-          <VariantsMenu />
-          <AttributesStack />
+          <VariantsMenu editMode={editMode} />
+          <AttributesStack editMode={editMode} />
         </VStack>
       ) : (
-        <ProductSalesPriceInput editMode />
+        <ProductSalesPriceInput editMode={editMode} />
       )}
     </VStack>
   );

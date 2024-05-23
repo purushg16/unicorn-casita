@@ -1,8 +1,8 @@
-import { Box, Button, Flex, HStack, Icon, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
 import { RHeading } from "../../Utilities/Typography";
-import { Trash2 } from "lucide-react";
-import TotalSection from "../../library/user/Cart/TotalSection";
 import CartTable from "../../library/user/Cart/CartTable";
+import ClearCartButton from "../../library/user/Cart/ClearCartButton";
+import TotalSection from "../../library/user/Cart/TotalSection";
 
 const CartPage = () => {
   return (
@@ -14,15 +14,7 @@ const CartPage = () => {
       <VStack gap={8} align="start" flex={1}>
         <HStack justify="space-between" w="100%">
           <RHeading small text="Cart" />
-          <Button
-            variant="text"
-            colorScheme="red"
-            color="red.400"
-            leftIcon={<Icon as={Trash2} />}
-            size={{ base: "sm", md: "md" }}
-          >
-            Clear
-          </Button>
+          <ClearCartButton />
         </HStack>
         <CartTable />
       </VStack>

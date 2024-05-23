@@ -16,7 +16,7 @@ const UserNavbar = () => {
       pos="sticky"
       top={0}
       bg="white"
-      zIndex={1000000}
+      zIndex={1000}
       borderBottom="1px solid"
       borderColor="gray.200"
       justify="space-between"

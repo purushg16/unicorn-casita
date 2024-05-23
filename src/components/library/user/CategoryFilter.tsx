@@ -10,7 +10,7 @@ import { ChevronDown } from "lucide-react";
 import useProductQueryStore from "../../store/user/productQueryStore";
 import useGetAllCategories from "../../hooks/user/useCategories";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ isDisabled }: { isDisabled: boolean }) => {
   const { data: categories } = useGetAllCategories();
   const category = useProductQueryStore((s) => s.category);
   const setCategory = useProductQueryStore((s) => s.setCategory);
@@ -18,6 +18,7 @@ const CategoryFilter = () => {
   return (
     <Menu autoSelect={false}>
       <MenuButton
+        isDisabled={isDisabled}
         as={Button}
         fontWeight="normal"
         variant="secondary"

@@ -1,8 +1,9 @@
 import { Box, Checkbox, HStack, Show, Td, Tr, VStack } from "@chakra-ui/react";
-import { Label } from "../../../Utilities/Typography";
+import { Label, RText } from "../../../Utilities/Typography";
 import CartQuantityController from "./CartQuantityController";
+import { StoreCartProduct } from "../../../store/user/useCartStore";
 
-const CartItem = () => {
+const CartItem = ({ product }: { product: StoreCartProduct }) => {
   return (
     <Tr>
       <Show above="lg">
@@ -18,28 +19,43 @@ const CartItem = () => {
             bgColor="primary.200"
             borderRadius={10}
             overflow="hidden"
-            bgImg="
-            https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            bgImg={product.imageLink}
             bgPos="center"
             bgSize="cover"
             bgRepeat="no-repeat"
           />
-          <VStack align="start" gap={0}>
-            <Label weight="bolder" text="Product Name" />
-            <Label text="Rs.200" color="primary.700" />
+          <VStack align="start" gap={1}>
+            <RText
+              weight="bolder"
+              text={product.productName}
+              color="primary.800"
+            />
+            <HStack align="center">
+              <Label
+                text={product.price.toFixed(2) + " - " + product.attrValue}
+                color="primary.700"
+              />
+            </HStack>
             <Show below="lg">
-              <CartQuantityController md />
+              <CartQuantityController
+                md
+                productId={product.productId}
+                attribute={product.attrValue}
+              />
             </Show>
           </VStack>
         </HStack>
       </Td>
       <Show above="lg">
         <Td>
-          <CartQuantityController />
+          <CartQuantityController
+            productId={product.productId}
+            attribute={product.attrValue}
+          />
         </Td>
       </Show>
-      <Td isNumeric alignItems="start" fontWeight="bolder">
-        Rs. 25.40
+      <Td isNumeric alignItems="start" fontWeight="bolder" color="primary.800">
+        Rs. {(product.quantity * product.price).toFixed(2)}
       </Td>
     </Tr>
   );

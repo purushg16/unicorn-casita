@@ -11,8 +11,11 @@ import {
 } from "@chakra-ui/react";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import useUserCartStore from "../../../store/user/useCartStore";
 
 const CartTable = () => {
+  const products = useUserCartStore((s) => s.products);
+
   return (
     <TableContainer w="100%">
       <Table variant="simple">
@@ -37,8 +40,9 @@ const CartTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <CartItem />
-          <CartItem />
+          {products.map((product) => (
+            <CartItem key={product.productId} product={product} />
+          ))}
         </Tbody>
       </Table>
     </TableContainer>

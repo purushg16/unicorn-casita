@@ -1,7 +1,11 @@
-import Product from "./product";
+export interface CartProduct {
+  productId: string;
+  quantity: number;
+  attrValue: string;
+}
 
 export interface CartCheckout {
-  products: Product[];
+  products: CartProduct[];
   address: string;
   district: string;
   state: string;

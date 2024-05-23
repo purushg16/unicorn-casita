@@ -1,4 +1,4 @@
-import { Box, Flex, Show, Spacer, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Spinner } from "@chakra-ui/react";
 import { RHeading } from "../../Utilities/Typography";
 import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import CategoryFilter from "../../library/user/CategoryFilter";
@@ -20,16 +20,14 @@ const CollectionsPage = () => {
   return (
     <Flex gap={12} flexDir="column">
       <BreadCrumbsTile
-        crumbs={["home", "collections", category?.name || "All Categories"]}
+        crumbs={["home", "collections", category?.name || "All Collections"]}
       />
       <Flex gap={8} flexDir="column">
         <Flex align="center" gap={4}>
-          <RHeading small text={category?.name || "All Categories"} />
+          <RHeading small text={category?.name || "All Collections"} />
           <CategoryFilterRemover />
           <Spacer />
-          <Show above="md">
-            <CategoryFilter />
-          </Show>
+          <CategoryFilter isDisabled={status !== "success"} />
         </Flex>
         {status === "pending" && <UserProductsSkeleton />}
         {status === "success" && data.pages[0].data.docs.length > 0 && (

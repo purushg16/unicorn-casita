@@ -1,7 +1,10 @@
 import { Button, Divider, HStack, VStack } from "@chakra-ui/react";
 import { Label } from "../../../Utilities/Typography";
+import useUserCartStore from "../../../store/user/useCartStore";
 
 const TotalSection = () => {
+  const products = useUserCartStore((s) => s.products);
+
   return (
     <VStack
       w="100%"
@@ -14,16 +17,26 @@ const TotalSection = () => {
     >
       <HStack w="100%" justify="space-between">
         <Label text="Subtotal" color="gray" />
-        <Label weight="bolder" text="Rs. 200.00" />
+        <Label
+          weight="bolder"
+          text={products
+            .reduce((acc, product) => product.price * product.quantity + acc, 0)
+            .toFixed(2)}
+        />
       </HStack>
       <HStack w="100%" justify="space-between">
         <Label text="Discount" color="gray" />
-        <Label weight="bolder" color="primary.400" text="- Rs. 20.00" />
+        <Label weight="bolder" color="primary.400" text="- 0.00" />
       </HStack>
       <Divider variant="dashed" />
       <HStack w="100%" justify="space-between">
         <Label text="Grand Total" weight="bolder" />
-        <Label weight="bolder" text="Rs. 180.00" />
+        <Label
+          weight="bolder"
+          text={products
+            .reduce((acc, product) => product.price * product.quantity + acc, 0)
+            .toFixed(2)}
+        />
       </HStack>
       <Button w="100%" variant="primary">
         Checkout Now

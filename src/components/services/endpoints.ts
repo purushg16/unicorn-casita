@@ -34,7 +34,7 @@ export const _allDeliveryPartners = "/admin/deliveryPartner/all";
 // ===== User =====  //
 export const _allUserReviews = "/user/websiteData/allReviews";
 export const _allUserCategories = "/user/websiteData/allCategory";
-export const _allUserProducts = "/user/websiteDatat/allProducts";
+export const _allUserProducts = "/user/websiteData/allProducts";
 export const _singleUserProducts = "/user/websiteData/singleProduct";
 export const _cartCheckout = "/user/checkout/order";
 export const _verifyOrder = "/user/checkout/verifyOrder";

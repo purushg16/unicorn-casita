@@ -2,31 +2,30 @@ import { VStack, HStack, IconButton, Icon } from "@chakra-ui/react";
 import { Label } from "../../../Utilities/Typography";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { ProductAttribute } from "../../../entities/product";
 
-const colors = ["black", "pink", "red"];
-
-const ColorSelector = () => {
+const ColorSelector = ({ attributes }: { attributes: ProductAttribute[] }) => {
   const [selectedColor, setColor] = useState<string>("");
 
   return (
     <VStack gap={4} align="start">
-      <Label text="Available Colors" />
+      <Label text="Available Colors" color="primary.700" />
       <HStack>
-        {colors.map((color) => (
+        {attributes.map((color) => (
           <IconButton
             aria-label=""
             icon={
               <Icon
                 as={Check}
-                color={color === selectedColor ? "white" : color}
+                color={color.value === selectedColor ? "white" : color.value}
               />
             }
             borderRadius="100%"
-            bgColor={color}
-            _hover={{ bgColor: color }}
-            _active={{ bgColor: color }}
-            _focus={{ bgColor: color }}
-            onClick={() => setColor(color)}
+            bgColor={color.value}
+            _hover={{ bgColor: color.value }}
+            _active={{ bgColor: color.value }}
+            _focus={{ bgColor: color.value }}
+            onClick={() => setColor(color.value)}
           />
         ))}
       </HStack>

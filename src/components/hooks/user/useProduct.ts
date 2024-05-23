@@ -10,20 +10,24 @@ import {
   _allUserProducts,
   _singleUserProducts,
 } from "../../services/endpoints";
+import useProductQueryStore from "../../store/user/productQueryStore";
 
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allUserProducts);
 const getSingleProduct = new APIClient<Product>(_singleUserProducts);
 
 const useGetAllProducts = () => {
+  const category = useProductQueryStore((s) => s.category);
   return useInfiniteQuery<
     SinglePropertyResponse<PaginatedResponse<Product>>,
     Error
   >({
-    queryKey: CACHE_KEY_ALLPRODUCTS,
+    queryKey: [...CACHE_KEY_ALLPRODUCTS, category],
     queryFn: ({ pageParam = 1 }) =>
       getProducts.getSingleItem({
         params: {
           page: pageParam,
+          itemPerPage: 10,
+          categoryId: category?._id,
         },
       }),
     initialPageParam: 1,
@@ -38,7 +42,7 @@ const useGetSingleProduct = (productId: string, enabled: boolean) =>
     queryKey: CACHE_KEY_SINGLEPRODUCT,
     queryFn: () =>
       getSingleProduct
-        .getRequest({ params: { productId: productId } })
+        .getSingleItem({ params: { productId: productId } })
         .then((res) => res.data),
     enabled: enabled,
   });

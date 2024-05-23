@@ -28,7 +28,13 @@ const ContactPage = () => {
       </VStack>
 
       <SimpleGrid w="100%" columns={{ base: 1, md: 2 }} spacingY={12}>
-        <VStack gap={8} align="start" pos="relative">
+        <VStack
+          gap={8}
+          align="start"
+          pos="relative"
+          maxW="100%"
+          overflowX="clip"
+        >
           <VStack align="start">
             <RText color="primary.900" small text="Call Us" />
             <RText text="+91 999 888 77 66" />

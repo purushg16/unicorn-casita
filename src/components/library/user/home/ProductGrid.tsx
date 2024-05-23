@@ -5,8 +5,10 @@ import ProductCard from "../Product/ProductCard";
 import SwiperButtons from "../Swiper/SwiperButtons";
 import SwiperContainer from "../Swiper/SwiperContainer";
 import SwiperProgressBar from "../Swiper/SwiperProgressBar";
+import { useGetAllProducts } from "../../../hooks/user/useProduct";
 
 const ProductGrid = () => {
+  const { data, status } = useGetAllProducts();
   const ref = useRef<HTMLDivElement>(null);
 
   const [leftbtn, isLeftDisabled] = useState<boolean>(true);
@@ -58,15 +60,14 @@ const ProductGrid = () => {
         />
       </Flex>
 
-      <SwiperContainer ref={ref} onScroll={controlButton}>
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </SwiperContainer>
+      {status === "success" && (
+        <SwiperContainer ref={ref} onScroll={controlButton}>
+          <></>
+          {data.pages[0].data.docs.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </SwiperContainer>
+      )}
       <SwiperProgressBar value={progress} />
     </VStack>
   );

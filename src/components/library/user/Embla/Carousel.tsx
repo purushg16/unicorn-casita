@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import { NextButton, PrevButton, usePrevNextButtons } from "./ArrowButtons";
-import ProductCard from "../Product/ProductCard";
 import { Box } from "@chakra-ui/react";
 
 type PropType = {
@@ -41,7 +40,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         <div className="embla__container">
           {slides.map((index) => (
             <Box pb={4} className="embla__slide" key={index}>
-              <ProductCard />
+              {/* <ProductCard /> */}
             </Box>
           ))}
         </div>

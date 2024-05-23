@@ -16,7 +16,7 @@ const CategoryCard = ({ label, img }: Props) => {
       flexDir="column"
       justify="end"
       align="center"
-      bgImg={img}
+      bg={`linear-gradient(rgb(251 251 251 / 10%), rgb(56 21 53 / 71%)), url(${img})`}
       bgSize="cover"
       bgPos="center"
       bgRepeat="no-repeat"

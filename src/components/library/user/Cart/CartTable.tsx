@@ -11,11 +11,9 @@ import {
 } from "@chakra-ui/react";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
-import useUserCartStore from "../../../store/user/useCartStore";
+import { StoreCartProduct } from "../../../store/user/useCartStore";
 
-const CartTable = () => {
-  const products = useUserCartStore((s) => s.products);
-
+const CartTable = ({ products }: { products: StoreCartProduct[] }) => {
   return (
     <TableContainer w="100%">
       <Table variant="simple">

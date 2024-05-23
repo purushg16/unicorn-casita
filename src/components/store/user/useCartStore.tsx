@@ -9,6 +9,20 @@ export interface StoreCartProduct extends CartProduct {
 
 interface UserCartStore extends CartCheckout {
   products: StoreCartProduct[];
+  customerName: string;
+  address: string;
+  district: string;
+  state: string;
+  pincode: number;
+  contact: number;
+  email: string;
+  setCustomerName: (name: string) => void;
+  setAddress: (address: string) => void;
+  setDistrict: (district: string) => void;
+  setState: (state: string) => void;
+  setPincode: (pincode: number) => void;
+  setContact: (contact: number) => void;
+  setEmail: (email: string) => void;
 }
 
 interface UserCartActions {
@@ -84,6 +98,13 @@ const useUserCartStore = create<UserCartStore & UserCartActions>((set) => ({
   pincode: parseInt(""),
   contact: parseInt(""),
   email: "",
+  setCustomerName: (customerName) => set({ customerName }),
+  setAddress: (address) => set({ address }),
+  setDistrict: (district) => set({ district }),
+  setState: (state) => set({ state }),
+  setPincode: (pincode) => set({ pincode }),
+  setContact: (contact) => set({ contact }),
+  setEmail: (email) => set({ email }),
 }));
 
 export default useUserCartStore;

@@ -7,7 +7,7 @@ interface OrderProduct {
 export interface VerifyOrder {
   orderId: string;
   paymentId: string;
-  "X-razorpay-signature": string;
+  xRazorpaySignature: string;
 }
 
 export interface Order {

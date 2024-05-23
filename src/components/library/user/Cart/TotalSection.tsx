@@ -1,6 +1,7 @@
-import { Button, Divider, HStack, VStack } from "@chakra-ui/react";
+import { Divider, HStack, VStack } from "@chakra-ui/react";
 import { Label } from "../../../Utilities/Typography";
 import useUserCartStore from "../../../store/user/useCartStore";
+import CheckoutModal from "./CheckoutModal";
 
 const TotalSection = () => {
   const products = useUserCartStore((s) => s.products);
@@ -38,9 +39,7 @@ const TotalSection = () => {
             .toFixed(2)}
         />
       </HStack>
-      <Button w="100%" variant="primary">
-        Checkout Now
-      </Button>
+      <CheckoutModal />
     </VStack>
   );
 };

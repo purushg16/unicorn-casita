@@ -20,7 +20,7 @@ const NumofProductSelector = ({
 
   return (
     <VStack align="start" gap={4}>
-      <Label text="Make it yours, now!" color="primary.700" />
+      <Label text="Quanity" color="primary.700" />
       <ButtonGroup
         variant="outline"
         borderRadius={10}

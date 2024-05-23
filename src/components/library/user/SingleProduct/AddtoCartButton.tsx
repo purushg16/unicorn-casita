@@ -1,6 +1,7 @@
 import { Button, HStack, useToast } from "@chakra-ui/react";
 import useUserCartStore from "../../../store/user/useCartStore";
 import Toaster from "../../../functions/toaster";
+import { useNavigate } from "react-router-dom";
 
 const AddtoCartButton = ({
   productId,
@@ -22,22 +23,23 @@ const AddtoCartButton = ({
   );
   const addtoCart = useUserCartStore((s) => s.addProduct);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleAdd = () => {
-    addtoCart(productId, attribute, count, price, productName, imageLink);
-    toast(Toaster("success", "Added to Cart"));
+    if (product?.attrValue !== attribute) {
+      addtoCart(productId, attribute, count, price, productName, imageLink);
+      toast(Toaster("success", "Added to Cart"));
+    } else navigate("/cart");
   };
 
   return (
     <HStack>
       <Button
         variant="primary"
-        isDisabled={
-          !attribute || count <= 0 || product?.attrValue === attribute
-        }
+        isDisabled={!attribute || count <= 0}
         onClick={handleAdd}
       >
-        {product ? "Added to Cart" : "Add to Cart"}
+        {product ? "Go to Cart" : "Add to Cart"}
       </Button>
     </HStack>
   );

@@ -1,8 +1,14 @@
-import { VStack } from "@chakra-ui/react";
-import { RHeading, RText } from "../../../Utilities/Typography";
-import Product from "../../../entities/product";
+import { Box, VStack } from "@chakra-ui/react";
+import { Label, RHeading, RText } from "../../../Utilities/Typography";
+import { ProductResponse } from "../../../entities/product";
 
-const ProductHeader = ({ product }: { product: Product }) => {
+const ProductHeader = ({
+  product,
+  attribute,
+}: {
+  product: ProductResponse;
+  attribute: string;
+}) => {
   return (
     <VStack
       w="100%"
@@ -12,23 +18,29 @@ const ProductHeader = ({ product }: { product: Product }) => {
       borderBottom="1px solid"
       borderColor="gray.100"
     >
-      <RHeading small text={product.name} color="primary.800" />
-      {/* <HStack mb={4}>
-        <Icon as={StarIcon} />
-        <Icon as={StarIcon} />
-        <Icon as={StarIcon} />
-        <Icon as={StarIcon} />
-        <Label text="(4.9)" />
-      </HStack> */}
-      <RText
+      <Label
+        small
+        text={product.category.name}
+        color="primary.800"
+        textTransform="uppercase"
+      />
+      <RHeading text={product.name} color="primary.800" />
+      <RHeading
+        weight="semibold"
+        small
         text={
           "Rs." +
-          (product.salesPrice > 0
+          (!product.isAttribute
             ? product.salesPrice.toFixed(2)
-            : product.attributes[0].salesPrice.toFixed(2))
+            : product.attributes
+                .find((a) => a.value === attribute)
+                ?.salesPrice.toFixed(2) ||
+              product.attributes[0].salesPrice.toFixed(2))
         }
         color="primary.800"
       />
+      <Box mt={4} />
+      <RText text={product.description} color="primary.800" />
     </VStack>
   );
 };

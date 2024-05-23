@@ -1,10 +1,20 @@
-import { Flex, HStack, Icon, Show, Spacer } from "@chakra-ui/react";
+import {
+  Badge,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Show,
+  Spacer,
+} from "@chakra-ui/react";
 import { MenuIcon, ShoppingBasket } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Label, RHeading } from "../../../Utilities/Typography";
+import useUserCartStore from "../../../store/user/useCartStore";
 
 const UserNavbar = () => {
   const navigate = useNavigate();
+  const quantity = useUserCartStore((s) => s.products).length;
 
   return (
     <Flex
@@ -39,20 +49,68 @@ const UserNavbar = () => {
         <Spacer />
         <HStack gap={8} align="center">
           <Link to="/cart">
-            <Icon
-              cursor="pointer"
-              strokeWidth={1}
-              as={ShoppingBasket}
-              boxSize={6}
-              onClick={() => navigate("/cart")}
-            />
+            <Button
+              pos="relative"
+              variant="secondary"
+              rightIcon={
+                <Icon
+                  cursor="pointer"
+                  strokeWidth={1}
+                  as={ShoppingBasket}
+                  onClick={() => navigate("/cart")}
+                />
+              }
+            >
+              {quantity > 0 && (
+                <Badge
+                  pos="absolute"
+                  colorScheme="green"
+                  right={-2}
+                  top={-2}
+                  p={1}
+                  px={2}
+                  borderRadius="xl"
+                >
+                  {quantity}
+                </Badge>
+              )}
+              Cart
+            </Button>
           </Link>
         </HStack>
       </Show>
       <Show below="md">
         <HStack gap={4} align="center">
           <Link to="/cart">
-            <Icon as={ShoppingBasket} boxSize={4} strokeWidth={1} />
+            <Button
+              size="sm"
+              pos="relative"
+              variant="secondary"
+              rightIcon={
+                <Icon
+                  cursor="pointer"
+                  strokeWidth={1}
+                  as={ShoppingBasket}
+                  onClick={() => navigate("/cart")}
+                />
+              }
+            >
+              {quantity > 0 && (
+                <Badge
+                  size="sm"
+                  pos="absolute"
+                  colorScheme="green"
+                  right={-2}
+                  top={-2}
+                  p={1}
+                  px={2}
+                  borderRadius="xl"
+                >
+                  {quantity}
+                </Badge>
+              )}
+              Cart
+            </Button>
           </Link>
           <Icon as={MenuIcon} boxSize={4} />
         </HStack>

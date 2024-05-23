@@ -4,7 +4,7 @@ import {
   CACHE_KEY_SINGLEPRODUCT,
 } from "../../constants/cache_keys";
 import { PaginatedResponse } from "../../entities/paginatedResponse";
-import Product from "../../entities/product";
+import Product, { ProductResponse } from "../../entities/product";
 import APIClient, { SinglePropertyResponse } from "../../services/api-client";
 import {
   _allUserProducts,
@@ -13,7 +13,7 @@ import {
 import useProductQueryStore from "../../store/user/productQueryStore";
 
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allUserProducts);
-const getSingleProduct = new APIClient<Product>(_singleUserProducts);
+const getSingleProduct = new APIClient<ProductResponse>(_singleUserProducts);
 
 const useGetAllProducts = () => {
   const category = useProductQueryStore((s) => s.category);
@@ -39,7 +39,7 @@ const useGetAllProducts = () => {
 
 const useGetSingleProduct = (productId: string, enabled: boolean) =>
   useQuery({
-    queryKey: CACHE_KEY_SINGLEPRODUCT,
+    queryKey: [...CACHE_KEY_SINGLEPRODUCT, productId],
     queryFn: () =>
       getSingleProduct
         .getSingleItem({ params: { productId: productId } })

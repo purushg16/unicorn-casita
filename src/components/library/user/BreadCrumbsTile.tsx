@@ -5,6 +5,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { CornerUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BreadCrumbsTile = ({ crumbs }: { crumbs: string[] }) => {
   const length = crumbs.length;
@@ -20,8 +21,11 @@ const BreadCrumbsTile = ({ crumbs }: { crumbs: string[] }) => {
       {crumbs.map((crumb, index) => (
         <BreadcrumbItem key={index} isCurrentPage={index + 1 === length}>
           <BreadcrumbLink
+            as={Link}
             alignItems="end"
-            href={"/" + crumb.toLowerCase()}
+            to={
+              "/" + (crumb.toLowerCase() === "home" ? "" : crumb.toLowerCase())
+            }
             textTransform="capitalize"
             color={index + 1 === length ? "gray" : "black"}
           >

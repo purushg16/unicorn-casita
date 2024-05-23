@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const MarketBanner = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} px={{ base: 4, md: 8, lg: 16 }}>
       <Box
         w="100%"
         h="100%"

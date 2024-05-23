@@ -9,8 +9,6 @@ const Footer = () => {
       py={8}
       bg="primary.100"
       color="primary.700"
-      borderTop="3px solid"
-      borderColor="primary.300"
     >
       <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
         <VStack align="start" h="100%" w="70%">
@@ -34,7 +32,12 @@ const Footer = () => {
             <Link to="/contact">
               <RText text="Contact Us" small />
             </Link>
-            <RText text="Gallery" small />
+            <Link
+              to="https://www.instagram.com/unicorn_casita/"
+              target="_blank"
+            >
+              <RText text="Gallery" small />
+            </Link>
           </VStack>
 
           <VStack align="start">

@@ -3,7 +3,7 @@ import { RText } from "../../../Utilities/Typography";
 
 const PrivacyPolicyPage = () => {
   return (
-    <VStack pb={8} align="start" gap={8}>
+    <VStack pb={8} align="start" gap={8} px={{ base: 4, md: 8, lg: 16 }}>
       <VStack align="start" gap={0}>
         <RText text="Privacy Policy" weight="bolder" color="primary.700" />
         <RText

@@ -18,7 +18,7 @@ const CollectionsPage = () => {
     data?.pages.reduce((total, page) => total + page.data.docs.length, 0) || 0;
 
   return (
-    <Flex gap={12} flexDir="column">
+    <Flex gap={12} flexDir="column" px={{ base: 4, md: 8, lg: 16 }}>
       <BreadCrumbsTile
         crumbs={["home", "collections", category?.name || "All Collections"]}
       />

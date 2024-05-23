@@ -49,7 +49,7 @@ const ProductGrid = () => {
   };
 
   return (
-    <VStack align="start" gap={4}>
+    <VStack align="start" gap={4} px={{ base: 4, md: 8, lg: 16 }}>
       <Flex w="100%" justify="space-between">
         <RHeading small text="Featured Products" />
         <SwiperButtons
@@ -62,7 +62,6 @@ const ProductGrid = () => {
 
       {status === "success" && (
         <SwiperContainer ref={ref} onScroll={controlButton}>
-          <></>
           {data.pages[0].data.docs.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}

@@ -3,7 +3,7 @@ import { RText } from "../../../Utilities/Typography";
 
 const ShippingPolicyPage = () => {
   return (
-    <VStack align="start" gap={8}>
+    <VStack align="start" gap={8} px={{ base: 4, md: 8, lg: 16 }}>
       <VStack align="start" gap={0}>
         <RText text="Shipping and Delivery" weight="bold" color="primary.700" />
         <RText text="Last updated on May 19, 2024" small color="primary.700" />

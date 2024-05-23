@@ -1,12 +1,18 @@
 import { Button, Flex, Icon } from "@chakra-ui/react";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import useProductQueryStore from "../../../store/user/productQueryStore";
+import Category from "../../../entities/category";
 
-interface Props {
-  label: string;
-  img: string;
-}
+const CategoryCard = ({ category }: { category: Category }) => {
+  const navigate = useNavigate();
+  const setCategory = useProductQueryStore((s) => s.setCategory);
 
-const CategoryCard = ({ label, img }: Props) => {
+  const handleClick = () => {
+    setCategory(category);
+    navigate("/collections");
+  };
+
   return (
     <Flex
       w="100%"
@@ -16,21 +22,21 @@ const CategoryCard = ({ label, img }: Props) => {
       flexDir="column"
       justify="end"
       align="center"
-      bg={`linear-gradient(rgb(251 251 251 / 10%), rgb(56 21 53 / 71%)), url(${img})`}
+      bg={`linear-gradient(rgb(251 251 251 / 10%), rgb(56 21 53 / 71%)), url(${category.imageLink})`}
       bgSize="cover"
       bgPos="center"
       bgRepeat="no-repeat"
       borderRadius={10}
+      onClick={handleClick}
     >
       <Button
         w="100%"
-        py={6}
         justifyContent="space-between"
         variant="secondary"
-        rightIcon={<Icon as={ArrowRight} boxSize={4} />}
-        size={{ base: "sm", md: "md" }}
+        rightIcon={<Icon as={ArrowRight} />}
+        size={{ base: "xs", md: "sm", lg: "md" }}
       >
-        {label}
+        {category.name}
       </Button>
     </Flex>
   );

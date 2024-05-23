@@ -7,10 +7,11 @@ import {
   Show,
   Spacer,
 } from "@chakra-ui/react";
-import { MenuIcon, ShoppingBasket } from "lucide-react";
+import { ShoppingBasket } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Label, RHeading } from "../../../Utilities/Typography";
 import useUserCartStore from "../../../store/user/useCartStore";
+import MobileMenu from "../Mobilemenu/MobileMenu";
 
 const UserNavbar = () => {
   const navigate = useNavigate();
@@ -112,7 +113,7 @@ const UserNavbar = () => {
               Cart
             </Button>
           </Link>
-          <Icon as={MenuIcon} boxSize={4} />
+          <MobileMenu />
         </HStack>
       </Show>
     </Flex>

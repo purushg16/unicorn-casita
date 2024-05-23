@@ -10,12 +10,7 @@ const UserHomeLayout = () => {
     <Flex flexDir="column" gap={0}>
       <UserNavbar />
       {pathname === "/" && <LandingGrid />}
-      <Flex
-        flexDir="column"
-        gap={{ base: 12, md: 12, lg: 20 }}
-        mx={{ base: 4, md: 8, lg: 16 }}
-        my={12}
-      >
+      <Flex flexDir="column" gap={{ base: 12, md: 12, lg: 20 }} my={12}>
         <Outlet />
       </Flex>
       <Footer />

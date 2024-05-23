@@ -12,7 +12,7 @@ const CartPage = () => {
 
   if (products.length === 0)
     return (
-      <VStack gap={2}>
+      <VStack gap={2} px={{ base: 4, md: 8, lg: 16 }}>
         <Image src={img} alt="" mx="auto" w="30%" mb={8} />
         <RHeading text="Your Cart is Emprty" color="primary.800" small />
         <Link to="/collections">

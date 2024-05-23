@@ -20,10 +20,10 @@ const ServiceCard = ({ icon, label, desc }: Props) => {
         h="max-content"
         lineHeight="normal"
       >
-        <Icon as={icon} lineHeight="normal" boxSize={6} />
+        <Icon as={icon} lineHeight="normal" boxSize={6} color="primary.800" />
       </Box>
-      <Label text={label} weight="bolder" />
-      <RText text={desc} color="gray" small />
+      <Label text={label} weight="bolder" color="primary.800" />
+      <RText text={desc} small color="primary.700" />
     </VStack>
   );
 };

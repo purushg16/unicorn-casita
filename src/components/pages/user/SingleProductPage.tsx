@@ -13,7 +13,7 @@ const SingleProductPage = () => {
   );
 
   return (
-    <Flex gap={8} flexDir="column">
+    <Flex gap={8} flexDir="column" px={{ base: 4, md: 8, lg: 16 }}>
       {product && (
         <BreadCrumbsTile crumbs={["home", "collections", product.name]} />
       )}

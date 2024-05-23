@@ -3,7 +3,7 @@ import { RHeading, RText } from "../../Utilities/Typography";
 
 const AboutPage = () => {
   return (
-    <VStack gap={8} align="start">
+    <VStack gap={8} align="start" px={{ base: 4, md: 8, lg: 16 }}>
       <RHeading
         weight="bold"
         text="Welcome to Unicorn Casita!"

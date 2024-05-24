@@ -39,15 +39,15 @@ const ContactPage = () => {
         <VStack gap={8} align="start" pos="relative" maxW="100%">
           <VStack align="start">
             <RText color="primary.900" small text="Call Us" />
-            <RText text="+91 999 888 77 66" />
+            <RText text="+91 63-797-857-55" />
           </VStack>
           <VStack align="start">
             <RText color="primary.900" small text="Email Us" />
-            <RText text="something@gmail.com" />
+            <RText text="unicorncasita@gmail.com" />
           </VStack>
           <VStack align="start">
             <RText color="primary.900" small text="Located At" />
-            <RText text="Tirupur, Tamilnadu, India" />
+            <RText text="Salem, Tamilnadu, India" />
           </VStack>
           <Show below="md">
             <Image src={img} pos="absolute" opacity={0.5} right={-135} />

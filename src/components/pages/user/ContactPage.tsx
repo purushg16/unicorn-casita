@@ -39,7 +39,7 @@ const ContactPage = () => {
         <VStack gap={8} align="start" pos="relative" maxW="100%">
           <VStack align="start">
             <RText color="primary.900" small text="Call Us" />
-            <RText text="+91 63-797-857-55" />
+            <RText text="+91 6379785755" />
           </VStack>
           <VStack align="start">
             <RText color="primary.900" small text="Email Us" />

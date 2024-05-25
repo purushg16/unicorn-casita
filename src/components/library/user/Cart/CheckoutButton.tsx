@@ -40,7 +40,7 @@ const CheckoutButton = () => {
         return {
           productId: pro.productId,
           quantity: pro.quantity,
-          attrValue: pro.attrValue,
+          attrValueId: pro.attrValueId,
         };
       }),
     });

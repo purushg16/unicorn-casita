@@ -2,6 +2,7 @@ import { Button, HStack, useToast } from "@chakra-ui/react";
 import useUserCartStore from "../../../store/user/useCartStore";
 import Toaster from "../../../functions/toaster";
 import { useNavigate } from "react-router-dom";
+import { ProductAttribute } from "../../../entities/product";
 
 const AddtoCartButton = ({
   productId,
@@ -14,22 +15,28 @@ const AddtoCartButton = ({
 }: {
   productId: string;
   imageLink: string;
-  attribute: string;
+  attribute: ProductAttribute | undefined;
   count: number;
   price: number;
   isAttribute: boolean;
   productName: string;
 }) => {
-  const product = useUserCartStore((s) => s.products).find(
-    (p) => p.productId === productId && p.attrValue === attribute
+  const product = useUserCartStore((s) => s.products).find((p) =>
+    isAttribute
+      ? p.productId === productId && p.attrValueId === attribute?._id
+      : p.productId === productId
   );
+
   const addtoCart = useUserCartStore((s) => s.addProduct);
   const toast = useToast();
   const navigate = useNavigate();
 
   const handleAdd = () => {
-    if (product?.attrValue !== attribute) {
-      addtoCart(productId, attribute, count, price, productName, imageLink);
+    if (
+      (isAttribute && product?.attrValueId !== attribute?._id) ||
+      product?.productId !== productId
+    ) {
+      addtoCart(productId, attribute!, count, price, productName, imageLink);
       toast(Toaster("success", "Added to Cart"));
     } else navigate("/cart");
   };

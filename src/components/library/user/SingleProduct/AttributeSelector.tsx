@@ -4,21 +4,27 @@ import { ProductAttribute } from "../../../entities/product";
 
 const AttributeSelector = ({
   attributes,
-  attributeName,
+  selectedAttribute,
+  setAttribute,
 }: {
-  attributeName: string;
+  selectedAttribute: string;
+  setAttribute: (attr: ProductAttribute) => void;
   attributes: ProductAttribute[];
 }) => {
   return (
     <VStack gap={4} align="start">
       <Label
-        text={"Available " + attributeName}
+        text={"Available " + selectedAttribute}
         textTransform="capitalize"
         color="primary.700"
       />
       <HStack>
         {attributes.map((attr) => (
-          <Button variant="outline" colorScheme="primary">
+          <Button
+            variant="outline"
+            colorScheme="primary"
+            onClick={() => setAttribute(attr)}
+          >
             {attr.value}
           </Button>
         ))}

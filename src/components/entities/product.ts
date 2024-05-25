@@ -21,6 +21,7 @@ export interface ProductResponse extends Product {
 }
 
 export interface ProductAttribute {
+  _id?: string;
   value: string;
   salesPrice: number;
 }

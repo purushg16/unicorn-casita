@@ -5,7 +5,7 @@ import ColorSelector from "./ColorSelector";
 import NumofProductSelector from "./NumofProductSelector";
 import ProductHeader from "./ProductHeader";
 import EmblaCarousel from "../Embla/ProductSlider/Slider";
-import { ProductResponse } from "../../../entities/product";
+import { ProductAttribute, ProductResponse } from "../../../entities/product";
 import { useState } from "react";
 
 const SingleProductGridDetails = ({
@@ -14,7 +14,7 @@ const SingleProductGridDetails = ({
   product: ProductResponse;
 }) => {
   const [count, setCount] = useState<number>(1);
-  const [attribute, setAttribute] = useState<string>("");
+  const [attribute, setAttribute] = useState<ProductAttribute>();
 
   return (
     <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
@@ -39,7 +39,8 @@ const SingleProductGridDetails = ({
             {product.attributeName !== "color" && (
               <AttributeSelector
                 attributes={product.attributes}
-                attributeName={product.attributeName}
+                selectedAttribute={product.attributeName}
+                setAttribute={setAttribute}
               />
             )}
             {product.attributeName === "color" && (
@@ -55,6 +56,7 @@ const SingleProductGridDetails = ({
         <HStack gap={4} align="end">
           <NumofProductSelector
             count={count}
+            isAttribute={product.isAttribute}
             setCount={setCount}
             attribute={attribute}
             productId={product._id!}
@@ -63,8 +65,9 @@ const SingleProductGridDetails = ({
             imageLink={product.imageLink[0]}
             price={
               product.isAttribute
-                ? product.attributes.find((attr) => attr.value === attribute)
-                    ?.salesPrice || 0
+                ? product.attributes.find(
+                    (attr) => attr._id! === attribute?._id
+                  )?.salesPrice || 0
                 : product.salesPrice
             }
             productName={product.name}

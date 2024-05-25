@@ -1,13 +1,13 @@
 import { Box, VStack } from "@chakra-ui/react";
 import { Label, RHeading, RText } from "../../../Utilities/Typography";
-import { ProductResponse } from "../../../entities/product";
+import { ProductAttribute, ProductResponse } from "../../../entities/product";
 
 const ProductHeader = ({
   product,
   attribute,
 }: {
   product: ProductResponse;
-  attribute: string;
+  attribute: ProductAttribute | undefined;
 }) => {
   return (
     <VStack
@@ -32,10 +32,11 @@ const ProductHeader = ({
           "Rs." +
           (!product.isAttribute
             ? product.salesPrice.toFixed(2)
-            : product.attributes
-                .find((a) => a.value === attribute)
-                ?.salesPrice.toFixed(2) ||
-              product.attributes[0].salesPrice.toFixed(2))
+            : attribute
+            ? product.attributes
+                .find((a) => a._id! === attribute._id!)
+                ?.salesPrice.toFixed(2)
+            : product.attributes[0].salesPrice.toFixed(2))
         }
         color="primary.800"
       />

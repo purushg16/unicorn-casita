@@ -32,7 +32,10 @@ const CartItem = ({ product }: { product: StoreCartProduct }) => {
             />
             <HStack align="center">
               <Label
-                text={product.price.toFixed(2) + " - " + product.attrValue}
+                text={
+                  product.price.toFixed(2) +
+                  (product.attribute ? ` - ${product.attribute.value}` : "")
+                }
                 color="primary.700"
               />
             </HStack>
@@ -40,7 +43,7 @@ const CartItem = ({ product }: { product: StoreCartProduct }) => {
               <CartQuantityController
                 md
                 productId={product.productId}
-                attribute={product.attrValue}
+                attribute={product.attrValueId}
               />
             </Show>
           </VStack>
@@ -50,7 +53,7 @@ const CartItem = ({ product }: { product: StoreCartProduct }) => {
         <Td>
           <CartQuantityController
             productId={product.productId}
-            attribute={product.attrValue}
+            attribute={product.attrValueId}
           />
         </Td>
       </Show>

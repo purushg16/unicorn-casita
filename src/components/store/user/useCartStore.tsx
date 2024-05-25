@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { CartCheckout, CartProduct } from "../../entities/cart";
+import { ProductAttribute } from "../../entities/product";
 
 export interface StoreCartProduct extends CartProduct {
   price: number;
   productName: string;
   imageLink: string;
+  attribute: ProductAttribute;
 }
 
 interface UserCartStore extends CartCheckout {
@@ -28,7 +30,7 @@ interface UserCartStore extends CartCheckout {
 interface UserCartActions {
   addProduct: (
     productId: string,
-    attribute: string,
+    attribute: ProductAttribute,
     quantity: number,
     price: number,
     productName: string,
@@ -51,14 +53,23 @@ const useUserCartStore = create<UserCartStore & UserCartActions>((set) => ({
     set((store) => ({
       products:
         store.products.findIndex((p) => p.productId === productId) === -1 || // if there is no product
-        store.products.find((p) => p.productId === productId)?.attrValue !== // if there is a product with diff attribute
-          attrValue
+        store.products.find((p) => p.productId === productId)?.attrValueId !== // if there is a product with diff attribute
+          attrValue._id!
           ? [
               ...store.products,
-              { productId, attrValue, quantity, price, productName, imageLink },
+              {
+                productId,
+                attrValueId: attrValue ? attrValue._id! : "",
+                quantity,
+                price,
+                productName,
+                imageLink,
+                attribute: attrValue,
+              },
             ]
           : store.products.map((product) =>
-              product.productId === productId && product.attrValue === attrValue
+              product.productId === productId &&
+              product.attrValueId === attrValue._id!
                 ? { ...product, quantity: product.quantity + 1 }
                 : product
             ),
@@ -67,14 +78,14 @@ const useUserCartStore = create<UserCartStore & UserCartActions>((set) => ({
   removeProduct: (productId, attribute) =>
     set((store) => ({
       products: store.products.filter(
-        (p) => !(p.productId === productId && p.attrValue === attribute)
+        (p) => !(p.productId === productId && p.attrValueId === attribute)
       ),
     })),
 
   updateQuanitity: (productId, quantity, attrvalue) =>
     set((store) => ({
       products: store.products.map((product) =>
-        product.productId === productId && product.attrValue === attrvalue
+        product.productId === productId && product.attrValueId === attrvalue
           ? { ...product, quantity: quantity }
           : product
       ),
@@ -84,7 +95,7 @@ const useUserCartStore = create<UserCartStore & UserCartActions>((set) => ({
     set((store) => ({
       products: store.products.map((product) =>
         product.productId === productId
-          ? { ...product, attrValue: attribute }
+          ? { ...product, attrValueId: attribute }
           : product
       ),
     })),

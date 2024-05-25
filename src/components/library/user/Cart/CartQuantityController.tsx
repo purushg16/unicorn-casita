@@ -20,7 +20,7 @@ const CartQuantityController = ({
 }) => {
   const product = useUserCartStore((s) => s.products).find(
     (product) =>
-      product.productId === productId && product.attrValue === attribute
+      product.productId === productId && product.attrValueId === attribute
   )!;
   const updateQuantity = useUserCartStore((s) => s.updateQuanitity);
   const remove = useUserCartStore((s) => s.removeProduct);
@@ -31,7 +31,7 @@ const CartQuantityController = ({
         <IconButton
           isDisabled={product.quantity <= 1}
           onClick={() =>
-            updateQuantity(productId, product.quantity - 1, product.attrValue)
+            updateQuantity(productId, product.quantity - 1, product.attrValueId)
           }
           icon={<Icon as={Minus} />}
           aria-label="minus"
@@ -69,13 +69,13 @@ const CartQuantityController = ({
                 Number.isNaN(parseInt(e.target.value))
                 ? parseInt(e.target.value || "")
                 : 1,
-              product.attrValue
+              product.attrValueId
             )
           }
         />
         <IconButton
           onClick={() =>
-            updateQuantity(productId, product.quantity + 1, product.attrValue)
+            updateQuantity(productId, product.quantity + 1, product.attrValueId)
           }
           icon={<Icon as={Plus} />}
           aria-label="minus"
@@ -88,7 +88,7 @@ const CartQuantityController = ({
         size="xs"
         fontWeight="normal"
         leftIcon={<Icon as={Trash2} />}
-        onClick={() => remove(product.productId, product.attrValue)}
+        onClick={() => remove(product.productId, product.attrValueId)}
       >
         Remove
       </Button>

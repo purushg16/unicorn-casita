@@ -9,8 +9,8 @@ const ColorSelector = ({
   setColor,
 }: {
   attributes: ProductAttribute[];
-  selectedColor: string;
-  setColor: (color: string) => void;
+  selectedColor: ProductAttribute | undefined;
+  setColor: (color: ProductAttribute) => void;
 }) => {
   return (
     <VStack gap={4} align="start">
@@ -23,7 +23,11 @@ const ColorSelector = ({
             icon={
               <Icon
                 as={Check}
-                color={color.value === selectedColor ? "white" : color.value}
+                color={
+                  selectedColor && color._id! === selectedColor._id!
+                    ? "white"
+                    : color.value
+                }
               />
             }
             borderRadius="100%"
@@ -31,7 +35,7 @@ const ColorSelector = ({
             _hover={{ bgColor: color.value }}
             _active={{ bgColor: color.value }}
             _focus={{ bgColor: color.value }}
-            onClick={() => setColor(color.value)}
+            onClick={() => setColor(color)}
           />
         ))}
       </HStack>

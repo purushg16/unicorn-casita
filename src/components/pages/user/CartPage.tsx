@@ -38,8 +38,10 @@ const CartPage = () => {
             </HStack>
             <CartTable products={products} />
           </VStack>
-          <Box w={{ base: "100%", md: "100%", lg: 350 }} minW={300}>
-            <TotalSection />
+          <Box pos="relative" w={{ base: "100%", md: "100%", lg: 350 }}>
+            <Box w="100%" minW={300} pos="sticky" top={95}>
+              <TotalSection />
+            </Box>
           </Box>
         </>
       )}

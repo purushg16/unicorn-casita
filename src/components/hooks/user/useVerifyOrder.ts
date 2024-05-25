@@ -7,11 +7,13 @@ import Toaster from "../../functions/toaster";
 import APIClient from "../../services/api-client";
 import { _verifyOrder } from "../../services/endpoints";
 import usePaymentStore from "../../store/user/paymentStateStore";
+import useUserCartStore from "../../store/user/useCartStore";
 
 const verifyCheckout = new APIClient<VerifyOrder>(_verifyOrder);
 const useVerifyCheckout = () => {
   const toast = useToast();
 
+  const clearCart = useUserCartStore((s) => s.clearCart);
   const setIsVerifying = usePaymentStore((s) => s.setIsVerifying);
   const setIsVerified = usePaymentStore((s) => s.setIsVerified);
 
@@ -21,6 +23,7 @@ const useVerifyCheckout = () => {
       toast(Toaster("success", data.data.message));
       setIsVerifying(false);
       setIsVerified(true);
+      clearCart();
     },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),

@@ -6,9 +6,11 @@ export interface CartProduct {
 
 export interface CartCheckout {
   products: CartProduct[];
+  customerName: string;
   address: string;
   district: string;
   state: string;
   pincode: number;
   contact: number;
+  email: string;
 }

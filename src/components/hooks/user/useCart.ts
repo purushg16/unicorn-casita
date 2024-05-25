@@ -26,6 +26,7 @@ const useCartCheckout = () => {
   return useMutation({
     mutationFn: cartCheckout.postRequest,
     onSuccess: (data: AxiosResponse<OrderResponse>) => {
+      setIsVerifying(true);
       const verifyOrder = raporpayVerifyOrder(
         data.data.amount,
         data.data.orderId
@@ -51,7 +52,6 @@ const useCartCheckout = () => {
 
       verifyOrder.then((res) => {
         mutate(res);
-        setIsVerifying(true);
       });
     },
     onError: (error: ErrorResponse) =>

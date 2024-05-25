@@ -31,6 +31,8 @@ const CheckoutButton = () => {
 
   const handleSubmit = () => {
     mutate({
+      customerName,
+      email,
       address,
       contact,
       district,

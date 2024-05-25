@@ -60,7 +60,7 @@ const useAdminGetAllOrders = () => {
       adminGetAllOrders.getSingleItem({
         params: {
           page: pageParam,
-          itemsPerPage: 10,
+          itemPerPage: 10,
         },
       }),
     initialPageParam: 1,

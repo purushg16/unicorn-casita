@@ -16,13 +16,20 @@ const ProductCard = ({ product }: { product: Product }) => {
           bgSize="cover"
           bgPos="center"
           bgRepeat="no-repeat"
+          _hover={{
+            bgImg:
+              product.imageLink.length > 1
+                ? product.imageLink[1]
+                : product.imageLink[0],
+          }}
+          transition="all 0.7s"
         />
         <Flex minH={30} w="100%" justify="space-between">
           <VStack align="start" gap={0}>
             <RText text={product.name} color="primary.800" weight="bolder" />
             <RText
               text={"Rs." + product.salesPrice}
-              color="primary.600"
+              color="primary.800"
               weight="bolder"
             />
           </VStack>

@@ -71,6 +71,7 @@ const SingleProductGridDetails = ({
             productId={product._id!}
             count={count}
             attribute={attribute}
+            isAttribute={product.isAttribute}
           />
         </HStack>
       </VStack>

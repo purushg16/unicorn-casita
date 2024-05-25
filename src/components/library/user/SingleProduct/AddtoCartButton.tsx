@@ -10,12 +10,14 @@ const AddtoCartButton = ({
   price,
   productName,
   imageLink,
+  isAttribute,
 }: {
   productId: string;
   imageLink: string;
   attribute: string;
   count: number;
   price: number;
+  isAttribute: boolean;
   productName: string;
 }) => {
   const product = useUserCartStore((s) => s.products).find(
@@ -36,7 +38,7 @@ const AddtoCartButton = ({
     <HStack>
       <Button
         variant="primary"
-        isDisabled={!attribute || count <= 0}
+        isDisabled={(isAttribute && !attribute) || count <= 0}
         onClick={handleAdd}
       >
         {product ? "Go to Cart" : "Add to Cart"}

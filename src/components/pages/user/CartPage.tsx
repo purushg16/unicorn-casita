@@ -27,6 +27,7 @@ const CartPage = () => {
       w="100%"
       flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}
       gap={8}
+      px={{ base: 4, md: 8, lg: 16 }}
     >
       {products.length > 0 && (
         <>

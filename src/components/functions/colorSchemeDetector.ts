@@ -7,13 +7,13 @@ export default function ColorSchemeDetector(status: string) {
   )
     return "green";
   else if (status === "confirmed" || status === "created") return "blue";
+  else if (status === "pending" || status === "partial-refund") return "yellow";
   else if (
-    status === "pending" ||
-    status === "partial-refund" ||
+    status === "failed" ||
+    status === "cancelled" ||
     status === "unshipped"
   )
-    return "yellow";
-  else if (status === "failed" || status === "cancelled") return "red";
+    return "red";
 
   return "gray";
 }

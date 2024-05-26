@@ -20,7 +20,7 @@ import {
 interface AdminConfirmOrder {
   mongooseOrderId: string;
 }
-interface AdminShipOrder extends AdminConfirmOrder {
+export interface AdminShipOrder extends AdminConfirmOrder {
   shippingProvider: string;
   trackingNumber: string;
 }
@@ -38,12 +38,14 @@ const useAdminConfirmOrder = () => {
 };
 
 const adminShipOrder = new APIClient<AdminShipOrder>(_shipOrder);
-const useAdminShipOrder = () => {
+const useAdminShipOrder = (callback: () => void) => {
   const toast = useToast();
   return useMutation({
     mutationFn: adminShipOrder.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
+    onSuccess: (data: SuccessResponse) => {
+      toast(Toaster("success", data.data.message));
+      callback();
+    },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });
@@ -71,7 +73,7 @@ const useAdminGetAllOrders = () => {
 };
 
 const adminSingleOrder = new APIClient<Order>(_singleOrders);
-const useAdminGetSingleOrder = (mongooseOrderId: string) => {
+const useAdminGetSingleOrder = (mongooseOrderId: string, enabled: boolean) => {
   return useQuery({
     queryKey: [...CACHE_KEY_SINGLEORDER, mongooseOrderId],
     queryFn: () =>
@@ -83,6 +85,7 @@ const useAdminGetSingleOrder = (mongooseOrderId: string) => {
         })
         .then((res) => res.data),
     retry: 3,
+    enabled: enabled,
     refetchOnWindowFocus: false,
   });
 };

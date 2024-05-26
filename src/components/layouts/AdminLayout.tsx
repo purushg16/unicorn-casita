@@ -42,7 +42,8 @@ const AdminLayout = () => {
         p={{ base: 0, md: 4 }}
         px={{ base: 2, md: 4 }}
         bg="primary.100"
-        mb={{ base: 32, md: 32, lg: 0 }}
+        maxW="100%"
+        overflowX="scroll"
       >
         <Box
           p={{ base: 4, md: 8 }}
@@ -55,6 +56,7 @@ const AdminLayout = () => {
         >
           <Outlet />
         </Box>
+        <Box mb={{ base: 32, md: 32, lg: 0 }} />
       </GridItem>
       <Show below="lg">
         <AppBar />

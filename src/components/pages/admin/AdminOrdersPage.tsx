@@ -1,4 +1,4 @@
-import { Divider, HStack, Spinner, VStack } from "@chakra-ui/react";
+import { Box, Divider, HStack, Spinner, VStack } from "@chakra-ui/react";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import img from "../../../assets/empty_orders.svg";
@@ -15,7 +15,7 @@ const AdminOrdersPage = () => {
     data?.pages.reduce((total, page) => total + page.data.docs.length, 0) || 0;
 
   return (
-    <VStack align="start">
+    <VStack align="start" w="100%">
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Orders" color="primary.700" small />
       </HStack>
@@ -28,18 +28,21 @@ const AdminOrdersPage = () => {
       )}
 
       {status === "success" && data.pages[0].data.docs.length > 0 && (
-        <InfiniteScroll
-          dataLength={fetchedOrdersLength}
-          hasMore={hasNextPage}
-          next={() => fetchNextPage()}
-          loader={<Spinner />}
-        >
-          {data.pages.map((page) => (
-            <React.Fragment>
-              <OrdersTable orders={page.data.docs} />
-            </React.Fragment>
-          ))}
-        </InfiniteScroll>
+        <Box w="100%">
+          <InfiniteScroll
+            style={{ width: "100%" }}
+            dataLength={fetchedOrdersLength}
+            hasMore={hasNextPage}
+            next={() => fetchNextPage()}
+            loader={<Spinner />}
+          >
+            {data.pages.map((page) => (
+              <React.Fragment>
+                <OrdersTable orders={page.data.docs} />
+              </React.Fragment>
+            ))}
+          </InfiniteScroll>
+        </Box>
       )}
     </VStack>
   );

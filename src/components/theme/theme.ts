@@ -29,6 +29,9 @@ const theme = extendTheme({
         padding: "0 !important",
         overflow: "clip",
       },
+      ".chakra-collapse": {
+        width: "100%",
+      },
       // ".chakra-input": {
       //   borderRadius: "xl !important",
       // },

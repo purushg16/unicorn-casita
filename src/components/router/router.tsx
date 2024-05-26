@@ -19,6 +19,7 @@ import CancellationPage from "../pages/user/Policies/CancellationPage";
 import PrivacyPolicyPage from "../pages/user/Policies/PrivacyPolicyPage";
 import ContactPage from "../pages/user/ContactPage";
 import AboutPage from "../pages/user/AboutPage";
+import AdminSingleOrderPage from "../pages/admin/AdminSingleOrderPage";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
       { path: "products/:id", element: <AdminSingleProductPage /> },
       { path: "categories", element: <AdminCategoriesPage /> },
       { path: "orders", element: <AdminOrdersPage /> },
+      { path: "orders/:orderId", element: <AdminSingleOrderPage /> },
       { path: "reviews", element: <AdminReviewsPage /> },
     ],
   },

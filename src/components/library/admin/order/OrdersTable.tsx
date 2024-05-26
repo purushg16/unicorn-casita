@@ -1,17 +1,18 @@
 import {
+  Table,
   TableContainer,
-  Thead,
-  Tr,
-  Th,
   Tbody,
   Td,
-  Table,
-  Tag,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import ColorSchemeDetector from "../../../functions/colorSchemeDetector";
-import currencyFormatter from "../../../functions/currencyFormatter";
 import { Order } from "../../../entities/order";
+import currencyFormatter from "../../../functions/currencyFormatter";
+import OrderPaymentStatusTag from "./OrderPaymentStatusTag";
+import OrderShippingStatusTag from "./OrderShippingStatusTag";
+import OrderStatusTag from "./OrderStatusTag";
 
 const tableHeadings = [
   "order id",
@@ -24,53 +25,45 @@ const tableHeadings = [
 
 const OrdersTable = ({ orders }: { orders: Order[] }) => {
   return (
-    <TableContainer>
-      <Table>
-        <Thead bg="gray.50">
+    <TableContainer
+      w="100%"
+      border="1px solid"
+      borderRadius="xl"
+      borderColor="primary.200"
+    >
+      <Table w="100%">
+        <Thead bg="primary.200">
           <Tr>
             {tableHeadings.map((th) => (
-              <Th key={th} isNumeric={th === "amount"}>
+              <Th key={th} isNumeric={th === "amount"} color="primary.800">
                 {th}
               </Th>
             ))}
           </Tr>
         </Thead>
-        <Tbody>
+        <Tbody maxH={500} overflowY="scroll">
           {orders.map((order) => (
             <Tr
               key={order.orderId}
-              _hover={{ bg: "yellow.50" }}
+              _hover={{ bg: "primary.100" }}
               transition="all 0.7s"
             >
-              <Td color="blue.400">
+              <Td
+                color="primary.800"
+                textDecor="underline"
+                py={{ base: 4, md: 8 }}
+              >
                 <Link to={order._id!}>{order.orderId}</Link>
               </Td>
               <Td textTransform="capitalize"> {order.customerName} </Td>
               <Td>
-                <Tag
-                  colorScheme={ColorSchemeDetector(order.orderStatus)}
-                  textTransform="capitalize"
-                >
-                  {order.orderStatus}
-                </Tag>
+                <OrderStatusTag order={order} />
               </Td>
               <Td>
-                <Tag
-                  colorScheme={ColorSchemeDetector(order.paymentStatus)}
-                  textTransform="capitalize"
-                >
-                  {order.paymentStatus}
-                </Tag>
+                <OrderPaymentStatusTag order={order} />
               </Td>
               <Td>
-                <Tag
-                  colorScheme={
-                    order.shippingStatus === "shipped" ? "green" : "yellow"
-                  }
-                  textTransform="capitalize"
-                >
-                  {order.shippingStatus}
-                </Tag>
+                <OrderShippingStatusTag order={order} />
               </Td>
               <Td isNumeric>
                 {currencyFormatter(parseFloat(order.totalBill.toFixed(2)))}

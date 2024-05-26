@@ -10,3 +10,4 @@ export const CACHE_KEY_ALL_USER_CATEGORIES = [
 export const CACHE_KEY_REVIEW = ["user", "websiteData", "allReviews"];
 export const CACHE_KEY_ALLORDERS = ["orders", "all"];
 export const CACHE_KEY_SINGLEORDER = ["orders", "single"];
+export const CACHE_KEY_ALL_PARTNERS = ["deliveryPartner", "all"];

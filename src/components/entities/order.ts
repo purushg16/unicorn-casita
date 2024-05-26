@@ -1,7 +1,12 @@
+import { ProductAttribute } from "./product";
+
 interface OrderProduct {
+  name: string;
   productId: string;
-  quantity: number;
-  attrValue: string;
+  attributes: ProductAttribute[];
+  isAttribute: boolean;
+  salesPrice: number;
+  imageLink: string[];
 }
 
 export interface VerifyOrder {
@@ -16,7 +21,10 @@ export interface Order {
   orderId: string;
   razorpayOrderId: string;
   customerName: string;
-  product: OrderProduct[];
+  product: {
+    productId: OrderProduct;
+    quantity: number;
+  }[];
   totalBill: number;
   paymentStatus:
     | "created"

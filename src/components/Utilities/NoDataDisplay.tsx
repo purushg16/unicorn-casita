@@ -1,7 +1,7 @@
 import { Flex, Image } from "@chakra-ui/react";
 import { RText } from "./Typography";
 
-const NoDataDisplay = ({ img }: { img: string }) => {
+const NoDataDisplay = ({ img, title }: { img: string; title: string }) => {
   return (
     <Flex
       w="100%"
@@ -15,7 +15,12 @@ const NoDataDisplay = ({ img }: { img: string }) => {
       top={0}
     >
       <Image src={img} alt="" w={200} />
-      <RText text="No Order to show!" color="primary.800" small weight="bold" />
+      <RText
+        text={`No ${title} to show!`}
+        color="primary.800"
+        small
+        weight="bold"
+      />
     </Flex>
   );
 };

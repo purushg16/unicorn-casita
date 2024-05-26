@@ -27,16 +27,17 @@ const AssignShippingPartnerModal = ({ order }: { order: Order }) => {
 
   const [shippingDetails, setShippingDetails] = useState<AdminShipOrder>({
     mongooseOrderId: order._id || "",
-    shippingProvider: "",
+    shippingProviderId: "",
     trackingNumber: "",
   });
 
   const clearState = () => {
     setShippingDetails({
       mongooseOrderId: order._id || "",
-      shippingProvider: "",
+      shippingProviderId: "",
       trackingNumber: "",
     });
+    onClose();
   };
 
   const { mutate: performShipping, isPending } = useAdminShipOrder(clearState);
@@ -84,7 +85,10 @@ const AssignShippingPartnerModal = ({ order }: { order: Order }) => {
               <DeliverPartnersStack
                 selectedPartner={shippingDetails}
                 seletPartner={(shippingProvider) =>
-                  setShippingDetails({ ...shippingDetails, shippingProvider })
+                  setShippingDetails({
+                    ...shippingDetails,
+                    shippingProviderId: shippingProvider,
+                  })
                 }
               />
             </VStack>
@@ -104,7 +108,7 @@ const AssignShippingPartnerModal = ({ order }: { order: Order }) => {
               isLoading={isPending}
               isDisabled={
                 !shippingDetails.mongooseOrderId ||
-                !shippingDetails.shippingProvider ||
+                !shippingDetails.shippingProviderId ||
                 !shippingDetails.trackingNumber
               }
             >

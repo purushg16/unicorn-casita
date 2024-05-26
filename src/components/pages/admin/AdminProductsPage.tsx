@@ -43,7 +43,7 @@ const AdminProductsPage = () => {
       <Divider my={4} />
       {status === "pending" && <ProductsSkeleton />}
       {status === "success" && data.pages[0].data.docs.length === 0 && (
-        <NoDataDisplay img={img} />
+        <NoDataDisplay img={img} title="Products" />
       )}
 
       {status === "success" && data.pages[0].data.docs.length > 0 && (

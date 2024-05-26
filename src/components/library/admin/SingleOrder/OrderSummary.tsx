@@ -12,6 +12,7 @@ import OrderPaymentStatusTag from "../order/OrderPaymentStatusTag";
 import OrderTotal from "./OrderTotal";
 import RefundModal from "./RefundModal";
 import ConfirmOrderModal from "./ConfirmOrderModal";
+import orderCaptionFinder from "../../../functions/orderCaptionFinder";
 
 const OrderSummary = ({ order }: { order: Order }) => {
   return (
@@ -46,7 +47,7 @@ const OrderSummary = ({ order }: { order: Order }) => {
       >
         <RText
           color="primary.800"
-          text="This order has been confirmed and shipped successfully"
+          text={orderCaptionFinder(order) + "."}
           small
         />
         <HStack>

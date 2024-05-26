@@ -1,4 +1,9 @@
-import { useInfiniteQuery, useQuery, useMutation } from "@tanstack/react-query";
+import {
+  useInfiniteQuery,
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import APIClient, { SinglePropertyResponse } from "../../services/api-client";
 import { useToast } from "@chakra-ui/react";
 import Toaster from "../../functions/toaster";
@@ -21,17 +26,26 @@ interface AdminConfirmOrder {
   mongooseOrderId: string;
 }
 export interface AdminShipOrder extends AdminConfirmOrder {
-  shippingProvider: string;
+  shippingProviderId: string;
   trackingNumber: string;
 }
 
 const adminConfirmOrder = new APIClient<AdminConfirmOrder>(_confirmOrder);
-const useAdminConfirmOrder = () => {
+const useAdminConfirmOrder = (callback: () => void) => {
   const toast = useToast();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: adminConfirmOrder.postRequest,
-    onSuccess: (data: SuccessResponse) =>
-      toast(Toaster("success", data.data.message)),
+    onSuccess: (data: SuccessResponse) => {
+      queryClient.invalidateQueries({
+        queryKey: CACHE_KEY_ALLORDERS,
+      });
+      queryClient.invalidateQueries({
+        queryKey: CACHE_KEY_SINGLEORDER,
+      });
+      toast(Toaster("success", data.data.message));
+      callback();
+    },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),
   });
@@ -40,11 +54,19 @@ const useAdminConfirmOrder = () => {
 const adminShipOrder = new APIClient<AdminShipOrder>(_shipOrder);
 const useAdminShipOrder = (callback: () => void) => {
   const toast = useToast();
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: adminShipOrder.postRequest,
     onSuccess: (data: SuccessResponse) => {
       toast(Toaster("success", data.data.message));
       callback();
+      queryClient.invalidateQueries({
+        queryKey: CACHE_KEY_ALLORDERS,
+      });
+      queryClient.invalidateQueries({
+        queryKey: CACHE_KEY_SINGLEORDER,
+      });
     },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),

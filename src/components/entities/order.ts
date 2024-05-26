@@ -24,6 +24,7 @@ export interface Order {
   product: {
     productId: OrderProduct;
     quantity: number;
+    attrValueId: string;
   }[];
   totalBill: number;
   paymentStatus:

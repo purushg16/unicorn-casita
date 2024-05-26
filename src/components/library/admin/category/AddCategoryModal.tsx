@@ -47,6 +47,7 @@ const AddCategoryModal = () => {
   return (
     <>
       <Button
+        zIndex={999}
         id="new-category-btn"
         onClick={onOpen}
         size="sm"

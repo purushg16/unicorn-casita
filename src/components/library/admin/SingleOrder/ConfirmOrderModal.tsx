@@ -18,9 +18,9 @@ const ConfirmOrderModal = ({
   orderId: string;
   isDisabled: boolean;
 }) => {
-  const { mutate, isPending } = useAdminConfirmOrder();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { mutate, isPending } = useAdminConfirmOrder(onClose);
   const cancelRef = React.useRef(null);
 
   return (
@@ -48,7 +48,7 @@ const ConfirmOrderModal = ({
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              Please click "Cofirm Order" to confirm the order.
+              Please click "Confirm Order" to confirm the order.
             </AlertDialogBody>
 
             <AlertDialogFooter>

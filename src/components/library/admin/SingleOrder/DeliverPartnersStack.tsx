@@ -54,7 +54,8 @@ const DeliverPartnersStack = ({
       {status === "success" &&
         data.map((partner, i) => {
           const isSelectedPartner =
-            selectedPartner && selectedPartner.shippingProvider === partner._id;
+            selectedPartner &&
+            selectedPartner.shippingProviderId === partner._id;
 
           return (
             <HStack

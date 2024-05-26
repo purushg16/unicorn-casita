@@ -14,7 +14,9 @@ const ShippedTag = ({
         <Icon as={success ? PlaneTakeoff : Ban} />
       </TagLeftIcon>
       <TagLabel fontSize="xs">
-        {success ? partnerName : "No shipping partner assigned"}
+        {success
+          ? `${partnerName} has been assigned`
+          : "No shipping partner assigned. Click here to assign"}
       </TagLabel>
     </Tag>
   );

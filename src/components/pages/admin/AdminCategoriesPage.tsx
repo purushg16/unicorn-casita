@@ -19,7 +19,7 @@ const AdminCategoriesPage = () => {
       <Divider my={4} />
       {status === "pending" && <CategoriesSkeleton />}
       {status === "success" && categories.length === 0 && (
-        <NoDataDisplay img={img} />
+        <NoDataDisplay img={img} title="Categories" />
       )}
       {status === "success" && <CategoriesGrid categories={categories} />}
     </VStack>

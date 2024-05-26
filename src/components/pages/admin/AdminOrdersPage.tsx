@@ -6,7 +6,7 @@ import NoDataDisplay from "../../Utilities/NoDataDisplay";
 import { RHeading } from "../../Utilities/Typography";
 import { useAdminGetAllOrders } from "../../hooks/admin/useOrder";
 import OrdersTable from "../../library/admin/order/OrdersTable";
-import OrdersSkeleton from "../../Utilities/Skeletons/OrdersSkeleton";
+import AdminOrdersPageSkeleton from "../../Utilities/Skeletons/AdminOrdersPageSkeleton";
 
 const AdminOrdersPage = () => {
   const { data, fetchNextPage, status, hasNextPage } = useAdminGetAllOrders();
@@ -21,10 +21,10 @@ const AdminOrdersPage = () => {
       </HStack>
       <Divider my={4} />
 
-      {status === "pending" && <OrdersSkeleton />}
+      {status === "pending" && <AdminOrdersPageSkeleton />}
 
       {status === "success" && data.pages[0].data.docs.length === 0 && (
-        <NoDataDisplay img={img} />
+        <NoDataDisplay img={img} title="Orders" />
       )}
 
       {status === "success" && data.pages[0].data.docs.length > 0 && (

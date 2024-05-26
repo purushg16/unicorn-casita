@@ -25,7 +25,6 @@ export const _allOrders = "/admin/order/allOrders";
 export const _singleOrders = "/admin/order/singleOrder";
 
 export const _intitateRefund = "/admin/order/approveRefund";
-export const _rejectRefund = "/admin/order/rejectRefund";
 
 export const _addDeliveryPartner = "/admin/deliveryPartner/add";
 export const _deleteDeliveryPartner = "/admin/deliveryPartner/delete";

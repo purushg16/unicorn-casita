@@ -1,4 +1,4 @@
-import { Box, Checkbox, HStack, Show, Td, Tr, VStack } from "@chakra-ui/react";
+import { Box, HStack, Show, Td, Tr, VStack } from "@chakra-ui/react";
 import { Label, RText } from "../../../Utilities/Typography";
 import CartQuantityController from "./CartQuantityController";
 import { StoreCartProduct } from "../../../store/user/useCartStore";
@@ -6,13 +6,13 @@ import { StoreCartProduct } from "../../../store/user/useCartStore";
 const CartItem = ({ product }: { product: StoreCartProduct }) => {
   return (
     <Tr>
-      <Show above="lg">
-        <Td>
-          <Checkbox />
-        </Td>
-      </Show>
       <Td>
-        <HStack gap={4} justify="start" align="start">
+        <HStack
+          gap={4}
+          justify="start"
+          align="start"
+          flexDir={{ base: "column", md: "row" }}
+        >
           <Box
             w={50}
             aspectRatio="1/1"
@@ -32,6 +32,7 @@ const CartItem = ({ product }: { product: StoreCartProduct }) => {
             />
             <HStack align="center">
               <Label
+                textTransform="capitalize"
                 text={
                   product.price.toFixed(2) +
                   (product.attribute ? ` - ${product.attribute.value}` : "")

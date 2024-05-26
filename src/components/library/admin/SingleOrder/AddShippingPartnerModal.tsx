@@ -15,9 +15,10 @@ import { useState } from "react";
 import { useAddDeliveryPartner } from "../../../hooks/admin/useDeliveryPartner";
 import { DeliveryPartner } from "../../../entities/deliveryPartner";
 import LabelledInput from "../../../Utilities/LabelledInput";
-import { BadgePlus } from "lucide-react";
+import { BadgePlus, Truck } from "lucide-react";
+import AnimateMove from "../../../motions/Move";
 
-const AddShippingPartnerModal = () => {
+const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   const [partnerDetails, setPartnerDetails] = useState<DeliveryPartner>({
@@ -36,14 +37,32 @@ const AddShippingPartnerModal = () => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        variant="primary"
-        size="xs"
-        leftIcon={<Icon as={BadgePlus} />}
-      >
-        New Delivery Partner
-      </Button>
+      {appbar ? (
+        <AnimateMove delay={0.6}>
+          <Button
+            color="primary.700"
+            variant="text"
+            leftIcon={<Icon as={Truck} />}
+            justifyContent="start"
+            textTransform="capitalize"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen();
+            }}
+          >
+            New Delivery Partner
+          </Button>
+        </AnimateMove>
+      ) : (
+        <Button
+          onClick={onOpen}
+          variant="primary"
+          size="xs"
+          leftIcon={<Icon as={BadgePlus} />}
+        >
+          New Delivery Partner
+        </Button>
+      )}
       <Modal
         isCentered
         isOpen={isOpen}

@@ -2,6 +2,7 @@ import { Button, Icon, VStack } from "@chakra-ui/react";
 import { BadgePlus, Blocks, Eclipse, Smile } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import AppBarAddButton from "./AppBarAddButton";
+import AddShippingPartnerModal from "../SingleOrder/AddShippingPartnerModal";
 
 const AppBarAddMenu = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -64,6 +65,7 @@ const AppBarAddMenu = () => {
           <AppBarAddButton title="product" icon={Eclipse} />
           <AppBarAddButton title="category" icon={Blocks} delay={0.2} />
           <AppBarAddButton title="review" icon={Smile} delay={0.4} />
+          <AddShippingPartnerModal appbar />
         </VStack>
       )}
     </>

@@ -1,5 +1,4 @@
 import {
-  Checkbox,
   Show,
   Table,
   TableCaption,
@@ -25,11 +24,6 @@ const CartTable = ({ products }: { products: StoreCartProduct[] }) => {
         </TableCaption>
         <Thead>
           <Tr>
-            <Show above="lg">
-              <Th>
-                <Checkbox colorScheme="primary" />
-              </Th>
-            </Show>
             <Th> PRODUCT </Th>
             <Show above="lg">
               <Th textAlign="center"> quantity</Th>

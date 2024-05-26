@@ -38,8 +38,9 @@ const SingleProductGridDetails = ({
           >
             {product.attributeName !== "color" && (
               <AttributeSelector
+                attributeName={product.attributeName}
                 attributes={product.attributes}
-                selectedAttribute={product.attributeName}
+                selectedAttribute={attribute}
                 setAttribute={setAttribute}
               />
             )}

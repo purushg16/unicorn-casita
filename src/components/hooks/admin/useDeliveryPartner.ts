@@ -16,11 +16,12 @@ const getAll = new APIClient<DeliveryPartner>(_allDeliveryPartners);
 const addPartner = new APIClient<DeliveryPartner>(_addDeliveryPartner);
 const deletePartner = new APIClient<DeletePartner>(_deleteDeliveryPartner);
 
-const useGetAllDeliveryParteners = () =>
+const useGetAllDeliveryParteners = (enabled: boolean) =>
   useQuery({
     queryKey: CACHE_KEY_ALL_PARTNERS,
     queryFn: () => getAll.getRequest().then((res) => res.data),
     retry: 3,
+    enabled: enabled,
   });
 
 const useAddDeliveryPartner = (callback: () => void) => {

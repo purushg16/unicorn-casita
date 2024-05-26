@@ -21,7 +21,7 @@ const DeliverPartnersStack = ({
   selectedPartner: AdminShipOrder | undefined;
   seletPartner: (shipper: string) => void;
 }) => {
-  const { data, status } = useGetAllDeliveryParteners();
+  const { data, status } = useGetAllDeliveryParteners(true);
 
   return (
     <VStack

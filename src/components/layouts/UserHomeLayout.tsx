@@ -1,16 +1,16 @@
 import { Flex } from "@chakra-ui/react";
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import UserNavbar from "../library/user/home/UserNavbar";
 import Footer from "../library/user/Footer";
 // import UserLandingImageBanner from "../library/user/home/UserLandingImageBanner";
-import LandingGrid from "../library/user/home/LandingGrid";
+// import LandingGrid from "../library/user/home/LandingGrid";
 const UserHomeLayout = () => {
-  const pathname = useLocation().pathname;
+  // const pathname = useLocation().pathname;
   return (
     <Flex flexDir="column" gap={0}>
       <UserNavbar />
-      {pathname === "/" && <LandingGrid />}
-      <Flex flexDir="column" gap={{ base: 12, md: 12, lg: 20 }} my={12}>
+      {/* {pathname === "/" && <LandingGrid />} */}
+      <Flex flexDir="column" gap={{ base: 12, md: 12, lg: 20 }} mb={12}>
         <Outlet />
       </Flex>
       <Footer />

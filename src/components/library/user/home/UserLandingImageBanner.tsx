@@ -27,11 +27,9 @@ const UserLandingImageBanner = () => {
         maxW={{ base: "90%", md: "70%", lg: "60%" }}
       >
         <AnimateMove>
-          <Heading fontSize={{ base: "4rem", md: "8rem" }} lineHeight={0.2}>
+          <Heading fontSize={{ base: "4rem", md: "8rem" }} lineHeight={0.4}>
             Unicorn
           </Heading>
-        </AnimateMove>
-        <AnimateMove delay={0.4}>
           <Heading fontSize={{ base: "4rem", md: "8rem" }}>Casita</Heading>
         </AnimateMove>
       </VStack>

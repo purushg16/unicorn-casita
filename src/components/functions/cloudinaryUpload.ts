@@ -7,7 +7,7 @@ export default async function cloudinaryUpload(files: FileWithPath[]) {
   for (const file of files) {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "b4xppeg4");
+    formData.append("upload_preset", "vwoc7bmk");
 
     try {
       const response = await fetch(

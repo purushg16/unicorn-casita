@@ -1,15 +1,10 @@
-import { Tag, TagLeftIcon, Icon, TagLabel } from "@chakra-ui/react";
-import { CheckCircle } from "lucide-react";
+import { Box, Icon } from "@chakra-ui/react";
+import { BadgeCheck } from "lucide-react";
 
-const SuccessOrderTag = () => {
-  return (
-    <Tag colorScheme="green">
-      <TagLeftIcon>
-        <Icon as={CheckCircle} />
-      </TagLeftIcon>
-      <TagLabel>Order has been completed successfully </TagLabel>
-    </Tag>
-  );
-};
+const SuccessOrderTag = () => (
+  <Box p={2} bg="green.100" borderRadius="xl" lineHeight={0}>
+    <Icon as={BadgeCheck} boxSize={3} color="green" lineHeight={0} />
+  </Box>
+);
 
 export default SuccessOrderTag;

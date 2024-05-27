@@ -13,6 +13,7 @@ import OrderTotal from "./OrderTotal";
 import RefundModal from "./RefundModal";
 import ConfirmOrderModal from "./ConfirmOrderModal";
 import orderCaptionFinder from "../../../functions/orderCaptionFinder";
+import ColorSchemeDetector from "../../../functions/colorSchemeDetector";
 
 const OrderSummary = ({ order }: { order: Order }) => {
   return (
@@ -38,7 +39,7 @@ const OrderSummary = ({ order }: { order: Order }) => {
       </AccordionItem>
       <HStack
         w="100%"
-        bg="primary.100"
+        bg={`${ColorSchemeDetector(order.orderStatus)}.50`}
         justify="space-between"
         left={0}
         borderBottomRadius="xl"
@@ -46,21 +47,21 @@ const OrderSummary = ({ order }: { order: Order }) => {
         flexWrap="wrap"
       >
         <RText
-          color="primary.800"
+          weight="semibold"
+          color={`${ColorSchemeDetector(order.orderStatus)}.500`}
           text={orderCaptionFinder(order) + "."}
           small
         />
-        <HStack>
-          {order.orderStatus !== "completed" &&
-            order.orderStatus !== "cancelled" && <RefundModal order={order} />}
-          <ConfirmOrderModal
-            orderId={order._id!}
-            isDisabled={
-              order.orderStatus === "confirmed" ||
-              order.orderStatus === "cancelled"
-            }
-          />
-        </HStack>
+        {order.orderStatus !== "completed" &&
+          order.orderStatus !== "cancelled" && (
+            <HStack>
+              <RefundModal order={order} />
+              <ConfirmOrderModal
+                orderId={order._id!}
+                isDisabled={order.orderStatus === "confirmed"}
+              />
+            </HStack>
+          )}
       </HStack>
     </Accordion>
   );

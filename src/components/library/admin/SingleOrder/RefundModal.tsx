@@ -43,7 +43,7 @@ const RefundModal = ({ order }: { order: Order }) => {
         variant="white"
         size="sm"
         isDisabled={
-          order.orderStatus === "confirmed" || order.orderStatus === "cancelled"
+          order.orderStatus === "completed" || order.orderStatus === "cancelled"
         }
       >
         Cancel Order

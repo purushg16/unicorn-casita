@@ -1,14 +1,11 @@
-import { Tag, TagLeftIcon, Icon, TagLabel } from "@chakra-ui/react";
+import { Box, Icon } from "@chakra-ui/react";
 import { XCircle } from "lucide-react";
 
 const CancelledOrderTag = () => {
   return (
-    <Tag colorScheme="red">
-      <TagLeftIcon>
-        <Icon as={XCircle} />
-      </TagLeftIcon>
-      <TagLabel>Order has been cancelled </TagLabel>
-    </Tag>
+    <Box p={2} bg="red.100" borderRadius="xl" lineHeight={0}>
+      <Icon as={XCircle} color="red" lineHeight={0} boxSize={3} />
+    </Box>
   );
 };
 

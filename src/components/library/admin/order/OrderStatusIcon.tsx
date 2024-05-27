@@ -1,5 +1,5 @@
 import { Icon } from "@chakra-ui/react";
-import { Clock, X, SearchCheck, Check } from "lucide-react";
+import { Clock, X, Check, BadgeCheck } from "lucide-react";
 import { Order } from "../../../entities/order";
 
 const OrderStatusIcon = ({
@@ -20,9 +20,9 @@ const OrderStatusIcon = ({
           ? Clock
           : order.orderStatus === "cancelled"
           ? X
-          : order.orderStatus === "completed"
-          ? SearchCheck
-          : Check
+          : order.orderStatus === "confirmed"
+          ? Check
+          : BadgeCheck
       }
     />
   );

@@ -13,18 +13,19 @@ const UserLandingImageBanner = () => {
       bgSize="cover"
       bgPos="center"
       align="start"
-      justify="space-between"
+      justify={{ base: "space-evenly", md: "space-between" }}
       color="white"
-      textAlign="left"
+      textAlign={{ base: "center", md: "left" }}
       flexDir="column"
       gap={8}
       px={{ base: 4, md: 12, lg: 24 }}
       py={{ base: 24, md: 16 }}
     >
       <VStack
-        align="start"
+        align={{ base: "center", md: "start" }}
         gap={0}
-        maxW={{ base: "90%", md: "70%", lg: "60%" }}
+        w={{ base: "100%", md: "70%", lg: "60%" }}
+        maxW={{ base: "100%", md: "70%", lg: "60%" }}
       >
         <AnimateMove>
           <Heading fontSize={{ base: "4rem", md: "8rem" }} lineHeight={0.4}>
@@ -35,7 +36,7 @@ const UserLandingImageBanner = () => {
       </VStack>
 
       <VStack
-        align="start"
+        align={{ base: "center", md: "start" }}
         maxW={{ base: "90%", md: "70%", lg: "60%" }}
         gap={4}
       >

@@ -24,6 +24,7 @@ const CartPage = () => {
     );
   return (
     <Flex
+      my={12}
       w="100%"
       flexWrap={{ base: "wrap", md: "wrap", lg: "nowrap" }}
       gap={8}

@@ -12,8 +12,8 @@ const UserLandingImageBanner = () => {
       bg={`linear-gradient(rgb(251 251 251 / 10%), rgb(56 21 53 / 71%)), url(https://images.unsplash.com/photo-1628926379972-9843ad139a8c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`}
       bgSize="cover"
       bgPos="center"
-      align="start"
-      justify={{ base: "space-evenly", md: "space-between" }}
+      align={{ base: "center", md: "start" }}
+      justify={{ base: "center", md: "space-between" }}
       color="white"
       textAlign={{ base: "center", md: "left" }}
       flexDir="column"
@@ -37,7 +37,7 @@ const UserLandingImageBanner = () => {
 
       <VStack
         align={{ base: "center", md: "start" }}
-        maxW={{ base: "90%", md: "70%", lg: "60%" }}
+        maxW={{ base: "80%", md: "70%", lg: "60%" }}
         gap={4}
       >
         <AnimateMove delay={0.6}>

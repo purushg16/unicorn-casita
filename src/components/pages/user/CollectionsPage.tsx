@@ -24,7 +24,11 @@ const CollectionsPage = () => {
       />
       <VStack align="start" gap={8} w="100%">
         <VStack align="start" gap={4} w="100%">
-          <RHeading small text={category?.name || "All Collections"} />
+          <RHeading
+            small
+            text={category?.name || "All Collections"}
+            color="primary.800"
+          />
           <CategoriesStack />
         </VStack>
         {status === "pending" && <UserProductsSkeleton />}

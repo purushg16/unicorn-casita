@@ -1,5 +1,5 @@
 import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
-import { RText } from "../../../Utilities/Typography";
+import { RHeading, RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 import { Link } from "react-router-dom";
 
@@ -25,8 +25,13 @@ const ProductCard = ({ product }: { product: Product }) => {
           transition="all 0.7s"
         />
         <Flex minH={30} w="100%" justify="space-between">
-          <VStack align="start" gap={0}>
-            <RText text={product.name} color="primary.800" weight="normal" />
+          <VStack align="start" gap={1}>
+            <RHeading
+              small
+              text={product.name}
+              color="primary.800"
+              weight="bold"
+            />
             <HStack align="baseline">
               {product.isAttribute ? (
                 <RText text="Starts from" color="primary.800" small />
@@ -46,7 +51,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                     : product.salesPrice.toFixed(2)
                 }`}
                 color="primary.800"
-                weight="bolder"
+                weight="semibold"
               />
             </HStack>
           </VStack>

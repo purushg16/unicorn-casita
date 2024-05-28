@@ -8,7 +8,7 @@ const UserLandingImageBanner = () => {
   return (
     <Flex
       w="100%"
-      minH="95svh"
+      minH={{ base: "100svh", md: "80svh" }}
       bg={`linear-gradient(rgb(251 251 251 / 10%), rgb(56 21 53 / 71%)), url(https://images.unsplash.com/photo-1628926379972-9843ad139a8c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`}
       bgSize="cover"
       bgPos="center"
@@ -19,7 +19,7 @@ const UserLandingImageBanner = () => {
       flexDir="column"
       gap={8}
       px={{ base: 4, md: 12, lg: 24 }}
-      py={24}
+      py={{ base: 24, md: 16 }}
     >
       <VStack
         align="start"

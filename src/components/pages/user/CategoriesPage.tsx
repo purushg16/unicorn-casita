@@ -3,6 +3,7 @@ import { RHeading } from "../../Utilities/Typography";
 import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import UserCategoriesGrid from "../../library/user/category/UserCategoriesGrid";
 import useGetAllCategories from "../../hooks/user/useCategories";
+import UserCategorySkeleton from "../../Utilities/Skeletons/UserCategorySkeleton";
 
 const CategoriesPage = () => {
   const { data, status } = useGetAllCategories();
@@ -12,6 +13,7 @@ const CategoriesPage = () => {
       <BreadCrumbsTile crumbs={["home", "categories"]} />
       <Flex gap={4} flexDir="column">
         <RHeading small text="All Categories" />
+        {status === "pending" && <UserCategorySkeleton />}
         {status === "success" && data.length > 0 && (
           <UserCategoriesGrid categories={data} />
         )}

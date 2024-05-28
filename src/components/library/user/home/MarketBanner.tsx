@@ -13,7 +13,7 @@ const MarketBanner = () => {
         borderBottomLeftRadius={{ base: 0, md: 10 }}
         borderTopRightRadius={{ base: 10, md: 0 }}
         minH={200}
-        bgImage="https://images.unsplash.com/photo-1531995811006-35cb42e1a022?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        bgImage="https://images.unsplash.com/photo-1633934542430-0905ccb5f050?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         bgSize="cover"
         bgPos="center"
         bgRepeat="no-repeat"

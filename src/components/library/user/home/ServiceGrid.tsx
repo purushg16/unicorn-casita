@@ -8,7 +8,7 @@ const ServiceGrid = () => {
     <VStack
       align="start"
       gap={16}
-      px={{ base: 4, md: 8, lg: 16 }}
+      px={{ base: 8, md: 8, lg: 16 }}
       py={{ base: 12, md: 12, lg: 20 }}
       bg="primary.200"
     >

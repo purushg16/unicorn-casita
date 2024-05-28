@@ -11,7 +11,7 @@ const UserNavbar = () => {
     <Flex
       align="center"
       w="100%"
-      px={{ base: 4, md: 12 }}
+      px={{ base: 6, md: 12 }}
       py={4}
       gap={8}
       pos="sticky"

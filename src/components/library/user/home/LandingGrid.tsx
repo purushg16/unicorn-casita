@@ -7,10 +7,10 @@ import {
   SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
-import { RHeading, RText } from "../../../Utilities/Typography";
-import { ArrowRight } from "lucide-react";
-import logo from "../../../../assets/logo.png";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../../../../assets/logo.png";
+import { RHeading, RText } from "../../../Utilities/Typography";
 
 const LandingGrid = () => {
   return (
@@ -66,8 +66,8 @@ const LandingGrid = () => {
         px={{ base: 4, md: 16, lg: 0 }}
         pl={{ base: 0, md: 16, lg: 16 }}
         bg={{
-          base: "linear-gradient(rgb(129 129 129 / 0%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-          md: "linear-gradient(rgb(129 129 129 / 0%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          base: "linear-gradient(rgb(245 245 245 / 61%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          md: "linear-gradient(rgb(245 245 245 / 61%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
           lg: "none",
         }}
         bgPos="center"
@@ -81,7 +81,12 @@ const LandingGrid = () => {
         >
           <HStack bg="primary.50" borderRadius="xl" p={4} py={2}>
             <Image src={logo} alt="" boxSize={7} />
-            <RText weight="bold" text="Unicorn Casita" color="primary.800" />
+            <RHeading
+              small
+              weight="bold"
+              text="Unicorn Casita"
+              color="primary.800"
+            />
           </HStack>
           <Box maxW="90%">
             <RHeading
@@ -99,15 +104,16 @@ const LandingGrid = () => {
         </VStack>
         <HStack flexDir={{ base: "column", md: "row" }}>
           <Link to="collections">
-            <Button variant="secondary" size={{ base: "md", md: "lg" }}>
+            <Button variant="secondary" size={{ base: "md", md: "lg" }} w={200}>
               View Collections
             </Button>
           </Link>
           <Link to="categories">
             <Button
               variant="primary"
-              rightIcon={<Icon as={ArrowRight} />}
+              rightIcon={<Icon as={ArrowUpRight} />}
               size={{ base: "md", md: "lg" }}
+              w={200}
             >
               Shop Now
             </Button>

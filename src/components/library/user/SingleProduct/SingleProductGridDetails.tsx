@@ -7,6 +7,7 @@ import ProductHeader from "./ProductHeader";
 import EmblaCarousel from "../Embla/ProductSlider/Slider";
 import { ProductAttribute, ProductResponse } from "../../../entities/product";
 import { useState } from "react";
+import SpecificationsTable from "./SpecificationsTable";
 
 const SingleProductGridDetails = ({
   product,
@@ -78,6 +79,8 @@ const SingleProductGridDetails = ({
             isAttribute={product.isAttribute}
           />
         </HStack>
+
+        <SpecificationsTable specifications={product.specifications} />
       </VStack>
     </SimpleGrid>
   );

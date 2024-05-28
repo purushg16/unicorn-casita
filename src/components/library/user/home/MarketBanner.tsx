@@ -1,6 +1,7 @@
 import { Box, Button, Icon, SimpleGrid, VStack } from "@chakra-ui/react";
 import { RHeading, RText } from "../../../Utilities/Typography";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const MarketBanner = () => {
   return (
@@ -30,16 +31,18 @@ const MarketBanner = () => {
         <VStack align="start" justify="center" w="80%" h="100%">
           <RText color="primary.700" small text="Ourselves," />
           <RHeading text="We offer high quality products & services on every single products" />
-          <Button
-            mt={4}
-            variant="primary"
-            justifyContent="space-between"
-            rightIcon={<Icon as={ArrowRight} />}
-            gap={8}
-            size={{ base: "sm", md: "md" }}
-          >
-            Never miss
-          </Button>
+          <Link to="collections">
+            <Button
+              mt={4}
+              variant="primary"
+              justifyContent="space-between"
+              rightIcon={<Icon as={ArrowRight} />}
+              gap={8}
+              size={{ base: "sm", md: "md" }}
+            >
+              Never miss
+            </Button>
+          </Link>
         </VStack>
       </Box>
     </SimpleGrid>

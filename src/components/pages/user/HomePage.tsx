@@ -1,28 +1,21 @@
-import ServiceGrid from "../../library/user/home/ServiceGrid";
-import CuratedGrid from "../../library/user/home/CuratedGrid";
-import ProductGrid from "../../library/user/home/ProductGrid";
-import MarketBanner from "../../library/user/home/MarketBanner";
-import UserLandingImageBanner from "../../library/user/home/UserLandingImageBanner";
 import { useGetAllProducts } from "../../hooks/user/useProduct";
-import ProductCarousel from "../../library/user/home/ProductSlider/ProductSlider";
-import { EmblaOptionsType } from "embla-carousel";
+import CuratedGrid from "../../library/user/home/CuratedGrid";
+import MarketBanner from "../../library/user/home/MarketBanner";
+import ProductsBento from "../../library/user/home/ProductsBento";
+import ServiceGrid from "../../library/user/home/ServiceGrid";
+import UserLandingImageBanner from "../../library/user/home/UserLandingImageBanner";
 
 const HomePage = () => {
-  const { data: products, status, fetchStatus } = useGetAllProducts();
-  const OPTIONS: EmblaOptionsType = { loop: true };
+  const { data, status, fetchStatus } = useGetAllProducts();
 
   return (
     <>
       <UserLandingImageBanner />
-      {fetchStatus === "idle" && status === "success" && (
-        <ProductCarousel
-          slides={products.pages[0].data.docs}
-          options={OPTIONS}
-        />
-      )}
-      <ServiceGrid />
       <CuratedGrid />
-      <ProductGrid />
+      <ServiceGrid />
+      {fetchStatus === "idle" && status === "success" && (
+        <ProductsBento product={data.pages[0].data.docs[0]} />
+      )}
       <MarketBanner />
     </>
   );

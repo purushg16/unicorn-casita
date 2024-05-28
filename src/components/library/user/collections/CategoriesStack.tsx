@@ -20,8 +20,9 @@ const CategoriesStack = () => {
             h="100%"
             borderRadius="full"
             onClick={() => setCategory(category)}
-            colorScheme={isCategoryQueried ? "green" : "gray"}
+            colorScheme={isCategoryQueried ? "green" : "primary"}
             order={isCategoryQueried ? -1 : undefined}
+            minW="max-content"
           >
             <TagLabel> {category.name} </TagLabel>
             {isCategoryQueried && (

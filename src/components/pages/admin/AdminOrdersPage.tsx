@@ -26,9 +26,11 @@ const AdminOrdersPage = () => {
         <AdminOrdersPageSkeleton />
       )}
 
-      {status === "success" && data.pages[0].data.docs.length === 0 && (
-        <NoDataDisplay img={img} title="Orders" />
-      )}
+      {status === "success" &&
+        fetchStatus === "idle" &&
+        data.pages[0].data.docs.length === 0 && (
+          <NoDataDisplay img={img} title="Orders" />
+        )}
 
       {status === "success" &&
         fetchStatus === "idle" &&

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link to={`${product._id}`}>
-      <Flex flexDir="column" gap={4} aspectRatio="5/4">
+      <Flex flexDir="column" gap={2} aspectRatio="5/4">
         <Box
           flex={1}
           borderRadius={10}

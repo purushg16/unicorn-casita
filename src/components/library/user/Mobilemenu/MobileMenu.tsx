@@ -20,7 +20,7 @@ const MobileMenu = () => {
 
   return (
     <>
-      <Icon as={MenuIcon} onClick={onOpen} ref={btnRef} />
+      <Icon as={MenuIcon} onClick={onOpen} ref={btnRef} boxSize={6} />
       <Drawer
         size="full"
         isOpen={isOpen}
@@ -79,37 +79,43 @@ const MobileMenu = () => {
               <RText text="Policies" small />
               <VStack align="start" gap={4}>
                 <Link to="/privacypolicy" onClick={onClose}>
-                  <RHeading text="Privacy Policy" small />
+                  <RHeading text="Privacy Policy" small weight="normal" />
                 </Link>
                 <Link to="/termsandcondtions" onClick={onClose}>
-                  <RHeading text="Terms & Conditions" small />
+                  <RHeading text="Terms & Conditions" small weight="normal" />
                 </Link>
                 <Link to="/shippinganddeliverypolicy" onClick={onClose}>
-                  <RHeading text="Shipping & Delivery" small />
+                  <RHeading text="Shipping & Delivery" small weight="normal" />
                 </Link>
                 <Link to="/cancellationorrefundpolicy" onClick={onClose}>
-                  <RHeading text="Cancellation or Refund policy" small />
+                  <RHeading
+                    text="Cancellation or Refund policy"
+                    small
+                    weight="normal"
+                  />
                 </Link>
               </VStack>
             </VStack>
-            <VStack
-              justify="center"
-              mt={12}
-              w="100%"
-              h="30%"
-              bgImg="https://images.unsplash.com/photo-1440508319978-8b67875e39d7?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              bgPos="center"
-              bgRepeat="no-repeat"
-              bgSize="cover"
-              textAlign="center"
-            >
-              <RText
-                small
-                text="NEW ARRIVALS"
-                weight="semibold"
-                color="white"
-              />
-            </VStack>
+            <Link to="/collections" onClick={onClose}>
+              <VStack
+                justify="center"
+                mt={12}
+                w="100%"
+                h="30%"
+                bgImg="https://images.unsplash.com/photo-1440508319978-8b67875e39d7?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                bgPos="center"
+                bgRepeat="no-repeat"
+                bgSize="cover"
+                textAlign="center"
+              >
+                <RText
+                  small
+                  text="NEW ARRIVALS"
+                  weight="semibold"
+                  color="white"
+                />
+              </VStack>
+            </Link>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

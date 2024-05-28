@@ -50,6 +50,7 @@ const AddReviewModal = () => {
         variant="primary"
         leftIcon={<Icon as={BadgePlus} />}
         onClick={onOpen}
+        zIndex={999}
       >
         New Review
       </Button>

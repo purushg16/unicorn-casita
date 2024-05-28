@@ -10,6 +10,7 @@ import raporpayVerifyOrder from "./useRazorpay";
 import useVerifyCheckout from "./useVerifyOrder";
 import usePaymentStore from "../../store/user/paymentStateStore";
 import { VerifyOrder } from "../../entities/order";
+import { RazorpayWindowClosedError } from "../../entities/RazorpayWindowClosedError";
 
 interface OrderResponse {
   amount: number;
@@ -50,9 +51,15 @@ const useCartCheckout = () => {
         },
       });
 
-      verifyOrder.then((res) => {
-        mutate(res);
-      });
+      verifyOrder
+        .then((res) => {
+          mutate(res);
+        })
+        .catch((err) => {
+          if (err instanceof RazorpayWindowClosedError) {
+            setIsVerifying(false);
+          }
+        });
     },
     onError: (error: ErrorResponse) =>
       toast(Toaster("error", error.data.error)),

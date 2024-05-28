@@ -1,22 +1,12 @@
-import {
-  Badge,
-  Button,
-  Flex,
-  HStack,
-  Icon,
-  Show,
-  Spacer,
-} from "@chakra-ui/react";
-import { ShoppingBasket } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { Label, RHeading } from "../../../Utilities/Typography";
-import useUserCartStore from "../../../store/user/useCartStore";
+import { Flex, HStack, Image, Show } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import logo from "../../../../assets/logo.png";
+import { RHeading } from "../../../Utilities/Typography";
 import MobileMenu from "../Mobilemenu/MobileMenu";
+import CartButton from "./CartButton";
+import NavigationLinkStack from "./NavigationLinkStack";
 
 const UserNavbar = () => {
-  const navigate = useNavigate();
-  const quantity = useUserCartStore((s) => s.products).length;
-
   return (
     <Flex
       align="center"
@@ -33,89 +23,22 @@ const UserNavbar = () => {
       justify="space-between"
     >
       <Link to="/">
-        <RHeading text="Unicorn Casita" small />
+        <HStack align="center" gap={4}>
+          <Image src={logo} alt="logo" boxSize={10} />
+          <Show above="md">
+            <RHeading text="Unicorn Casita" small color="primary.800" />
+          </Show>
+        </HStack>
       </Link>
-      <Show above="md">
-        <HStack gap={8} align="center">
-          <Link to="/collections">
-            <Label text="Collections" />
-          </Link>
-          <Link to="/categories">
-            <Label text="Categories" />
-          </Link>
-          <Link to="/collections">
-            <Label text="New Arrivals" color="primary.600" />
-          </Link>
-        </HStack>
-        <Spacer />
-        <HStack gap={8} align="center">
-          <Link to="/cart">
-            <Button
-              pos="relative"
-              variant="secondary"
-              rightIcon={
-                <Icon
-                  cursor="pointer"
-                  strokeWidth={1}
-                  as={ShoppingBasket}
-                  onClick={() => navigate("/cart")}
-                />
-              }
-            >
-              {quantity > 0 && (
-                <Badge
-                  pos="absolute"
-                  colorScheme="green"
-                  right={-2}
-                  top={-2}
-                  p={1}
-                  px={2}
-                  borderRadius="xl"
-                >
-                  {quantity}
-                </Badge>
-              )}
-              Cart
-            </Button>
-          </Link>
-        </HStack>
-      </Show>
-      <Show below="md">
-        <HStack gap={4} align="center">
-          <Link to="/cart">
-            <Button
-              size="sm"
-              pos="relative"
-              variant="secondary"
-              rightIcon={
-                <Icon
-                  cursor="pointer"
-                  strokeWidth={1}
-                  as={ShoppingBasket}
-                  onClick={() => navigate("/cart")}
-                />
-              }
-            >
-              {quantity > 0 && (
-                <Badge
-                  size="sm"
-                  pos="absolute"
-                  colorScheme="green"
-                  right={-2}
-                  top={-2}
-                  p={1}
-                  px={2}
-                  borderRadius="xl"
-                >
-                  {quantity}
-                </Badge>
-              )}
-              Cart
-            </Button>
-          </Link>
+      <HStack gap={8}>
+        <Show above="md">
+          <NavigationLinkStack />
+        </Show>
+        <CartButton />
+        <Show below="md">
           <MobileMenu />
-        </HStack>
-      </Show>
+        </Show>
+      </HStack>
     </Flex>
   );
 };

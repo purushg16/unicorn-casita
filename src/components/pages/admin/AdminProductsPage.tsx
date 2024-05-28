@@ -17,10 +17,13 @@ import { useGetAllProducts } from "../../hooks/admin/useProduct";
 import ProductsGrid from "../../library/admin/product/ProductsGrid";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminProductsPage = () => {
   const navigate = useNavigate();
-  const { data, fetchNextPage, status, hasNextPage } = useGetAllProducts();
+  const clear = useProductEntryStore((s) => s.clearEntry);
+  const { data, fetchNextPage, status, hasNextPage, fetchStatus } =
+    useGetAllProducts();
 
   const fetchedOrdersLength =
     data?.pages.reduce((total, page) => total + page.data.docs.length, 0) || 0;
@@ -32,7 +35,10 @@ const AdminProductsPage = () => {
         <Button
           zIndex={999}
           id="new-product-btn"
-          onClick={() => navigate("new")}
+          onClick={() => {
+            clear();
+            navigate("new");
+          }}
           size="sm"
           variant="primary"
           leftIcon={<Icon as={BadgePlus} />}
@@ -41,27 +47,32 @@ const AdminProductsPage = () => {
         </Button>
       </HStack>
       <Divider my={4} />
-      {status === "pending" && <ProductsSkeleton />}
-      {status === "success" && data.pages[0].data.docs.length === 0 && (
-        <NoDataDisplay img={img} title="Products" />
-      )}
+      {status === "pending" ||
+        (fetchStatus === "fetching" && <ProductsSkeleton />)}
+      {status === "success" &&
+        fetchStatus !== "fetching" &&
+        data.pages[0].data.docs.length === 0 && (
+          <NoDataDisplay img={img} title="Products" />
+        )}
 
-      {status === "success" && data.pages[0].data.docs.length > 0 && (
-        <Box w="100%">
-          <InfiniteScroll
-            dataLength={fetchedOrdersLength}
-            hasMore={hasNextPage}
-            next={() => fetchNextPage()}
-            loader={<Spinner />}
-          >
-            {data.pages.map((page) => (
-              <React.Fragment>
-                <ProductsGrid products={page.data.docs} />
-              </React.Fragment>
-            ))}
-          </InfiniteScroll>
-        </Box>
-      )}
+      {status === "success" &&
+        fetchStatus === "idle" &&
+        data.pages[0].data.docs.length > 0 && (
+          <Box w="100%">
+            <InfiniteScroll
+              dataLength={fetchedOrdersLength}
+              hasMore={hasNextPage}
+              next={() => fetchNextPage()}
+              loader={<Spinner />}
+            >
+              {data.pages.map((page) => (
+                <React.Fragment>
+                  <ProductsGrid products={page.data.docs} />
+                </React.Fragment>
+              ))}
+            </InfiniteScroll>
+          </Box>
+        )}
     </VStack>
   );
 };

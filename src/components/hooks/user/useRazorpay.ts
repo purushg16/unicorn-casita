@@ -1,3 +1,4 @@
+import { RazorpayWindowClosedError } from "../../entities/RazorpayWindowClosedError";
 import { VerifyOrder } from "../../entities/order";
 
 interface RazorpayResponse {
@@ -10,7 +11,7 @@ export default function raporpayVerifyOrder(
   amount: number,
   orderId: string
 ): Promise<VerifyOrder> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const response: VerifyOrder = {
       orderId: "",
       paymentId: "",
@@ -26,6 +27,15 @@ export default function raporpayVerifyOrder(
         color: "#3399cc",
       },
       order_id: orderId,
+      modal: {
+        ondismiss: () => {
+          reject(
+            new RazorpayWindowClosedError(
+              "Razorpay payment window was closed by the user."
+            )
+          );
+        },
+      },
       handler: (res: RazorpayResponse) => {
         response.orderId = orderId;
         response.paymentId = res.razorpay_payment_id;

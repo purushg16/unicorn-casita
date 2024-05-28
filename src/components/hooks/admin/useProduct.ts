@@ -47,7 +47,6 @@ const useGetAllProducts = () => {
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>
       lastPage.data.hasNextPage ? lastPage.data.nextPage : undefined,
-    refetchOnWindowFocus: false,
   });
 };
 

@@ -50,7 +50,7 @@ const AdminSingleProductPage = () => {
       <VStack gap={8} w="100%">
         <HStack w="100%" justify="space-between">
           <VStack align="start" gap={0}>
-            <RHeading text={product.name} color="black" small />
+            <RHeading text={product.name} color="primary.800" small />
             {editMode && <EditModeAlert />}
           </VStack>
 

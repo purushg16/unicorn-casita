@@ -8,7 +8,7 @@ import NoDataDisplay from "../../Utilities/NoDataDisplay";
 import img from "../../../assets/empty_reviews.svg";
 
 const AdminReviewsPage = () => {
-  const { data: reviews, status } = useGetAllReviews();
+  const { data: reviews, status, fetchStatus } = useGetAllReviews();
 
   return (
     <VStack align="start">
@@ -17,11 +17,14 @@ const AdminReviewsPage = () => {
         <AddReviewModal />
       </HStack>
       <Divider my={4} />
-      {status === "success" && <ReviewsGrid reviews={reviews} />}
-      {status === "success" && reviews.length === 0 && (
-        <NoDataDisplay img={img} title="reviews" />
+      {status === "pending" ||
+        (fetchStatus === "fetching" && <ReviewsSkeleton />)}
+      {status === "success" &&
+        fetchStatus === "idle" &&
+        reviews.length === 0 && <NoDataDisplay img={img} title="reviews" />}
+      {status === "success" && fetchStatus === "idle" && (
+        <ReviewsGrid reviews={reviews} />
       )}
-      {status === "pending" && <ReviewsSkeleton />}
     </VStack>
   );
 };

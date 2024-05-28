@@ -1,4 +1,4 @@
-import { Box, Divider, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Box, Divider, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
 import { RHeading, RText } from "../../Utilities/Typography";
 import { Link } from "react-router-dom";
 
@@ -59,9 +59,15 @@ const Footer = () => {
       </SimpleGrid>
 
       <Divider my={8} />
-      <Box textAlign="center">
+      <VStack textAlign="center">
         <RText text="Copyrights @2024 Unicorn. All rights reserved" small />
-      </Box>
+        <HStack gap={1}>
+          <RText text="powered by" small />
+          <Link to="https://macdasy.com/" target="_blank">
+            <RText text="Macdasy" small weight="bold" />
+          </Link>
+        </HStack>
+      </VStack>
     </Box>
   );
 };

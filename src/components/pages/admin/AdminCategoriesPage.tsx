@@ -8,7 +8,7 @@ import AddCategoryModal from "../../library/admin/category/AddCategoryModal";
 import CategoriesGrid from "../../library/admin/category/CategoriesGrid";
 
 const AdminCategoriesPage = () => {
-  const { data: categories, status } = useGetAllCategories();
+  const { data: categories, status, fetchStatus } = useGetAllCategories();
 
   return (
     <VStack align="start">
@@ -17,11 +17,17 @@ const AdminCategoriesPage = () => {
         <AddCategoryModal />
       </HStack>
       <Divider my={4} />
-      {status === "pending" && <CategoriesSkeleton />}
-      {status === "success" && categories.length === 0 && (
-        <NoDataDisplay img={img} title="Categories" />
+      {(status === "pending" || fetchStatus === "fetching") && (
+        <CategoriesSkeleton />
       )}
-      {status === "success" && <CategoriesGrid categories={categories} />}
+      {status === "success" &&
+        fetchStatus === "idle" &&
+        categories.length === 0 && (
+          <NoDataDisplay img={img} title="Categories" />
+        )}
+      {status === "success" && fetchStatus !== "fetching" && (
+        <CategoriesGrid categories={categories} />
+      )}
     </VStack>
   );
 };

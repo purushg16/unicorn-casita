@@ -19,7 +19,7 @@ const UserLandingImageBanner = () => {
       flexDir="column"
       gap={8}
       px={{ base: 4, md: 12, lg: 24 }}
-      py={{ base: 24, md: 16 }}
+      py={24}
     >
       <VStack
         align={{ base: "center", md: "start" }}

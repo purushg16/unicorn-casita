@@ -16,6 +16,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
   return (
     <Flex
       w="100%"
+      minH={180}
       px={{ base: 4, md: 8 }}
       py={4}
       aspectRatio="4/3"
@@ -34,7 +35,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
         justifyContent="space-between"
         variant="secondary"
         rightIcon={<Icon as={ArrowRight} />}
-        size={{ base: "xs", md: "sm", lg: "md" }}
+        size={{ base: "sm", md: "md" }}
       >
         {category.name}
       </Button>

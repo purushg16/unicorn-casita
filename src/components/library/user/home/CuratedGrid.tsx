@@ -59,7 +59,7 @@ const CuratedGrid = () => {
             <Button
               variant="primary"
               rightIcon={<Icon as={ArrowUpRight} />}
-              size={{ base: "xs", md: "md" }}
+              size={{ base: "sm", md: "md" }}
             >
               View all
             </Button>

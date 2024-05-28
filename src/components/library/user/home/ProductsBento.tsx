@@ -10,6 +10,7 @@ import {
   FormLabel,
   VStack,
   Box,
+  Show,
 } from "@chakra-ui/react";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { RHeading } from "../../../Utilities/Typography";
@@ -58,7 +59,7 @@ const ProductsBento = ({ product }: { product: Product }) => {
               />
             ))}
           </HStack>
-          <HStack w="100%" justify="space-between" px={4}>
+          <HStack w="100%" justify="space-between" p={4}>
             <VStack gap={0} align="start">
               <RHeading
                 small
@@ -69,16 +70,32 @@ const ProductsBento = ({ product }: { product: Product }) => {
               <FormLabel fontSize="xs" m={0} color="primary.700">
                 Make it yours now!
               </FormLabel>
+              <Show below="md">
+                <Link
+                  to={`collections/${product._id}`}
+                  style={{ marginTop: 8 }}
+                >
+                  <Button
+                    size="sm"
+                    variant="primary"
+                    rightIcon={<Icon as={ArrowUpRight} />}
+                  >
+                    View Collection
+                  </Button>
+                </Link>
+              </Show>
             </VStack>
-            <Link to={`collections/${product._id}`}>
-              <Button
-                size={{ base: "xs", md: "sm" }}
-                variant="primary"
-                rightIcon={<Icon as={ArrowUpRight} />}
-              >
-                View Collection
-              </Button>
-            </Link>
+            <Show above="md">
+              <Link to={`collections/${product._id}`}>
+                <Button
+                  size="sm"
+                  variant="primary"
+                  rightIcon={<Icon as={ArrowUpRight} />}
+                >
+                  View Collection
+                </Button>
+              </Link>
+            </Show>
           </HStack>
         </VStack>
       </GridItem>

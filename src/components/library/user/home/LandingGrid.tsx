@@ -66,8 +66,8 @@ const LandingGrid = () => {
         px={{ base: 4, md: 16, lg: 0 }}
         pl={{ base: 0, md: 16, lg: 16 }}
         bg={{
-          base: "linear-gradient(rgb(245 245 245 / 61%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-          md: "linear-gradient(rgb(245 245 245 / 61%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          base: "linear-gradient(rgb(245 245 245 / 30%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          md: "linear-gradient(rgb(245 245 245 / 30%), rgb(106 64 113 / 50%)), url(https://images.unsplash.com/photo-1620291699655-d958150a3ff8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
           lg: "none",
         }}
         bgPos="center"
@@ -79,7 +79,7 @@ const LandingGrid = () => {
           align={{ base: "center", md: "center", lg: "start" }}
           textAlign={{ base: "center", md: "center", lg: "left" }}
         >
-          <HStack bg="primary.50" borderRadius="xl" p={4} py={2}>
+          <HStack bg="primary.100" borderRadius="xl" p={4} py={2}>
             <Image src={logo} alt="" boxSize={7} />
             <RHeading
               small
@@ -88,26 +88,25 @@ const LandingGrid = () => {
               color="primary.800"
             />
           </HStack>
-          <Box maxW="90%">
-            <RHeading
-              big
-              text="Let's make a whole new wardrobe together!"
-              color="primary.700"
-            />
+          <Box
+            maxW="90%"
+            color={{ base: "white", md: "white", lg: "primary.800" }}
+          >
+            <RHeading big text="Let's make a whole new wardrobe together!" />
           </Box>
-          <Box maxW="70%">
-            <RText
-              text="Elevate your charm with our collections, each piece a love note to your unique style."
-              color="primary.700"
-            />
+          <Box
+            maxW="70%"
+            color={{ base: "white", md: "white", lg: "primary.800" }}
+          >
+            <RText text="Elevate your charm with our collections, each piece a love note to your unique style." />
           </Box>
         </VStack>
         <HStack flexDir={{ base: "column", md: "row" }}>
-          <Link to="collections">
+          {/* <Link to="collections">
             <Button variant="secondary" size={{ base: "md", md: "lg" }} w={200}>
               View Collections
             </Button>
-          </Link>
+          </Link> */}
           <Link to="categories">
             <Button
               variant="primary"

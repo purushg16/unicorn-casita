@@ -17,6 +17,7 @@ import CheckoutButton from "./CheckoutButton";
 const CheckoutModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const products = useUserCartStore((s) => s.products);
   const customerName = useUserCartStore((s) => s.customerName);
   const setCustomerName = useUserCartStore((s) => s.setCustomerName);
   const address = useUserCartStore((s) => s.address);
@@ -32,9 +33,21 @@ const CheckoutModal = () => {
   const email = useUserCartStore((s) => s.email);
   const setEmail = useUserCartStore((s) => s.setEmail);
 
+  const isDisabled = (): boolean => {
+    return (
+      products.length === 0 ||
+      products.some((prod) => Number.isNaN(prod.quantity))
+    );
+  };
+
   return (
     <>
-      <Button w="100%" variant="primary" onClick={onOpen}>
+      <Button
+        w="100%"
+        variant="primary"
+        onClick={onOpen}
+        isDisabled={isDisabled()}
+      >
         Checkout Now
       </Button>
       <Modal

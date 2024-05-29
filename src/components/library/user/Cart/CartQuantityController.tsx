@@ -29,7 +29,7 @@ const CartQuantityController = ({
     <VStack my={md ? 4 : 0}>
       <ButtonGroup variant="outline" isAttached>
         <IconButton
-          isDisabled={product.quantity <= 1}
+          isDisabled={product.quantity <= 1 || Number.isNaN(product.quantity)}
           onClick={() =>
             updateQuantity(productId, product.quantity - 1, product.attrValueId)
           }
@@ -41,7 +41,8 @@ const CartQuantityController = ({
           size={{ base: "sm", md: "md" }}
           min={0}
           maxH="100%"
-          w={50}
+          minW={20}
+          w={10}
           type="number"
           borderRadius={0}
           borderRight="none"
@@ -75,7 +76,11 @@ const CartQuantityController = ({
         />
         <IconButton
           onClick={() =>
-            updateQuantity(productId, product.quantity + 1, product.attrValueId)
+            updateQuantity(
+              productId,
+              Number.isNaN(product.quantity) ? 1 : product.quantity + 1,
+              product.attrValueId
+            )
           }
           icon={<Icon as={Plus} />}
           aria-label="minus"

@@ -6,6 +6,11 @@ import CheckoutModal from "./CheckoutModal";
 const TotalSection = () => {
   const products = useUserCartStore((s) => s.products);
 
+  const total = products.reduce(
+    (acc, product) => product.price * product.quantity + acc,
+    0
+  );
+
   return (
     <VStack
       w="100%"
@@ -20,9 +25,7 @@ const TotalSection = () => {
         <Label text="Subtotal" color="gray" />
         <Label
           weight="bolder"
-          text={products
-            .reduce((acc, product) => product.price * product.quantity + acc, 0)
-            .toFixed(2)}
+          text={Number.isNaN(total) ? "0.00" : total.toFixed(2)}
         />
       </HStack>
       <HStack w="100%" justify="space-between">
@@ -34,9 +37,7 @@ const TotalSection = () => {
         <Label text="Grand Total" weight="bolder" />
         <Label
           weight="bolder"
-          text={products
-            .reduce((acc, product) => product.price * product.quantity + acc, 0)
-            .toFixed(2)}
+          text={Number.isNaN(total) ? "0.00" : total.toFixed(2)}
         />
       </HStack>
       <CheckoutModal />

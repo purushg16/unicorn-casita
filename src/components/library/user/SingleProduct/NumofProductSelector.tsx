@@ -38,7 +38,11 @@ const NumofProductSelector = ({
         <IconButton
           aria-label="minus"
           icon={<Icon as={Minus} />}
-          onClick={() => setCount(count !== 1 ? count - 1 : 1)}
+          onClick={() =>
+            Number.isNaN(count)
+              ? setCount(1)
+              : setCount(count > 1 ? count - 1 : 1)
+          }
         />
         <Input
           isDisabled={
@@ -62,7 +66,9 @@ const NumofProductSelector = ({
         <IconButton
           aria-label="minus"
           icon={<Icon as={Plus} />}
-          onClick={() => setCount(count + 1)}
+          onClick={() =>
+            Number.isNaN(count) ? setCount(1) : setCount(count + 1)
+          }
         />
       </ButtonGroup>
     </VStack>

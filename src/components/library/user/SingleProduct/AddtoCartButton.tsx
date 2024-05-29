@@ -45,7 +45,9 @@ const AddtoCartButton = ({
     <HStack>
       <Button
         variant="primary"
-        isDisabled={(isAttribute && !attribute) || count <= 0}
+        isDisabled={
+          (isAttribute && !attribute) || count <= 0 || Number.isNaN(count)
+        }
         onClick={handleAdd}
       >
         {product ? "Go to Cart" : "Add to Cart"}

@@ -8,7 +8,6 @@ import {
 import { CACHE_KEY_ALL_PARTNERS } from "../../constants/cache_keys";
 import { useToast } from "@chakra-ui/react";
 import Toaster from "../../functions/toaster";
-import { AxiosResponse } from "axios";
 import { SuccessResponse } from "../../entities/response";
 import { DeletePartner, DeliveryPartner } from "../../entities/deliveryPartner";
 
@@ -30,22 +29,23 @@ const useAddDeliveryPartner = (callback: () => void) => {
 
   return useMutation({
     mutationFn: addPartner.postRequest,
-    onSuccess: (data: AxiosResponse<SuccessResponse>) => {
+    onSuccess: (data: SuccessResponse) => {
       callback();
-      toast(Toaster("success", data.data.data.message));
+      toast(Toaster("success", data.data.message));
       querClient.invalidateQueries({ queryKey: CACHE_KEY_ALL_PARTNERS });
     },
   });
 };
 
-const useDeleteDeliveryPartner = () => {
+const useDeleteDeliveryPartner = (callback: () => void) => {
   const toast = useToast();
   const querClient = useQueryClient();
 
   return useMutation({
     mutationFn: deletePartner.postRequest,
-    onSuccess: (data: AxiosResponse<SuccessResponse>) => {
-      toast(Toaster("success", data.data.data.message));
+    onSuccess: (data: SuccessResponse) => {
+      callback();
+      toast(Toaster("success", data.data.message));
       querClient.invalidateQueries({ queryKey: CACHE_KEY_ALL_PARTNERS });
     },
   });

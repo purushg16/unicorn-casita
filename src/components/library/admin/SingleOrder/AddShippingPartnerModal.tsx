@@ -17,9 +17,11 @@ import { DeliveryPartner } from "../../../entities/deliveryPartner";
 import LabelledInput from "../../../Utilities/LabelledInput";
 import { BadgePlus, Truck } from "lucide-react";
 import AnimateMove from "../../../motions/Move";
+import useDeliveryModalStore from "../../../store/admin/deliveryModalStore";
 
 const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const setOpen = useDeliveryModalStore((s) => s.setOpen);
 
   const [partnerDetails, setPartnerDetails] = useState<DeliveryPartner>({
     serviceProvider: "",
@@ -38,7 +40,7 @@ const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
   return (
     <>
       {appbar ? (
-        <AnimateMove delay={0.6}>
+        <AnimateMove delay={0}>
           <Button
             color="primary.700"
             variant="text"
@@ -48,6 +50,7 @@ const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
             onClick={(e) => {
               e.stopPropagation();
               onOpen();
+              setOpen(true);
             }}
           >
             New Delivery Partner
@@ -55,7 +58,10 @@ const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
         </AnimateMove>
       ) : (
         <Button
-          onClick={onOpen}
+          onClick={() => {
+            onOpen();
+            setOpen(true);
+          }}
           variant="primary"
           size="xs"
           leftIcon={<Icon as={BadgePlus} />}
@@ -66,7 +72,10 @@ const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
       <Modal
         isCentered
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => {
+          onClose();
+          setOpen(false);
+        }}
         closeOnEsc={false}
         closeOnOverlayClick={false}
       >
@@ -99,7 +108,13 @@ const AddShippingPartnerModal = ({ appbar = false }: { appbar?: boolean }) => {
             </VStack>
           </ModalBody>
           <ModalFooter pos="sticky" bottom={0} bg="primary.100">
-            <Button onClick={onClose} variant="white">
+            <Button
+              onClick={() => {
+                onClose();
+                setOpen(false);
+              }}
+              variant="white"
+            >
               Close
             </Button>
             <Button

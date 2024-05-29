@@ -3,11 +3,13 @@ import { BadgePlus, Blocks, Eclipse, Smile } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import AppBarAddButton from "./AppBarAddButton";
 import AddShippingPartnerModal from "../SingleOrder/AddShippingPartnerModal";
+import useDeliveryModalStore from "../../../store/admin/deliveryModalStore";
 
 const AppBarAddMenu = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, toggleVisible] = useState<boolean>(false);
+  const isOpen = useDeliveryModalStore((s) => s.isOpen);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -15,7 +17,8 @@ const AppBarAddMenu = () => {
         containerRef.current &&
         buttonRef.current &&
         !containerRef.current.contains(event.target as Node) &&
-        !buttonRef.current.contains(event.target as Node)
+        !buttonRef.current.contains(event.target as Node) &&
+        !isOpen
       ) {
         toggleVisible(false);
       }
@@ -26,7 +29,7 @@ const AppBarAddMenu = () => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, []);
+  }, [isOpen]);
 
   return (
     <>
@@ -63,8 +66,8 @@ const AppBarAddMenu = () => {
           onClick={() => toggleVisible(false)}
         >
           <AppBarAddButton title="product" icon={Eclipse} />
-          <AppBarAddButton title="category" icon={Blocks} delay={0.2} />
-          <AppBarAddButton title="review" icon={Smile} delay={0.4} />
+          <AppBarAddButton title="category" icon={Blocks} />
+          <AppBarAddButton title="review" icon={Smile} />
           <AddShippingPartnerModal appbar />
         </VStack>
       )}

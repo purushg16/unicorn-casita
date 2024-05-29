@@ -45,7 +45,7 @@ const AddReviewModal = () => {
   return (
     <>
       <Button
-        id="new-product-btn"
+        id="new-review-btn"
         size="sm"
         variant="primary"
         leftIcon={<Icon as={BadgePlus} />}

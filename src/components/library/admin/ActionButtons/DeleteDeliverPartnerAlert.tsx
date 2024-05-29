@@ -22,7 +22,7 @@ const DeleteDeliverPartnerAlert = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef(null);
-  const { mutate, isPending, data: toDeleteData } = useDeleteDeliveryPartner();
+  const { mutate, isPending } = useDeleteDeliveryPartner(onClose);
 
   return (
     <>
@@ -67,7 +67,7 @@ const DeleteDeliverPartnerAlert = ({
                 Cancel
               </Button>
               <Button
-                isLoading={partner._id === toDeleteData && isPending}
+                isLoading={isPending}
                 colorScheme="red"
                 onClick={() => mutate({ courierId: partner._id || "" })}
                 ml={3}

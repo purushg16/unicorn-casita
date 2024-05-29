@@ -36,7 +36,9 @@ const CheckoutModal = () => {
   const isDisabled = (): boolean => {
     return (
       products.length === 0 ||
-      products.some((prod) => Number.isNaN(prod.quantity))
+      products.some((prod) => Number.isNaN(prod.quantity)) ||
+      products.some((prod) => prod.quantity === 0) ||
+      products.some((prod) => prod.quantity === null)
     );
   };
 
@@ -45,7 +47,7 @@ const CheckoutModal = () => {
       <Button
         w="100%"
         variant="primary"
-        onClick={onOpen}
+        onClick={() => !isDisabled() && onOpen()}
         isDisabled={isDisabled()}
       >
         Checkout Now

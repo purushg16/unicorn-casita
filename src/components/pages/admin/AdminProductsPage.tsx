@@ -47,8 +47,9 @@ const AdminProductsPage = () => {
         </Button>
       </HStack>
       <Divider my={4} />
-      {status === "pending" ||
-        (fetchStatus === "fetching" && <ProductsSkeleton />)}
+      {(status === "pending" || fetchStatus === "fetching") && (
+        <ProductsSkeleton />
+      )}
       {status === "success" &&
         fetchStatus !== "fetching" &&
         data.pages[0].data.docs.length === 0 && (

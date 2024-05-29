@@ -31,8 +31,10 @@ const SpecificationsTable = ({
           <Tbody>
             {specifications.map((spec) => (
               <Tr key={spec.id}>
-                <Td fontWeight="semibold"> {spec.key} </Td>
-                <Td> {spec.value} </Td>
+                <Td fontWeight="semibold" textTransform="capitalize">
+                  {spec.key}
+                </Td>
+                <Td textTransform="capitalize"> {spec.value} </Td>
               </Tr>
             ))}
           </Tbody>

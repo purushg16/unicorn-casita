@@ -5,7 +5,7 @@ import MarketBanner from "../../library/user/home/MarketBanner";
 import ProductsGrid from "../../library/user/home/ProductsGrid/ProductsGrid";
 import ServiceBento from "../../library/user/home/ServiceBento/ServiceBento";
 import CuratedGrid from "../../library/user/home/CuratedGrid";
-import TopPick from "../../library/user/home/ProductsGrid/TopPick";
+import BestSellings from "../../library/user/home/ProductsGrid/BestSellings";
 
 const HomePage = () => {
   const { data: categories, status: catStatus } = useGetAllCategories();
@@ -14,7 +14,7 @@ const HomePage = () => {
     <>
       <LandingGrid />
       <VStack gap={24} w="100%">
-        <TopPick />
+        <BestSellings />
         {catStatus === "success" &&
           categories.length > 0 &&
           categories?.map((category, index) => (

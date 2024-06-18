@@ -8,9 +8,9 @@ import ProductCard from "../../Product/ProductCard";
 import Category from "../../../../entities/category";
 
 const ProductsGrid = ({ category }: { category: Category }) => {
-  const { data: products, status } = useGetAllProducts(category._id);
+  const { data: products, status } = useGetAllProducts(category._id, false);
 
-  if (!category) return null;
+  if (!category || products?.pages[0].data.docs.length === 0) return null;
   return (
     <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">
       <RHeading

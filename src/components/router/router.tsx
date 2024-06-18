@@ -20,6 +20,7 @@ import PrivacyPolicyPage from "../pages/user/Policies/PrivacyPolicyPage";
 import ContactPage from "../pages/user/ContactPage";
 import AboutPage from "../pages/user/AboutPage";
 import AdminSingleOrderPage from "../pages/admin/AdminSingleOrderPage";
+import WholesalePage from "../pages/user/WholesalePage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
     errorElement: <></>,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "/wholesale", element: <WholesalePage /> },
       { path: "/categories", element: <CategoriesPage /> },
       { path: "/collections", element: <CollectionsPage /> },
       { path: "/collections/:id", element: <SingleProductPage /> },

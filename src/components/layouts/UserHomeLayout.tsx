@@ -12,7 +12,7 @@ const UserHomeLayout = () => {
       <Flex
         flexDir="column"
         gap={{ base: 12, md: 12, lg: 20 }}
-        mt={pathname !== "/" ? 12 : 0}
+        mt={pathname === "/" || pathname === "/wholesale" ? 0 : 12}
         mb={12}
       >
         <Outlet />

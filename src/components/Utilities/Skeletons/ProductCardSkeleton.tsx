@@ -3,7 +3,7 @@ import { Box, HStack, Skeleton, VStack } from "@chakra-ui/react";
 const ProductCardSkeleton = () => {
   return (
     <VStack
-      minH={280}
+      minH={350}
       bg="primary.50"
       borderRadius={20}
       overflow="clip"

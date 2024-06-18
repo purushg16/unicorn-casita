@@ -25,7 +25,13 @@ const useGetAllProducts = (
     SinglePropertyResponse<PaginatedResponse<Product>>,
     Error
   >({
-    queryKey: [...CACHE_KEY_ALLPRODUCTS, category, categoryId],
+    queryKey: [
+      ...CACHE_KEY_ALLPRODUCTS,
+      category,
+      categoryId,
+      bestSeller,
+      wholesale,
+    ],
     queryFn: ({ pageParam = 1 }) =>
       getProducts.getSingleItem({
         params: {

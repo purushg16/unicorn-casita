@@ -14,13 +14,13 @@ const HomePage = () => {
     <>
       <LandingGrid />
       <VStack gap={24} w="100%">
+        <TopPick />
         {catStatus === "success" &&
           categories.length > 0 &&
           categories?.map((category, index) => (
             <>
               <ProductsGrid key={index} category={category} />
               {index == 1 && <ServiceBento />}
-              {index == 3 && <TopPick />}
             </>
           ))}
       </VStack>

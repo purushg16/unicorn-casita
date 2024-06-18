@@ -9,6 +9,7 @@ import ProductPriceInput from "../../library/admin/editProduct/ProductPriceInput
 import useImageStore from "../../store/admin/imageStore";
 import SpecificationsTable from "../../library/admin/addProduct/SpecificationsTable";
 import AddProductSubmitButton from "../../library/admin/ActionButtons/AddProductSubmitButton";
+import OptionsStack from "../../library/admin/editProduct/OptionsStack";
 // import useProductEntryStore from "../../store/admin/productEntryStore";
 
 const AdminAddProductPage = () => {
@@ -24,6 +25,7 @@ const AdminAddProductPage = () => {
   return (
     <VStack gap={12}>
       <ProductNameInput editMode />
+      <OptionsStack editMode />
       <DescriptionInput editMode />
       <SimpleGrid columns={{ base: 1, md: 3 }} w="100%" spacing={12}>
         <ProductPriceInput editMode />

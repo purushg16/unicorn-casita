@@ -5,15 +5,14 @@ const ProductNameInput = ({ editMode }: { editMode: boolean }) => {
   const product = useProductEntryStore((s) => s.product);
   const setName = useProductEntryStore((s) => s.setName);
 
-  if (product)
-    return (
-      <LabelledInput
-        isDisabled={!editMode}
-        label="Product Name"
-        value={product.name}
-        onTextChange={setName}
-      />
-    );
+  return (
+    <LabelledInput
+      isDisabled={!editMode}
+      label="Product Name"
+      value={product?.name || ""}
+      onTextChange={setName}
+    />
+  );
 };
 
 export default ProductNameInput;

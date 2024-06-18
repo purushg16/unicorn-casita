@@ -20,10 +20,15 @@ import CategorySelector from "../../library/admin/addProduct/CategorySelector";
 import AttributeSelector from "../../library/admin/addProduct/AttributeSelector";
 import SpecificationsTable from "../../library/admin/addProduct/SpecificationsTable";
 import EditProductSubmitButton from "../../library/admin/ActionButtons/EditProductSubmitButton";
+import OptionsStack from "../../library/admin/editProduct/OptionsStack";
+import AdminSingleProductSkeleton from "../../Utilities/Skeletons/AdminSingleProductSkeleton";
 
 const AdminSingleProductPage = () => {
   const productId = useParams().id;
-  const product = useGetSingleProduct(productId!, !!productId).data!;
+  const { data: product, status } = useGetSingleProduct(
+    productId!,
+    !!productId
+  );
 
   const productImages = useProductEntryStore((s) => s.product)?.imageLink;
   const resetEntry = useProductEntryStore((s) => s.resetEntry);
@@ -44,8 +49,9 @@ const AdminSingleProductPage = () => {
     resetState();
   };
 
+  if (status !== "success" || !product) return <AdminSingleProductSkeleton />;
   if (!product) <Navigate to="/admin/products" />;
-  if (product)
+  if (status === "success" && product)
     return (
       <VStack gap={8} w="100%">
         <HStack w="100%" justify="space-between">
@@ -54,7 +60,12 @@ const AdminSingleProductPage = () => {
             {editMode && <EditModeAlert />}
           </VStack>
 
-          {!editMode && <EnterEditButton onClick={toggleEditMode} />}
+          {!editMode && (
+            <EnterEditButton
+              onClick={toggleEditMode}
+              isDisabled={status !== "success"}
+            />
+          )}
           {editMode && (
             <HStack>
               <ResetButton reset={resetState} />
@@ -64,6 +75,7 @@ const AdminSingleProductPage = () => {
         </HStack>
         <VStack gap={6} w="100%">
           <ProductNameInput editMode={editMode} />
+          <OptionsStack editMode={editMode} />
           <DescriptionInput editMode={editMode} />
           <SimpleGrid columns={{ base: 1, md: 3 }} w="100%" spacing={12}>
             <ProductPriceInput editMode={editMode} />

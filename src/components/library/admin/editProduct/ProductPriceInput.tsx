@@ -5,16 +5,15 @@ const ProductPriceInput = ({ editMode }: { editMode: boolean }) => {
   const product = useProductEntryStore((s) => s.product);
   const setPrice = useProductEntryStore((s) => s.setMrp);
 
-  if (product)
-    return (
-      <LabelledInput
-        isDisabled={!editMode}
-        label="MRP"
-        value={product.mrp}
-        onNumberChange={setPrice}
-        type="number"
-      />
-    );
+  return (
+    <LabelledInput
+      isDisabled={!editMode}
+      label="MRP"
+      value={product?.mrp || parseInt("")}
+      onNumberChange={setPrice}
+      type="number"
+    />
+  );
 };
 
 export default ProductPriceInput;

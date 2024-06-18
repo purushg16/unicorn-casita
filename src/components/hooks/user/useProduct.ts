@@ -15,7 +15,11 @@ import useProductQueryStore from "../../store/user/productQueryStore";
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allUserProducts);
 const getSingleProduct = new APIClient<ProductResponse>(_singleUserProducts);
 
-const useGetAllProducts = (categoryId?: string) => {
+const useGetAllProducts = (
+  categoryId?: string,
+  bestSeller?: boolean,
+  wholesale?: boolean
+) => {
   const category = useProductQueryStore((s) => s.category);
   return useInfiniteQuery<
     SinglePropertyResponse<PaginatedResponse<Product>>,
@@ -28,6 +32,8 @@ const useGetAllProducts = (categoryId?: string) => {
           page: pageParam,
           itemPerPage: 10,
           categoryId: categoryId ? categoryId : category?._id,
+          bestSeller: bestSeller,
+          wholesale: wholesale,
         },
       }),
     initialPageParam: 1,

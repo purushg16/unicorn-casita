@@ -12,7 +12,7 @@ const ProductCard = ({
 }) => {
   return (
     <Link to={`/collections/${product._id}`}>
-      <Flex flexDir="column" gap={2} aspectRatio={big ? "9/16" : "5/4"}>
+      <Flex flexDir="column" gap={2} aspectRatio={big ? "9/16" : "2/3"}>
         <Box
           flex={1}
           borderRadius={10}

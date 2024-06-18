@@ -2,7 +2,7 @@ import { Box, Button, Icon, SimpleGrid, VStack } from "@chakra-ui/react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import ProductsSkeleton from "../../../../Utilities/Skeletons/ProductsSkeleton";
-import { RHeading } from "../../../../Utilities/Typography";
+import { RHeading, RText } from "../../../../Utilities/Typography";
 import ProductCard from "../../Product/ProductCard";
 import { useGetAllProducts } from "../../../../hooks/user/useProduct";
 
@@ -10,12 +10,18 @@ const TopPick = () => {
   const { data: products, status } = useGetAllProducts();
   return (
     <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">
-      <RHeading
-        text="✨💙  Top Pick  💙✨"
-        color="primary.700"
-        small
-        textTransform="uppercase"
-      />
+      <VStack>
+        <RText
+          text="Top selling accessories in the market"
+          color="primary.700"
+        />
+        <RHeading
+          text="✨ Best Selling ✨"
+          color="primary.700"
+          small
+          textTransform="uppercase"
+        />
+      </VStack>
       {status === "pending" && (
         <Box w={{ base: "90%", md: "80%" }}>
           <ProductsSkeleton />

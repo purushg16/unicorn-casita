@@ -13,6 +13,8 @@ export default interface Product {
   imageLink: string[];
   mrp: number;
   salesPrice: number;
+  wholesale: boolean;
+  bestSeller: boolean;
   stock: "in-stock" | "sold-out";
 }
 

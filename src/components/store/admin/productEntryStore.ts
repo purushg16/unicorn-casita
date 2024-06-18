@@ -23,6 +23,8 @@ interface ProductEntryAction {
   removeSpecifications: (id: string) => void;
   clearSpecs: () => void;
 
+  setWholesale: (wholesale: boolean) => void;
+  setBestSeller: (bestSeller: boolean) => void;
   setMrp: (mrp: number) => void;
   toggleStockAvaiability: () => void;
   setCategory: (category: string) => void;
@@ -45,6 +47,8 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       isAttribute: false,
       mrp: 0,
       stock: "in-stock",
+      wholesale: false,
+      bestSeller: false,
     },
     referenceProduct: {
       name: "",
@@ -58,7 +62,18 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
       isAttribute: false,
       mrp: 0,
       stock: "in-stock",
+      wholesale: false,
+      bestSeller: false,
     },
+
+    setBestSeller: (bestSeller) =>
+      set((store) => ({
+        product: { ...store.product!, bestSeller: bestSeller },
+      })),
+    setWholesale: (wholesale) =>
+      set((store) => ({
+        product: { ...store.product!, wholesale: wholesale },
+      })),
 
     setSpecifications: (id, key, value) =>
       set((store) => ({

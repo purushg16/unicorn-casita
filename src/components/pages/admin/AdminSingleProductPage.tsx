@@ -25,10 +25,11 @@ import AdminSingleProductSkeleton from "../../Utilities/Skeletons/AdminSinglePro
 
 const AdminSingleProductPage = () => {
   const productId = useParams().id;
-  const { data: product, status } = useGetSingleProduct(
-    productId!,
-    !!productId
-  );
+  const {
+    data: product,
+    status,
+    isFetching,
+  } = useGetSingleProduct(productId!, !!productId);
 
   const productImages = useProductEntryStore((s) => s.product)?.imageLink;
   const resetEntry = useProductEntryStore((s) => s.resetEntry);
@@ -49,9 +50,11 @@ const AdminSingleProductPage = () => {
     resetState();
   };
 
-  if (status !== "success" || !product) return <AdminSingleProductSkeleton />;
+  console.log(isFetching);
+  if (status !== "success" || isFetching || !product)
+    return <AdminSingleProductSkeleton />;
   if (!product) <Navigate to="/admin/products" />;
-  if (status === "success" && product)
+  if (status === "success" && !isFetching && product)
     return (
       <VStack gap={8} w="100%">
         <HStack w="100%" justify="space-between">

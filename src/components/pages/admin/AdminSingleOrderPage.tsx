@@ -8,10 +8,15 @@ import CustomerDetailsHug from "../../library/admin/SingleOrder/CustomerDetailsH
 import AdminSingleOrderSkeletonPage from "../../Utilities/Skeletons/AdminSingleOrderSkeletonPage";
 const AdminSingleOrderPage = () => {
   const orderId = useParams().orderId;
-  const { data: order, status } = useAdminGetSingleOrder(orderId!, !!orderId);
+  const {
+    data: order,
+    status,
+    isFetching,
+  } = useAdminGetSingleOrder(orderId!, !!orderId);
 
-  if (status === "pending") return <AdminSingleOrderSkeletonPage />;
-  if (status === "success")
+  if (status === "pending" || isFetching)
+    return <AdminSingleOrderSkeletonPage />;
+  if (status === "success" && !isFetching)
     return (
       <VStack gap={4} align="start">
         <VStack w="100%" align="start" gap={8}>

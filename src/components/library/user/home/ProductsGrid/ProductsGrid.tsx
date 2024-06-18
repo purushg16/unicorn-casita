@@ -32,7 +32,7 @@ const ProductsGrid = ({ category }: { category: Category }) => {
       >
         {status === "success" &&
           products.pages[0].data.docs
-            .slice(0, 5)
+            .slice(0, 6)
             .map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}

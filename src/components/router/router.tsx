@@ -21,6 +21,7 @@ import ContactPage from "../pages/user/ContactPage";
 import AboutPage from "../pages/user/AboutPage";
 import AdminSingleOrderPage from "../pages/admin/AdminSingleOrderPage";
 import WholesalePage from "../pages/user/WholesalePage";
+import BestSellingsPage from "../pages/user/BestSellingsPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "/wholesale", element: <WholesalePage /> },
+      { path: "/bestsellings", element: <BestSellingsPage /> },
       { path: "/categories", element: <CategoriesPage /> },
       { path: "/collections", element: <CollectionsPage /> },
       { path: "/collections/:id", element: <SingleProductPage /> },

@@ -52,6 +52,14 @@ const MobileMenu = () => {
                     small
                   />
                 </Link>
+                <Link to="/bestsellings" onClick={onClose}>
+                  <RHeading
+                    weight="semibold"
+                    text="Best Sellings"
+                    color="primary.800"
+                    small
+                  />
+                </Link>
                 <Link to="/categories" onClick={onClose}>
                   <RHeading
                     weight="semibold"
@@ -118,7 +126,7 @@ const MobileMenu = () => {
               >
                 <RText
                   small
-                  text="NEW ARRIVALS"
+                  text="BEST SELLINGS"
                   weight="semibold"
                   color="white"
                 />

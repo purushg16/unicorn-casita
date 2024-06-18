@@ -6,12 +6,18 @@ import { RHeading, RText } from "../../../../Utilities/Typography";
 import ProductCard from "../../Product/ProductCard";
 import { useGetAllProducts } from "../../../../hooks/user/useProduct";
 
-const BestSellings = () => {
+const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
   const { data: products, status } = useGetAllProducts(undefined, true);
 
   const navigate = useNavigate();
   return (
-    <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">
+    <VStack
+      gap={8}
+      px={{ base: 4, md: 8, lg: 16 }}
+      py={0}
+      w="100%"
+      mb={inPage ? 28 : 0}
+    >
       <VStack>
         <RText
           text="Top selling accessories in the market"
@@ -41,17 +47,19 @@ const BestSellings = () => {
           ))}
       </SimpleGrid>
 
-      <Button
-        variant="primary"
-        size="sm"
-        rightIcon={<Icon as={ArrowUpRight} />}
-        lineHeight={0}
-        onClick={() => {
-          navigate("collections");
-        }}
-      >
-        View All
-      </Button>
+      {!inPage && (
+        <Button
+          variant="primary"
+          size="sm"
+          rightIcon={<Icon as={ArrowUpRight} />}
+          lineHeight={0}
+          onClick={() => {
+            navigate("bestsellings");
+          }}
+        >
+          View All
+        </Button>
+      )}
     </VStack>
   );
 };

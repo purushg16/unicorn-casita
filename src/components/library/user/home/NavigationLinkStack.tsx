@@ -11,6 +11,9 @@ const NavigationLinkStack = () => {
       <Link to="/categories">
         <Label text="Categories" color="primary.800" />
       </Link>
+      <Link to="/bestsellings">
+        <Label text="Best Sellings" color="primary.800" />
+      </Link>
       <Link to="/wholesale">
         <Label text="Wholesale" color="primary.800" />
       </Link>

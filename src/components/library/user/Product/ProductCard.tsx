@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Tag, VStack } from "@chakra-ui/react";
 import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 import { Link } from "react-router-dom";
@@ -12,7 +12,17 @@ const ProductCard = ({
 }) => {
   return (
     <Link to={`/collections/${product._id}`}>
-      <Flex flexDir="column" gap={2} aspectRatio={big ? "9/16" : "2/3"}>
+      <Flex
+        flexDir="column"
+        gap={2}
+        aspectRatio={big ? "9/16" : "2/3"}
+        pos="relative"
+      >
+        {product.stock === "sold-out" && (
+          <Tag size="sm" pos="absolute" top={2} left={2} colorScheme="red">
+            Sold Out
+          </Tag>
+        )}
         <Box
           flex={1}
           borderRadius={10}

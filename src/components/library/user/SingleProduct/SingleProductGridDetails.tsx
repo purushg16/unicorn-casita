@@ -56,13 +56,15 @@ const SingleProductGridDetails = ({
         )}
 
         <HStack gap={4} align="end">
-          <NumofProductSelector
-            count={count}
-            isAttribute={product.isAttribute}
-            setCount={setCount}
-            attribute={attribute}
-            productId={product._id!}
-          />
+          {product.stock !== "sold-out" && (
+            <NumofProductSelector
+              count={count}
+              isAttribute={product.isAttribute}
+              setCount={setCount}
+              attribute={attribute}
+              productId={product._id!}
+            />
+          )}
           <AddtoCartButton
             imageLink={product.imageLink[0]}
             price={
@@ -77,6 +79,7 @@ const SingleProductGridDetails = ({
             count={count}
             attribute={attribute}
             isAttribute={product.isAttribute}
+            soldOut={product.stock === "sold-out"}
           />
         </HStack>
 

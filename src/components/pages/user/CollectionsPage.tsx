@@ -3,7 +3,6 @@ import { RHeading } from "../../Utilities/Typography";
 import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import { useGetAllProducts } from "../../hooks/user/useProduct";
 import ProductGrid from "../../library/user/Product/ProductGrid";
-import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useProductQueryStore from "../../store/user/productQueryStore";
 import UserProductsSkeleton from "../../Utilities/Skeletons/UserProductsSkeleton";
@@ -11,7 +10,11 @@ import CategoriesStack from "../../library/user/collections/CategoriesStack";
 import EmptyCollectionsDisplay from "../../library/user/collections/EmptyCollectionsDisplay";
 
 const CollectionsPage = () => {
-  const { data, status, hasNextPage, fetchNextPage } = useGetAllProducts();
+  const { data, status, hasNextPage, fetchNextPage } = useGetAllProducts(
+    undefined,
+    undefined,
+    false
+  );
   const category = useProductQueryStore((s) => s.category);
 
   const fetchedOrdersLength =
@@ -43,11 +46,7 @@ const CollectionsPage = () => {
               next={() => fetchNextPage()}
               loader={<Spinner />}
             >
-              {data.pages.map((page) => (
-                <React.Fragment>
-                  <ProductGrid products={page.data.docs} />
-                </React.Fragment>
-              ))}
+              <ProductGrid data={data} />
             </InfiniteScroll>
           </Box>
         )}

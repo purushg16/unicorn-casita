@@ -21,7 +21,7 @@ const UserNavbar = () => {
       gap={8}
       pos="sticky"
       top={0}
-      bg={scrollY > 0.01 ? "white" : "primary.100"}
+      bg={scrollY > 0.01 ? "white" : "#CDF0EA"}
       transition="all 0.7s"
       zIndex={1000}
       borderBottom="1px solid"
@@ -39,7 +39,7 @@ const UserNavbar = () => {
           </Show>
         </HStack>
       </Link>
-      <HStack gap={8}>
+      <HStack gap={4}>
         <CartButton />
         <Show below="md">
           <MobileMenu />

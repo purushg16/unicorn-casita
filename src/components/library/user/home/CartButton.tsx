@@ -12,7 +12,7 @@ const CartButton = () => {
       <Button
         size={{ base: "sm", md: "md" }}
         pos="relative"
-        variant="secondary"
+        variant="primary"
         leftIcon={
           <Icon
             cursor="pointer"
@@ -24,7 +24,7 @@ const CartButton = () => {
         {quantity > 0 && (
           <Badge
             pos="absolute"
-            colorScheme="green"
+            colorScheme="primary"
             right={-2}
             top={-2}
             p={1}

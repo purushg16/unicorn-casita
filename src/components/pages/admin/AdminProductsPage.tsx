@@ -15,7 +15,6 @@ import ProductsSkeleton from "../../Utilities/Skeletons/ProductsSkeleton";
 import { RHeading } from "../../Utilities/Typography";
 import { useGetAllProducts } from "../../hooks/admin/useProduct";
 import ProductsGrid from "../../library/admin/product/ProductsGrid";
-import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useProductEntryStore from "../../store/admin/productEntryStore";
 
@@ -47,33 +46,26 @@ const AdminProductsPage = () => {
         </Button>
       </HStack>
       <Divider my={4} />
-      {(status === "pending" || fetchStatus === "fetching") && (
-        <ProductsSkeleton />
-      )}
+      {status === "pending" && <ProductsSkeleton />}
       {status === "success" &&
         fetchStatus !== "fetching" &&
         data.pages[0].data.docs.length === 0 && (
           <NoDataDisplay img={img} title="Products" />
         )}
 
-      {status === "success" &&
-        fetchStatus === "idle" &&
-        data.pages[0].data.docs.length > 0 && (
-          <Box w="100%">
-            <InfiniteScroll
-              dataLength={fetchedOrdersLength}
-              hasMore={hasNextPage}
-              next={() => fetchNextPage()}
-              loader={<Spinner />}
-            >
-              {data.pages.map((page) => (
-                <React.Fragment>
-                  <ProductsGrid products={page.data.docs} />
-                </React.Fragment>
-              ))}
-            </InfiniteScroll>
-          </Box>
-        )}
+      {status === "success" && data.pages[0].data.docs.length > 0 && (
+        <Box w="100%">
+          <InfiniteScroll
+            height={600}
+            dataLength={fetchedOrdersLength}
+            hasMore={hasNextPage}
+            next={() => fetchNextPage()}
+            loader={<Spinner color="primary.900" size="sm" />}
+          >
+            <ProductsGrid data={data} />
+          </InfiniteScroll>
+        </Box>
+      )}
     </VStack>
   );
 };

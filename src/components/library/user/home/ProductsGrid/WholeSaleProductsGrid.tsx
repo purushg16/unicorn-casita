@@ -7,7 +7,7 @@ import ProductCard from "../../Product/ProductCard";
 import { useGetAllProducts } from "../../../../hooks/user/useProduct";
 
 const WholeSaleProductsGrid = () => {
-  const { data: products, status } = useGetAllProducts(undefined, true);
+  const { data: products, status } = useGetAllProducts(undefined, false, true);
   if (products?.pages[0].data.docs.length === 0) return null;
   return (
     <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">

@@ -22,6 +22,7 @@ const MobileMenu = () => {
   return (
     <>
       <IconButton
+        size="sm"
         aria-label="menu-btn"
         icon={<Icon as={MenuIcon} color="primary.50" />}
         onClick={onOpen}
@@ -59,10 +60,10 @@ const MobileMenu = () => {
                     small
                   />
                 </Link>
-                <Link to="/collections" onClick={onClose}>
+                <Link to="/wholesale" onClick={onClose}>
                   <RHeading
                     weight="semibold"
-                    text="New Arrivals"
+                    text="Wholesale"
                     color="primary.800"
                     small
                   />

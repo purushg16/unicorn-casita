@@ -4,7 +4,7 @@ import { RHeading } from "../../../Utilities/Typography";
 
 const WholeSaleLandingGrid = () => {
   return (
-    <VStack py={16} bg="primary.100" w="100%" gap={4}>
+    <VStack py={16} bg="#CDF0EA" w="100%" gap={4}>
       <HStack
         bg="white"
         border="1px solid"

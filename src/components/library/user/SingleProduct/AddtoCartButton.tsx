@@ -12,6 +12,7 @@ const AddtoCartButton = ({
   productName,
   imageLink,
   isAttribute,
+  soldOut,
 }: {
   productId: string;
   imageLink: string;
@@ -20,6 +21,7 @@ const AddtoCartButton = ({
   price: number;
   isAttribute: boolean;
   productName: string;
+  soldOut: boolean;
 }) => {
   const product = useUserCartStore((s) => s.products).find((p) =>
     isAttribute
@@ -46,11 +48,14 @@ const AddtoCartButton = ({
       <Button
         variant="primary"
         isDisabled={
-          (isAttribute && !attribute) || count <= 0 || Number.isNaN(count)
+          soldOut ||
+          (isAttribute && !attribute) ||
+          count <= 0 ||
+          Number.isNaN(count)
         }
         onClick={handleAdd}
       >
-        {product ? "Go to Cart" : "Add to Cart"}
+        {product ? "Go to Cart" : soldOut ? "Sold Out" : "Add to Cart"}
       </Button>
     </HStack>
   );

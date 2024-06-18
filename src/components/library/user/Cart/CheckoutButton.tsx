@@ -23,7 +23,9 @@ const CheckoutButton = () => {
       !state ||
       !pincode ||
       !contact ||
-      !email
+      !email ||
+      pincode.toString().length !== 6 ||
+      contact.toString().length !== 10
     )
       return true;
     return false;

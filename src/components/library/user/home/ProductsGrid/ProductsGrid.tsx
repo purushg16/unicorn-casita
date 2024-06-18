@@ -1,14 +1,22 @@
 import { Box, Button, Icon, SimpleGrid, VStack } from "@chakra-ui/react";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProductsSkeleton from "../../../../Utilities/Skeletons/ProductsSkeleton";
 import { RHeading } from "../../../../Utilities/Typography";
+import Category from "../../../../entities/category";
 import { useGetAllProducts } from "../../../../hooks/user/useProduct";
 import ProductCard from "../../Product/ProductCard";
-import Category from "../../../../entities/category";
+import useProductQueryStore from "../../../../store/user/productQueryStore";
 
 const ProductsGrid = ({ category }: { category: Category }) => {
-  const { data: products, status } = useGetAllProducts(category._id, false);
+  const navigate = useNavigate();
+  const setCategory = useProductQueryStore((s) => s.setCategory);
+
+  const { data: products, status } = useGetAllProducts(
+    category._id,
+    undefined,
+    false
+  );
 
   if (!category || products?.pages[0].data.docs.length === 0) return null;
   return (
@@ -38,16 +46,18 @@ const ProductsGrid = ({ category }: { category: Category }) => {
             ))}
       </SimpleGrid>
 
-      <Link to="collections">
-        <Button
-          variant="primary"
-          size="sm"
-          rightIcon={<Icon as={ArrowUpRight} />}
-          lineHeight={0}
-        >
-          View All
-        </Button>
-      </Link>
+      <Button
+        variant="primary"
+        size="sm"
+        rightIcon={<Icon as={ArrowUpRight} />}
+        lineHeight={0}
+        onClick={() => {
+          navigate("collections");
+          setCategory(category);
+        }}
+      >
+        View All
+      </Button>
     </VStack>
   );
 };

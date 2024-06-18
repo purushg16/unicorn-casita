@@ -50,6 +50,7 @@ const LabelledInput = ({
             : onTextChange && onTextChange(e.target.value)
         }
         value={value}
+        onWheel={(e) => e.currentTarget.blur()}
       />
     </FormControl>
   );

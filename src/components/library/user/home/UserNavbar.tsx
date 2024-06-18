@@ -5,8 +5,13 @@ import { RHeading } from "../../../Utilities/Typography";
 import MobileMenu from "../Mobilemenu/MobileMenu";
 import CartButton from "./CartButton";
 import NavigationLinkStack from "./NavigationLinkStack";
+import { useState } from "react";
+import { scroll } from "framer-motion";
 
 const UserNavbar = () => {
+  const [scrollY, setScrollY] = useState<number>(0);
+  scroll((e) => setScrollY(e));
+
   return (
     <Flex
       align="center"
@@ -16,10 +21,11 @@ const UserNavbar = () => {
       gap={8}
       pos="sticky"
       top={0}
-      bg="white"
+      bg={scrollY > 0.01 ? "white" : "primary.100"}
+      transition="all 0.7s"
       zIndex={1000}
       borderBottom="1px solid"
-      borderColor="gray.200"
+      borderColor="primary.200"
       justify="space-between"
     >
       <Link to="/">
@@ -28,12 +34,12 @@ const UserNavbar = () => {
           <Show above="md">
             <RHeading text="Unicorn Casita" small color="primary.800" />
           </Show>
+          <Show above="md">
+            <NavigationLinkStack />
+          </Show>
         </HStack>
       </Link>
       <HStack gap={8}>
-        <Show above="md">
-          <NavigationLinkStack />
-        </Show>
         <CartButton />
         <Show below="md">
           <MobileMenu />

@@ -1,5 +1,5 @@
 import { Button, Icon, Badge } from "@chakra-ui/react";
-import { ShoppingBasket } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import useUserCartStore from "../../../store/user/useCartStore";
 
@@ -13,11 +13,10 @@ const CartButton = () => {
         size={{ base: "sm", md: "md" }}
         pos="relative"
         variant="secondary"
-        rightIcon={
+        leftIcon={
           <Icon
             cursor="pointer"
-            strokeWidth={1}
-            as={ShoppingBasket}
+            as={ShoppingCart}
             onClick={() => navigate("/cart")}
           />
         }

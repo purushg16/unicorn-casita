@@ -15,19 +15,19 @@ import useProductQueryStore from "../../store/user/productQueryStore";
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allUserProducts);
 const getSingleProduct = new APIClient<ProductResponse>(_singleUserProducts);
 
-const useGetAllProducts = () => {
+const useGetAllProducts = (categoryId?: string) => {
   const category = useProductQueryStore((s) => s.category);
   return useInfiniteQuery<
     SinglePropertyResponse<PaginatedResponse<Product>>,
     Error
   >({
-    queryKey: [...CACHE_KEY_ALLPRODUCTS, category],
+    queryKey: [...CACHE_KEY_ALLPRODUCTS, category, categoryId],
     queryFn: ({ pageParam = 1 }) =>
       getProducts.getSingleItem({
         params: {
           page: pageParam,
           itemPerPage: 10,
-          categoryId: category?._id,
+          categoryId: categoryId ? categoryId : category?._id,
         },
       }),
     initialPageParam: 1,

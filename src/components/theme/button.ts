@@ -35,10 +35,10 @@ export default defineStyleConfig({
       color: "primary.700",
     },
     secondary: {
-      bg: "primary.100",
+      bg: "primary.200",
       color: "primary.700",
       _hover: {
-        bg: "primary.200",
+        bg: "primary.300",
       },
     },
     white: {

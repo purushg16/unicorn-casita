@@ -6,6 +6,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Icon,
+  IconButton,
   VStack,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -20,7 +21,13 @@ const MobileMenu = () => {
 
   return (
     <>
-      <Icon as={MenuIcon} onClick={onOpen} ref={btnRef} boxSize={6} />
+      <IconButton
+        aria-label="menu-btn"
+        icon={<Icon as={MenuIcon} color="primary.50" />}
+        onClick={onOpen}
+        ref={btnRef}
+        variant="primary"
+      />
       <Drawer
         size="full"
         isOpen={isOpen}

@@ -1,12 +1,18 @@
 import { Box, Flex, HStack, VStack } from "@chakra-ui/react";
-import { RHeading, RText } from "../../../Utilities/Typography";
+import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({
+  product,
+  big = false,
+}: {
+  product: Product;
+  big?: boolean;
+}) => {
   return (
-    <Link to={`${product._id}`}>
-      <Flex flexDir="column" gap={2} aspectRatio="5/4">
+    <Link to={`/collections/${product._id}`}>
+      <Flex flexDir="column" gap={2} aspectRatio={big ? "9/16" : "5/4"}>
         <Box
           flex={1}
           borderRadius={10}
@@ -26,20 +32,15 @@ const ProductCard = ({ product }: { product: Product }) => {
         />
         <Flex minH={30} w="100%" justify="space-between">
           <VStack align="start" gap={1}>
-            <RHeading
-              small
-              text={product.name}
-              color="primary.800"
-              weight="bold"
-            />
+            <RText text={product.name} color="primary.800" weight="bold" />
             <HStack align="baseline">
               {product.isAttribute ? (
                 <RText text="Starts from" color="primary.800" small />
               ) : (
-                <Box textDecor="line-through" textDecorationColor="gray">
+                <Box textDecor="line-through" textDecorationColor="#C4E4FF">
                   <RText
-                    text={"Rs." + product.mrp.toString()}
-                    color="gray"
+                    text={"Rs." + product.mrp.toFixed(2)}
+                    color="#C4E4FF"
                     small
                   />
                 </Box>

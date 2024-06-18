@@ -11,15 +11,27 @@ interface Props {
   textTransform?: CSS.Property.TextTransform;
 }
 
-const RHeading = ({ text, big = false, small, color, weight }: Props) => {
+const RHeading = ({
+  text,
+  big = false,
+  small,
+  color,
+  weight,
+  textTransform,
+}: Props) => {
   const fontSize = big
-    ? { base: "2xl", sm: "3xl", md: "5xl", lg: "6xl" }
+    ? { base: "2xl", sm: "3xl", md: "5xl", lg: "5xl" }
     : small
     ? { base: "md", sm: "lg", md: "xl", lg: "2xl" }
     : { base: "lg", sm: "2xl", md: "3xl", lg: "4xl" };
 
   return (
-    <Heading fontSize={fontSize} color={color} fontWeight={weight}>
+    <Heading
+      fontSize={fontSize}
+      color={color}
+      fontWeight={weight}
+      textTransform={textTransform}
+    >
       {text}
     </Heading>
   );

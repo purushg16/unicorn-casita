@@ -1,8 +1,11 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import Product from "../../../../entities/product";
 import ProductCard from "../../Product/ProductCard";
+import { RHeading } from "../../../../Utilities/Typography";
 
 const SearchedProductsGrid = ({ products }: { products: Product[] }) => {
+  if (products.length === 0)
+    return <RHeading small text="No Products found!" />;
   if (products.length > 0)
     return (
       <Box

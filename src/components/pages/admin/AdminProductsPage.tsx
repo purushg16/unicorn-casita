@@ -30,7 +30,7 @@ const AdminProductsPage = () => {
 
   return (
     <VStack align="start">
-      <HStack w="100%" justify="space-between">
+      <HStack w="100%" justify="space-between" flexWrap="wrap">
         <RHeading text="Your Products" color="primary.700" small />
 
         <HStack gap={4} w="max-content">

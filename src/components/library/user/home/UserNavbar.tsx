@@ -48,8 +48,8 @@ const UserNavbar = () => {
           </Show>
           <Link to="/">
             <HStack align="baseline" gap={0}>
-              <Heading fontSize={{ base: "2xl", md: "3xl" }}>Unicorn</Heading>
-              <Heading color="#E19FB4" fontSize={{ base: "2xl", md: "3xl" }}>
+              <Heading fontSize={{ base: "xl", md: "3xl" }}>Unicorn</Heading>
+              <Heading color="#E19FB4" fontSize={{ base: "xl", md: "3xl" }}>
                 Casita
               </Heading>
               <Heading

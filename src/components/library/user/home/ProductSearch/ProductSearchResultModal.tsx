@@ -23,13 +23,21 @@ const ProductSearchResultModal = ({ isOpen }: { isOpen: boolean }) => {
           />
         </VStack>
 
-        {(status === "pending" || fetchStatus === "fetching") && (
+        {q && (status === "pending" || fetchStatus === "fetching") && (
           <ProductsLoadingIndicator />
         )}
 
         {status === "success" && fetchStatus === "idle" && (
-          <VStack w="100%" align="start" gap={4} mt={4}>
-            <Text fontWeight="semibold"> Search Results </Text>
+          <VStack
+            w="100%"
+            align={data.length === 0 ? "center" : "start"}
+            gap={4}
+            mt={4}
+          >
+            <Text fontWeight="semibold" alignSelf="start">
+              {" "}
+              Search Results{" "}
+            </Text>
             <SearchedProductsGrid products={data} />
           </VStack>
         )}

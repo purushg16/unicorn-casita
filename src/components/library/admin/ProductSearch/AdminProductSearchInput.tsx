@@ -9,7 +9,7 @@ const AdminProductSearchInput = () => {
   const { data, status, fetchStatus } = useAmdinSearchProduct(value);
 
   return (
-    <VStack pos="relative" w={{ base: 200, md: 300 }}>
+    <VStack pos="relative" w={300}>
       <Input
         value={value}
         onChange={(e) => setValue(e.target.value)}

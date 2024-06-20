@@ -3,19 +3,14 @@ import { RText } from "../../../Utilities/Typography";
 import Product from "../../../entities/product";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({
-  product,
-  big = false,
-}: {
-  product: Product;
-  big?: boolean;
-}) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link to={`/collections/${product._id}`}>
       <Flex
         flexDir="column"
-        gap={2}
-        aspectRatio={big ? "9/16" : "2/3"}
+        gap={4}
+        w="100%"
+        aspectRatio={{ base: "1/1", md: "6/7" }}
         pos="relative"
       >
         {product.stock === "sold-out" && (
@@ -25,7 +20,6 @@ const ProductCard = ({
         )}
         <Box
           flex={1}
-          borderRadius={10}
           border="1px solid"
           borderColor="primary.100"
           bgImg={product.imageLink[0]}
@@ -42,15 +36,16 @@ const ProductCard = ({
         />
         <Flex minH={30} w="100%" justify="space-between">
           <VStack align="start" gap={1}>
-            <RText text={product.name} color="primary.800" weight="bold" />
+            <RText text={product.name} color="gray.700" weight="semibold" />
             <HStack align="baseline">
               {product.isAttribute ? (
                 <RText text="Starts from" color="primary.800" small />
               ) : (
-                <Box textDecor="line-through" textDecorationColor="#C4E4FF">
+                <Box textDecor="line-through" textDecorationColor="skyblue">
                   <RText
+                    weight="bold"
                     text={"Rs." + product.mrp.toFixed(2)}
-                    color="#C4E4FF"
+                    color="skyblue"
                     small
                   />
                 </Box>
@@ -61,7 +56,7 @@ const ProductCard = ({
                     ? product.attributes[0].salesPrice.toFixed(2)
                     : product.salesPrice.toFixed(2)
                 }`}
-                color="primary.800"
+                color="red"
                 weight="semibold"
               />
             </HStack>

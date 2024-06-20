@@ -1,41 +1,32 @@
-import { Button, Icon, Badge } from "@chakra-ui/react";
-import { ShoppingCart } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Icon, Box } from "@chakra-ui/react";
+import { ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 import useUserCartStore from "../../../store/user/useCartStore";
 
 const CartButton = () => {
-  const navigate = useNavigate();
   const quantity = useUserCartStore((s) => s.products).length;
 
   return (
-    <Link to="/cart">
-      <Button
-        size={{ base: "sm", md: "md" }}
-        pos="relative"
-        variant="primary"
-        leftIcon={
-          <Icon
-            cursor="pointer"
-            as={ShoppingCart}
-            onClick={() => navigate("/cart")}
-          />
-        }
-      >
-        {quantity > 0 && (
-          <Badge
-            pos="absolute"
-            colorScheme="primary"
-            right={-2}
-            top={-2}
-            p={1}
-            px={2}
-            borderRadius="xl"
-          >
-            {quantity}
-          </Badge>
-        )}
-        Cart
-      </Button>
+    <Link to="/cart" style={{ position: "relative" }}>
+      <Icon
+        cursor="pointer"
+        as={ShoppingBag}
+        boxSize={5}
+        strokeWidth={2}
+        color="primary.700"
+      />
+      {quantity > 0 && (
+        <Box
+          id="cart-notification"
+          w={3}
+          h={3}
+          bg="green.400"
+          pos="absolute"
+          top={-1}
+          right={-1}
+          borderRadius="full"
+        />
+      )}
     </Link>
   );
 };

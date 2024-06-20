@@ -16,6 +16,10 @@
   font-family: "Archivo", sans-serif !important;
 }
 
+*:not(#cart-notification) {
+  border-radius: 0px !important;
+}
+
 body {
   font-family: "Archivo", sans-serif !important;
 

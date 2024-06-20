@@ -39,11 +39,12 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4 }}
         spacing={{ base: 4, md: 8 }}
+        spacingY={8}
         w="90%"
       >
         {status === "success" &&
           products.pages[0].data.docs.map((product) => (
-            <ProductCard key={product._id} product={product} big />
+            <ProductCard key={product._id} product={product} />
           ))}
       </SimpleGrid>
 

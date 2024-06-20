@@ -11,7 +11,7 @@ const UserHomeLayout = () => {
       <UserNavbar />
       <Flex
         flexDir="column"
-        gap={{ base: 12, md: 12, lg: 20 }}
+        gap={0}
         mt={
           pathname === "/" ||
           pathname === "/wholesale" ||

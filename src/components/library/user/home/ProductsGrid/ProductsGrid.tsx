@@ -20,7 +20,7 @@ const ProductsGrid = ({ category }: { category: Category }) => {
 
   if (!category || products?.pages[0].data.docs.length === 0) return null;
   return (
-    <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">
+    <VStack gap={8} py={0} w="100%">
       <RHeading
         text={category.name}
         color="primary.700"
@@ -35,7 +35,8 @@ const ProductsGrid = ({ category }: { category: Category }) => {
 
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4 }}
-        spacing={{ base: 4, md: 8 }}
+        spacingX={{ base: 4, md: 8 }}
+        spacingY={12}
         w="90%"
       >
         {status === "success" &&

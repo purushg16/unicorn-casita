@@ -24,15 +24,18 @@ const MobileMenu = () => {
       <IconButton
         size="sm"
         aria-label="menu-btn"
-        icon={<Icon as={MenuIcon} color="primary.50" />}
+        icon={<Icon as={MenuIcon} boxSize={5} color="primary.800" />}
         onClick={onOpen}
         ref={btnRef}
-        variant="primary"
+        bg="white"
+        _hover={{ bg: "white" }}
+        _focus={{ bg: "white" }}
+        _active={{ bg: "white" }}
       />
       <Drawer
         size="full"
         isOpen={isOpen}
-        placement="right"
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >

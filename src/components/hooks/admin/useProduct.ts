@@ -16,10 +16,12 @@ import {
   _allProducts,
   _deleteProduct,
   _editProduct,
+  _searchAdminProducts,
   _singleProduct,
 } from "../../services/endpoints";
 import {
   CACHE_KEY_ALLPRODUCTS,
+  CACHE_KEY_SEARCHPRODUCT,
   CACHE_KEY_SINGLEPRODUCT,
 } from "../../constants/cache_keys";
 import { SuccessResponse, ErrorResponse } from "../../entities/response";
@@ -30,6 +32,7 @@ const editProduct = new APIClient<EditProduct>(_editProduct);
 const delProduct = new APIClient<DeleteProduct>(_deleteProduct);
 const getSingleProduct = new APIClient<ProductResponse>(_singleProduct);
 const getProducts = new APIClient<PaginatedResponse<Product>>(_allProducts);
+const getSearchProduct = new APIClient<Product>(_searchAdminProducts);
 
 const useGetAllProducts = () => {
   return useInfiniteQuery<
@@ -125,10 +128,19 @@ const useDeleteProduct = (callback: () => void) => {
   });
 };
 
+const useAmdinSearchProduct = (q?: string) =>
+  useQuery({
+    queryKey: [...CACHE_KEY_SEARCHPRODUCT, q],
+    queryFn: () =>
+      getSearchProduct.getRequest({ params: { q: q } }).then((r) => r.data),
+    enabled: !!q,
+  });
+
 export {
   useAddProduct,
   useDeleteProduct,
   useEditProduct,
   useGetAllProducts,
   useGetSingleProduct,
+  useAmdinSearchProduct,
 };

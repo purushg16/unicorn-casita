@@ -17,6 +17,7 @@ import { useGetAllProducts } from "../../hooks/admin/useProduct";
 import ProductsGrid from "../../library/admin/product/ProductsGrid";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useProductEntryStore from "../../store/admin/productEntryStore";
+import AdminProductSearchInput from "../../library/admin/ProductSearch/AdminProductSearchInput";
 
 const AdminProductsPage = () => {
   const navigate = useNavigate();
@@ -31,19 +32,23 @@ const AdminProductsPage = () => {
     <VStack align="start">
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Products" color="primary.700" small />
-        <Button
-          zIndex={999}
-          id="new-product-btn"
-          onClick={() => {
-            clear();
-            navigate("new");
-          }}
-          size="sm"
-          variant="primary"
-          leftIcon={<Icon as={BadgePlus} />}
-        >
-          New Product
-        </Button>
+
+        <HStack gap={4} w="max-content">
+          <AdminProductSearchInput />
+          <Button
+            zIndex={999}
+            id="new-product-btn"
+            onClick={() => {
+              clear();
+              navigate("new");
+            }}
+            size="sm"
+            variant="primary"
+            leftIcon={<Icon as={BadgePlus} />}
+          >
+            New Product
+          </Button>
+        </HStack>
       </HStack>
       <Divider my={4} />
       {status === "pending" && <ProductsSkeleton />}

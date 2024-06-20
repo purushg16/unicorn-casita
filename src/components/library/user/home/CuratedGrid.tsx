@@ -10,7 +10,7 @@ const CuratedGrid = () => {
   const { data: categories, status } = useGetAllCategories();
 
   return (
-    <VStack gap={12} px={{ base: 4, md: 8, lg: 16 }} py={0}>
+    <VStack gap={12} px={{ base: 4, md: 8, lg: 16 }} py={0} mt={20}>
       <VStack gap={0}>
         <RHeading text="Curated Picks" color="primary.700" />
         <RText

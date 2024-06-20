@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 
 const MarketBanner = () => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} px={{ base: 4, md: 8, lg: 16 }}>
+    <SimpleGrid
+      columns={{ base: 1, md: 2 }}
+      px={{ base: 4, md: 8, lg: 16 }}
+      mt={20}
+    >
       <Box
         w="100%"
         h="100%"

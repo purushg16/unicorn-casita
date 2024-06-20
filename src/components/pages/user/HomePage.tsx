@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <>
       <LandingGrid />
-      <VStack gap={24} w="100%">
+      <VStack gap={{ base: 16, md: 24 }} w="100%">
         <BestSellings />
         {catStatus === "success" &&
           categories.length > 0 &&

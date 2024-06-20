@@ -33,9 +33,9 @@ const MarketBanner = () => {
         borderTopRightRadius={{ base: 0, md: 10 }}
       >
         <VStack align="start" justify="center" w="80%" h="100%">
-          <RText color="primary.700" small text="Ourselves," />
-          <RHeading text="We offer high quality products & services on every single products" />
-          <Link to="collections">
+          <RText color="primary.700" small text="WHOLESALE IS LIVE!" />
+          <RHeading big text="Want to buy in wholesale?" />
+          <Link to="wholesale">
             <Button
               mt={4}
               variant="primary"
@@ -44,7 +44,7 @@ const MarketBanner = () => {
               gap={8}
               size={{ base: "sm", md: "md" }}
             >
-              Never miss
+              Click Here!
             </Button>
           </Link>
         </VStack>

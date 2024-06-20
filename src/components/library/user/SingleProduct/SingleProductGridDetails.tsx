@@ -1,13 +1,14 @@
-import { SimpleGrid, VStack, HStack, Box } from "@chakra-ui/react";
+import { SimpleGrid, VStack, Box, FormLabel } from "@chakra-ui/react";
 import AddtoCartButton from "./AddtoCartButton";
 import AttributeSelector from "./AttributeSelector";
 import ColorSelector from "./ColorSelector";
 import NumofProductSelector from "./NumofProductSelector";
 import ProductHeader from "./ProductHeader";
-import EmblaCarousel from "../Embla/ProductSlider/Slider";
 import { ProductAttribute, ProductResponse } from "../../../entities/product";
 import { useState } from "react";
 import SpecificationsTable from "./SpecificationsTable";
+import EmblaCarousel from "../Embla/ProductSlider/Slider";
+import { RText } from "../../../Utilities/Typography";
 
 const SingleProductGridDetails = ({
   product,
@@ -18,13 +19,21 @@ const SingleProductGridDetails = ({
   const [attribute, setAttribute] = useState<ProductAttribute>();
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
-      <Box pos="relative">
+    <SimpleGrid
+      columns={{ base: 1, md: 1, lg: 2 }}
+      spacing={8}
+      mt={{ base: 0, md: 4 }}
+    >
+      <Box pos="relative" px={{ base: 0, md: 0, lg: 4 }}>
         <Box pos="sticky" top={0}>
-          <EmblaCarousel slides={product.imageLink} options={{}} />
+          <EmblaCarousel slides={product.imageLink} />
         </Box>
       </Box>
-      <VStack gap={8} align="start">
+      <VStack
+        gap={8}
+        align={{ base: "center", md: "center", lg: "start" }}
+        px={{ base: 4, md: 8 }}
+      >
         <ProductHeader product={product} attribute={attribute} />
 
         {product.attributes.length > 0 && (
@@ -55,7 +64,7 @@ const SingleProductGridDetails = ({
           </SimpleGrid>
         )}
 
-        <HStack gap={4} align="end">
+        <VStack w="100%" gap={4} align="start" flexWrap="wrap">
           {product.stock !== "sold-out" && (
             <NumofProductSelector
               count={count}
@@ -81,9 +90,15 @@ const SingleProductGridDetails = ({
             isAttribute={product.isAttribute}
             soldOut={product.stock === "sold-out"}
           />
-        </HStack>
+        </VStack>
+        <VStack w="100%" align="start">
+          <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+            Product Description
+          </FormLabel>
+          <RText text={product.description} color="primary.800" />
 
-        <SpecificationsTable specifications={product.specifications} />
+          <SpecificationsTable specifications={product.specifications} />
+        </VStack>
       </VStack>
     </SimpleGrid>
   );

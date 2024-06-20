@@ -1,8 +1,14 @@
-import { ButtonGroup, Icon, IconButton, Input, VStack } from "@chakra-ui/react";
+import {
+  ButtonGroup,
+  FormLabel,
+  Icon,
+  IconButton,
+  Input,
+  VStack,
+} from "@chakra-ui/react";
 import { Minus, Plus } from "lucide-react";
-import { Label } from "../../../Utilities/Typography";
-import useUserCartStore from "../../../store/user/useCartStore";
 import { ProductAttribute } from "../../../entities/product";
+import useUserCartStore from "../../../store/user/useCartStore";
 
 const NumofProductSelector = ({
   productId,
@@ -25,7 +31,10 @@ const NumofProductSelector = ({
 
   return (
     <VStack align="start" gap={4}>
-      <Label text="Quanity" color="primary.700" />
+      <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+        Quantity
+      </FormLabel>
+
       <ButtonGroup
         variant="outline"
         borderRadius={10}

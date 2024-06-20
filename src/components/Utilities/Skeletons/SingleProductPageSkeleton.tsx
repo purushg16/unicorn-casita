@@ -1,37 +1,8 @@
-import {
-  Divider,
-  HStack,
-  SimpleGrid,
-  Skeleton,
-  VStack,
-} from "@chakra-ui/react";
+import { Divider, SimpleGrid, Skeleton, VStack } from "@chakra-ui/react";
 
 const SingleProductPageSkeleton = () => {
   return (
-    <VStack align="start" gap={8}>
-      <HStack>
-        <Skeleton
-          w={20}
-          h={4}
-          startColor="primary.100"
-          endColor="primary.200"
-          borderRadius="xl"
-        />
-        <Skeleton
-          w={20}
-          h={4}
-          startColor="primary.100"
-          endColor="primary.200"
-          borderRadius="xl"
-        />
-        <Skeleton
-          w={20}
-          h={4}
-          startColor="primary.100"
-          endColor="primary.200"
-          borderRadius="xl"
-        />
-      </HStack>
+    <VStack align="start" gap={8} px={{ base: 4, md: 8, lg: 16 }}>
       <SimpleGrid
         columns={{ base: 1, md: 1, lg: 2 }}
         spacing={8}

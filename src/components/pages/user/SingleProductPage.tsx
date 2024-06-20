@@ -1,25 +1,25 @@
 import { Flex } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useGetSingleProduct } from "../../hooks/user/useProduct";
-import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import SingleProductGridDetails from "../../library/user/SingleProduct/SingleProductGridDetails";
 import SingleProductPageSkeleton from "../../Utilities/Skeletons/SingleProductPageSkeleton";
 
 const SingleProductPage = () => {
   const productId = useParams().id;
-  const { data: product, status } = useGetSingleProduct(
-    productId!,
-    !!productId
-  );
+  const {
+    data: product,
+    status,
+    fetchStatus,
+  } = useGetSingleProduct(productId!, !!productId);
 
   return (
-    <Flex gap={8} flexDir="column" px={{ base: 4, md: 8, lg: 16 }}>
-      {product && (
-        <BreadCrumbsTile crumbs={["home", "collections", product.name]} />
+    <Flex gap={8} flexDir="column">
+      {(status === "pending" || fetchStatus === "fetching") && (
+        <SingleProductPageSkeleton />
       )}
-
-      {status === "pending" && <SingleProductPageSkeleton />}
-      {status === "success" && <SingleProductGridDetails product={product} />}
+      {status === "success" && fetchStatus === "idle" && (
+        <SingleProductGridDetails product={product} />
+      )}
 
       {/* <VStack gap={8} align="start" my={16}>
         <RHeading small text="Related Products" />

@@ -1,12 +1,19 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { HStack, Icon, Text, VStack } from "@chakra-ui/react";
 import AnimateMove from "../../../../motions/Move";
 import LabelledInput from "../../../../Utilities/LabelledInput";
 import { useState } from "react";
 import { useSearchProduct } from "../../../../hooks/user/useProduct";
 import SearchedProductsGrid from "./SearchedProducts";
 import ProductsLoadingIndicator from "./ProductsLoadingIndicator";
+import { X } from "lucide-react";
 
-const ProductSearchResultModal = ({ isOpen }: { isOpen: boolean }) => {
+const ProductSearchResultModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
   const [q, setQ] = useState<string>("");
 
   const { data, status, fetchStatus } = useSearchProduct(q);
@@ -15,12 +22,16 @@ const ProductSearchResultModal = ({ isOpen }: { isOpen: boolean }) => {
     return (
       <AnimateMove fullWidth>
         <VStack w="100%" py={4}>
-          <LabelledInput
-            label="Search"
-            placeholder="Search..."
-            value={q}
-            onTextChange={setQ}
-          />
+          <HStack w="100%" align="center">
+            <LabelledInput
+              hideLabel
+              label="Search"
+              placeholder="Search..."
+              value={q}
+              onTextChange={setQ}
+            />
+            <Icon as={X} boxSize={5} lineHeight={0} onClick={onClose} />
+          </HStack>
         </VStack>
 
         {q && (status === "pending" || fetchStatus === "fetching") && (

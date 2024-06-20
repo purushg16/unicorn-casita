@@ -1,5 +1,4 @@
-import { VStack, HStack, IconButton, Icon } from "@chakra-ui/react";
-import { Label } from "../../../Utilities/Typography";
+import { VStack, HStack, IconButton, Icon, FormLabel } from "@chakra-ui/react";
 import { Check } from "lucide-react";
 import { ProductAttribute } from "../../../entities/product";
 
@@ -14,7 +13,9 @@ const ColorSelector = ({
 }) => {
   return (
     <VStack gap={4} align="start">
-      <Label text="Available Colors" color="primary.700" />
+      <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+        Available Colors
+      </FormLabel>
       <HStack>
         {attributes.map((color) => (
           <IconButton

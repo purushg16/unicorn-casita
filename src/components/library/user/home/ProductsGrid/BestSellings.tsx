@@ -13,7 +13,7 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
   return (
     <VStack
       gap={8}
-      px={{ base: 4, md: 8 }}
+      px={{ base: 2, md: 4, lg: 8 }}
       py={0}
       w="100%"
       mb={inPage ? 28 : 0}
@@ -30,8 +30,8 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
 
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4 }}
-        spacing={{ base: 4, md: 4 }}
-        spacingY={8}
+        spacing={2}
+        spacingY={4}
         w="100%"
       >
         {status === "success" &&

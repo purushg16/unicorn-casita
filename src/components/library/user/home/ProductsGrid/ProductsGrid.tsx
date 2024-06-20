@@ -2,7 +2,7 @@ import { Box, Button, Icon, SimpleGrid, VStack } from "@chakra-ui/react";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ProductsSkeleton from "../../../../Utilities/Skeletons/ProductsSkeleton";
-import { RHeading } from "../../../../Utilities/Typography";
+import { RHeading, RText } from "../../../../Utilities/Typography";
 import Category from "../../../../entities/category";
 import { useGetAllProducts } from "../../../../hooks/user/useProduct";
 import ProductCard from "../../Product/ProductCard";
@@ -20,8 +20,13 @@ const ProductsGrid = ({ category }: { category: Category }) => {
 
   if (!category || products?.pages[0].data.docs.length === 0) return null;
   return (
-    <VStack gap={8} px={{ base: 4, md: 8 }} w="100%">
-      <RHeading text={category.name} small textTransform="uppercase" />
+    <VStack gap={8} px={{ base: 2, md: 4, lg: 8 }} w="100%">
+      <VStack>
+        {category.pickup && (
+          <RText text={category.pickup} textTransform="uppercase" />
+        )}
+        <RHeading text={category.name} small textTransform="uppercase" />
+      </VStack>
       {status === "pending" && (
         <Box w={{ base: "90%", md: "80%" }}>
           <ProductsSkeleton />
@@ -30,8 +35,8 @@ const ProductsGrid = ({ category }: { category: Category }) => {
 
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4 }}
-        spacingX={4}
-        spacingY={8}
+        spacingX={1}
+        spacingY={4}
         w="100%"
       >
         {status === "success" &&

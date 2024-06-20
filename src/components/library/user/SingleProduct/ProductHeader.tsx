@@ -1,6 +1,7 @@
-import { Box, VStack } from "@chakra-ui/react";
-import { Label, RHeading, RText } from "../../../Utilities/Typography";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
+import { Label, RHeading } from "../../../Utilities/Typography";
 import { ProductAttribute, ProductResponse } from "../../../entities/product";
+import { Link } from "react-router-dom";
 
 const ProductHeader = ({
   product,
@@ -12,7 +13,7 @@ const ProductHeader = ({
   return (
     <VStack
       w="100%"
-      align="start"
+      align={{ base: "center", md: "center", lg: "start" }}
       gap={2}
       pb={4}
       borderBottom="1px solid"
@@ -24,24 +25,46 @@ const ProductHeader = ({
         color="primary.800"
         textTransform="uppercase"
       />
-      <RHeading text={product.name} color="primary.800" />
       <RHeading
-        weight="semibold"
-        small
-        text={
-          "Rs." +
-          (!product.isAttribute
-            ? product.salesPrice.toFixed(2)
-            : attribute
-            ? product.attributes
-                .find((a) => a._id! === attribute._id!)
-                ?.salesPrice.toFixed(2)
-            : product.attributes[0].salesPrice.toFixed(2))
-        }
+        big
+        textTransform="uppercase"
+        text={product.name}
         color="primary.800"
       />
+      <HStack>
+        <Text
+          children={`Rs. ${product.mrp.toFixed(2)}`}
+          color="skyblue"
+          textDecor="line-through"
+        />
+        <RHeading
+          weight="semibold"
+          small
+          text={
+            "Rs." +
+            (!product.isAttribute
+              ? product.salesPrice.toFixed(2)
+              : attribute
+              ? product.attributes
+                  .find((a) => a._id! === attribute._id!)
+                  ?.salesPrice.toFixed(2)
+              : product.attributes[0].salesPrice.toFixed(2))
+          }
+          color="primary.800"
+        />
+      </HStack>
+      <Text fontSize={{ base: "xs", md: "sm" }}>
+        Tax included.{" "}
+        <Link
+          to="/shippinganddeliverypolicy"
+          style={{ textDecoration: "underline" }}
+        >
+          Shipping{" "}
+        </Link>
+        calculated at checkout.
+      </Text>
+
       <Box mt={4} />
-      <RText text={product.description} color="primary.800" />
     </VStack>
   );
 };

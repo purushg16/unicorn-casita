@@ -6,6 +6,8 @@ import Footer from "../library/user/Footer";
 // import LandingGrid from "../library/user/home/LandingGrid";
 const UserHomeLayout = () => {
   const pathname = useLocation().pathname;
+
+  const splittedPath = pathname.split("/");
   return (
     <Flex flexDir="column" gap={0}>
       <UserNavbar />
@@ -15,7 +17,8 @@ const UserHomeLayout = () => {
         mt={
           pathname === "/" ||
           pathname === "/wholesale" ||
-          pathname === "/bestsellings"
+          pathname === "/bestsellings" ||
+          (splittedPath.length === 3 && splittedPath[1] === "collections")
             ? 0
             : 12
         }

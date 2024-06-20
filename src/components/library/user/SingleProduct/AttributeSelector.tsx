@@ -1,5 +1,4 @@
-import { Button, HStack, VStack } from "@chakra-ui/react";
-import { Label } from "../../../Utilities/Typography";
+import { Button, FormLabel, HStack, VStack } from "@chakra-ui/react";
 import { ProductAttribute } from "../../../entities/product";
 
 const AttributeSelector = ({
@@ -15,11 +14,10 @@ const AttributeSelector = ({
 }) => {
   return (
     <VStack gap={4} align="start">
-      <Label
-        text={"Available " + attributeName + "s"}
-        textTransform="capitalize"
-        color="primary.700"
-      />
+      <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+        {"Available " + attributeName + "s"}
+      </FormLabel>
+
       <HStack>
         {attributes.map((attr) => (
           <Button

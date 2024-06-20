@@ -1,4 +1,4 @@
-import { Button, HStack, useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import useUserCartStore from "../../../store/user/useCartStore";
 import Toaster from "../../../functions/toaster";
 import { useNavigate } from "react-router-dom";
@@ -44,20 +44,19 @@ const AddtoCartButton = ({
   };
 
   return (
-    <HStack>
-      <Button
-        variant="primary"
-        isDisabled={
-          soldOut ||
-          (isAttribute && !attribute) ||
-          count <= 0 ||
-          Number.isNaN(count)
-        }
-        onClick={handleAdd}
-      >
-        {product ? "Go to Cart" : soldOut ? "Sold Out" : "Add to Cart"}
-      </Button>
-    </HStack>
+    <Button
+      w="100%"
+      variant="primary"
+      isDisabled={
+        soldOut ||
+        (isAttribute && !attribute) ||
+        count <= 0 ||
+        Number.isNaN(count)
+      }
+      onClick={handleAdd}
+    >
+      {product ? "Go to Cart" : soldOut ? "Sold Out" : "Add to Cart"}
+    </Button>
   );
 };
 

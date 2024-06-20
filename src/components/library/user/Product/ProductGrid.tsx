@@ -12,7 +12,7 @@ const ProductGrid = ({
   data: InfiniteData<SinglePropertyResponse<PaginatedResponse<Product>>>;
 }) => {
   return (
-    <SimpleGrid columns={{ base: 2, md: 2, lg: 4 }} spacingX={4} spacingY={8}>
+    <SimpleGrid columns={{ base: 2, md: 2, lg: 4 }} spacingX={1} spacingY={4}>
       {data.pages.map((page, i) => (
         <React.Fragment key={i}>
           {page.data.docs.map((product) => (

@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import ProductSearchResultModal from "./ProductSearch/ProductSearchResultModal";
 
 const UserNavbar = () => {
-  const [isOpen, onOpen] = useState<boolean>(false);
+  const [isOpen, setOpen] = useState<boolean>(false);
   const pathname = useLocation().pathname;
 
   const [prevPathname, setPrevPathname] = useState<string>("");
@@ -21,7 +21,7 @@ const UserNavbar = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (prevPathname !== pathname) onOpen(false);
+    if (prevPathname !== pathname) setOpen(false);
   }, [pathname, prevPathname]);
 
   return (
@@ -63,7 +63,7 @@ const UserNavbar = () => {
           <HStack align="center" gap={4}>
             <ProductSearchInput
               onClick={() => {
-                onOpen(!isOpen);
+                setOpen(!isOpen);
                 setPrevPathname(pathname);
               }}
             />
@@ -74,7 +74,10 @@ const UserNavbar = () => {
         <Show above="md">
           <NavigationLinkStack />
         </Show>
-        <ProductSearchResultModal isOpen={isOpen} />
+        <ProductSearchResultModal
+          isOpen={isOpen}
+          onClose={() => setOpen(false)}
+        />
       </VStack>
     </VStack>
   );

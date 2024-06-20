@@ -11,6 +11,7 @@ interface Props {
   onNumberChange?: (value: number) => void;
   isDisabled?: boolean;
   textTransform?: CSS.Property.TextTransform;
+  hideLabel?: boolean;
 }
 
 const LabelledInput = ({
@@ -23,12 +24,15 @@ const LabelledInput = ({
   required = false,
   isDisabled = false,
   textTransform = "unset",
+  hideLabel = false,
 }: Props) => {
   return (
     <FormControl _focus={{ outlineColor: "primary.800" }}>
-      <FormLabel color="primary.800" fontSize="xs">
-        {label}
-      </FormLabel>
+      {!hideLabel && (
+        <FormLabel color="primary.800" fontSize="xs">
+          {label}
+        </FormLabel>
+      )}
       <Input
         textTransform={textTransform}
         isDisabled={isDisabled}

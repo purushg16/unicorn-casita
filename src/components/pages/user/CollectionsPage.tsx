@@ -1,6 +1,5 @@
 import { Box, Spinner, VStack } from "@chakra-ui/react";
 import { RHeading } from "../../Utilities/Typography";
-import BreadCrumbsTile from "../../library/user/BreadCrumbsTile";
 import { useGetAllProducts } from "../../hooks/user/useProduct";
 import ProductGrid from "../../library/user/Product/ProductGrid";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -21,10 +20,7 @@ const CollectionsPage = () => {
     data?.pages.reduce((total, page) => total + page.data.docs.length, 0) || 0;
 
   return (
-    <VStack gap={12} px={{ base: 4, md: 8, lg: 16 }} w="100%" align="start">
-      <BreadCrumbsTile
-        crumbs={["home", "collections", category?.name || "All Collections"]}
-      />
+    <VStack gap={12} px={{ base: 2, md: 4, lg: 8 }} w="100%" align="start">
       <VStack align="start" gap={8} w="100%">
         <VStack align="start" gap={4} w="100%">
           <RHeading

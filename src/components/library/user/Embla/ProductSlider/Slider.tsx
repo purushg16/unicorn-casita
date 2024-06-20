@@ -1,14 +1,10 @@
-import {
-  EmblaCarouselType,
-  EmblaEventType,
-  EmblaOptionsType,
-} from "embla-carousel";
+import React, { useCallback, useEffect, useState } from "react";
+import { EmblaCarouselType, EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import React, { useCallback, useEffect, useRef } from "react";
-import { NextButton, PrevButton, usePrevNextButtons } from "./EmblaArrowButton";
-import { Flex } from "@chakra-ui/react";
-
-const TWEEN_FACTOR_BASE = 0.2;
+import { LazyLoadImage } from "./EmblaCarouselLazyLoadImage";
+import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
+import { usePrevNextButtons, PrevButton, NextButton } from "../ArrowButtons";
+import { Box } from "@chakra-ui/react";
 
 type PropType = {
   slides: string[];
@@ -17,9 +13,11 @@ type PropType = {
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef<HTMLElement[]>([]);
+  const [emblaRed, emblaApi] = useEmblaCarousel(options);
+  const [slidesInView, setSlidesInView] = useState<number[]>([]);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
 
   const {
     prevBtnDisabled,
@@ -28,104 +26,59 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector(".embla__parallax__layer") as HTMLElement;
+  const updateSlidesInView = useCallback((emblaApi: EmblaCarouselType) => {
+    setSlidesInView((slidesInView) => {
+      if (slidesInView.length === emblaApi.slideNodes().length) {
+        emblaApi.off("slidesInView", updateSlidesInView);
+      }
+      const inView = emblaApi
+        .slidesInView()
+        .filter((index) => !slidesInView.includes(index));
+      return slidesInView.concat(inView);
     });
   }, []);
-
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
-
-  const tweenParallax = useCallback(
-    (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine();
-      const scrollProgress = emblaApi.scrollProgress();
-      const slidesInView = emblaApi.slidesInView();
-      const isScrollEvent = eventName === "scroll";
-
-      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-        let diffToTarget = scrollSnap - scrollProgress;
-        const slidesInSnap = engine.slideRegistry[snapIndex];
-
-        slidesInSnap.forEach((slideIndex) => {
-          if (isScrollEvent && !slidesInView.includes(slideIndex)) return;
-
-          if (engine.options.loop) {
-            engine.slideLooper.loopPoints.forEach((loopItem) => {
-              const target = loopItem.target();
-
-              if (slideIndex === loopItem.index && target !== 0) {
-                const sign = Math.sign(target);
-
-                if (sign === -1) {
-                  diffToTarget = scrollSnap - (1 + scrollProgress);
-                }
-                if (sign === 1) {
-                  diffToTarget = scrollSnap + (1 - scrollProgress);
-                }
-              }
-            });
-          }
-
-          const translate = diffToTarget * (-1 * tweenFactor.current) * 100;
-          const tweenNode = tweenNodes.current[slideIndex];
-          tweenNode.style.transform = `translateX(${translate}%)`;
-        });
-      });
-    },
-    []
-  );
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenParallax(emblaApi);
-
-    emblaApi
-      .on("reInit", setTweenNodes)
-      .on("reInit", setTweenFactor)
-      .on("reInit", tweenParallax)
-      .on("scroll", tweenParallax);
-  }, [emblaApi, tweenParallax, setTweenNodes, setTweenFactor]);
+    updateSlidesInView(emblaApi);
+    emblaApi.on("slidesInView", updateSlidesInView);
+    emblaApi.on("reInit", updateSlidesInView);
+  }, [emblaApi, updateSlidesInView]);
 
   return (
     <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {slides.map((slide, index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__parallax">
-                <div className="embla__parallax__layer">
-                  <img
-                    className="embla__slide__img embla__parallax__img"
-                    src={slide}
-                    alt="Your alt text"
-                  />
-                </div>
-              </div>
-            </div>
+      <div className="embla__viewport" ref={emblaRed}>
+        <Box className="embla__container">
+          {slides.map((img, index) => (
+            <LazyLoadImage
+              key={index}
+              index={index}
+              imgSrc={img}
+              inView={slidesInView.indexOf(index) > -1}
+            />
           ))}
-        </div>
+        </Box>
       </div>
 
-      <Flex w="100%" justify="end">
-        <div className="embla__controls">
-          <div className="embla__buttons">
-            <PrevButton
-              onClick={onPrevButtonClick}
-              disabled={prevBtnDisabled}
+      <div className="embla__controls">
+        <div className="embla__dots">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={"embla__dot".concat(
+                index === selectedIndex ? " embla__dot--selected" : ""
+              )}
             />
-            <NextButton
-              onClick={onNextButtonClick}
-              disabled={nextBtnDisabled}
-            />
-          </div>
+          ))}
         </div>
-      </Flex>
+
+        <div className="embla__buttons">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>
+      </div>
     </div>
   );
 };

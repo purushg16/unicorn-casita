@@ -11,12 +11,7 @@ const WholeSaleProductsGrid = () => {
   if (products?.pages[0].data.docs.length === 0) return null;
   return (
     <VStack gap={8} px={{ base: 4, md: 8, lg: 16 }} py={0} w="100%">
-      <RHeading
-        text="WholeSale Products"
-        color="primary.700"
-        small
-        textTransform="uppercase"
-      />
+      <RHeading text="WholeSale Products" small textTransform="uppercase" />
       {status === "pending" && (
         <Box w={{ base: "90%", md: "80%" }}>
           <ProductsSkeleton />

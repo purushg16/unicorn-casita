@@ -7,7 +7,7 @@ const CartButton = () => {
   const quantity = useUserCartStore((s) => s.products).length;
 
   return (
-    <Link to="/cart" style={{ position: "relative" }}>
+    <Link to="/cart" style={{ position: "relative", lineHeight: 0 }}>
       <Icon
         cursor="pointer"
         as={ShoppingBag}

@@ -13,22 +13,14 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
   return (
     <VStack
       gap={8}
-      px={{ base: 4, md: 8, lg: 16 }}
+      px={{ base: 4, md: 8 }}
       py={0}
       w="100%"
       mb={inPage ? 28 : 0}
     >
       <VStack>
-        <RText
-          text="Top selling accessories in the market"
-          color="primary.700"
-        />
-        <RHeading
-          text="✨ Best Selling ✨"
-          color="primary.700"
-          small
-          textTransform="uppercase"
-        />
+        <RText text="Top selling accessories in the market" />
+        <RHeading text="✨ Best Selling ✨" small textTransform="uppercase" />
       </VStack>
       {status === "pending" && (
         <Box w={{ base: "90%", md: "80%" }}>
@@ -38,9 +30,9 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
 
       <SimpleGrid
         columns={{ base: 2, md: 3, lg: 4 }}
-        spacing={{ base: 4, md: 8 }}
+        spacing={{ base: 4, md: 4 }}
         spacingY={8}
-        w="90%"
+        w="100%"
       >
         {status === "success" &&
           products.pages[0].data.docs.map((product) => (

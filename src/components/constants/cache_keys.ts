@@ -1,5 +1,6 @@
 export const CACHE_KEY_ALLPRODUCTS = ["products", "all"];
 export const CACHE_KEY_SINGLEPRODUCT = ["products", "single"];
+export const CACHE_KEY_SEARCHPRODUCT = ["products", "search"];
 export const CACHE_KEY_ALLCATEGORIES = ["categories", "all"];
 export const CACHE_KEY_SINGLECATEGORY = ["categories", "single"];
 export const CACHE_KEY_ALL_USER_CATEGORIES = [

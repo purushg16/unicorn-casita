@@ -10,14 +10,10 @@ const CuratedGrid = () => {
   const { data: categories, status } = useGetAllCategories();
 
   return (
-    <VStack gap={12} px={{ base: 4, md: 8, lg: 16 }} py={0} mt={20}>
+    <VStack gap={12} px={4} py={0} mt={20}>
       <VStack gap={0}>
-        <RHeading text="Curated Picks" color="primary.700" />
-        <RText
-          small
-          text="Shop by our valuable categories"
-          color="primary.700"
-        />
+        <RHeading text="Curated Picks" small />
+        <RText small text="Shop by our valuable categories" />
       </VStack>
       {status === "pending" && (
         <Box w={{ base: "90%", md: "80%" }}>

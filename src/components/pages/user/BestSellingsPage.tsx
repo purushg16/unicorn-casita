@@ -1,10 +1,10 @@
-import BestSellingLanding from "../../library/user/home/BestSellingLanding";
+import LandingImage from "../../library/user/home/LandingImage";
 import BestSellings from "../../library/user/home/ProductsGrid/BestSellings";
 
 const BestSellingsPage = () => {
   return (
     <>
-      <BestSellingLanding />
+      <LandingImage />
       <BestSellings inPage />
     </>
   );

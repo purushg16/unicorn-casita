@@ -13,6 +13,7 @@ export const _editProduct = "/admin/product/edit";
 export const _deleteProduct = "/admin/product/delete";
 export const _allProducts = "/admin/product/all";
 export const _singleProduct = "/admin/product/single";
+export const _searchAdminProducts = "/admin/product/search";
 
 export const _addReview = "/admin/review/add";
 export const _editReview = "/admin/review/edit";
@@ -35,5 +36,6 @@ export const _allUserReviews = "/user/websiteData/allReviews";
 export const _allUserCategories = "/user/websiteData/allCategory";
 export const _allUserProducts = "/user/websiteData/allProducts";
 export const _singleUserProducts = "/user/websiteData/singleProduct";
+export const _searchUserProducts = "/user/websiteData/search";
 export const _cartCheckout = "/user/checkout/order";
 export const _verifyOrder = "/user/checkout/verifyOrder";

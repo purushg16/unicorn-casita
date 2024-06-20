@@ -1,6 +1,6 @@
 import { VStack } from "@chakra-ui/react";
 import useGetAllCategories from "../../hooks/user/useCategories";
-import LandingGrid from "../../library/user/home/LandingGrid";
+import LandingImage from "../../library/user/home/LandingImage";
 import MarketBanner from "../../library/user/home/MarketBanner";
 import ProductsGrid from "../../library/user/home/ProductsGrid/ProductsGrid";
 import ServiceBento from "../../library/user/home/ServiceBento/ServiceBento";
@@ -12,7 +12,7 @@ const HomePage = () => {
 
   return (
     <>
-      <LandingGrid />
+      <LandingImage />
       <VStack gap={{ base: 16, md: 24 }} w="100%">
         <BestSellings />
         {catStatus === "success" &&

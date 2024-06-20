@@ -6,13 +6,7 @@ import { Link } from "react-router-dom";
 const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link to={`/collections/${product._id}`}>
-      <Flex
-        flexDir="column"
-        gap={4}
-        w="100%"
-        aspectRatio={{ base: "1/1", md: "6/7" }}
-        pos="relative"
-      >
+      <Flex flexDir="column" gap={4} w="100%" aspectRatio="6/7" pos="relative">
         {product.stock === "sold-out" && (
           <Tag size="sm" pos="absolute" top={2} left={2} colorScheme="red">
             Sold Out

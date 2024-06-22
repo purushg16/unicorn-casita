@@ -54,6 +54,7 @@ const AddtoCartButton = ({
         Number.isNaN(count)
       }
       onClick={handleAdd}
+      _hover={{ opacity: 0.8 }}
     >
       {product ? "Go to Cart" : soldOut ? "Sold Out" : "Add to Cart"}
     </Button>

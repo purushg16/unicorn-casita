@@ -20,10 +20,10 @@ const RHeading = ({
   textTransform,
 }: Props) => {
   const fontSize = big
-    ? { base: "2xl", sm: "3xl", md: "5xl", lg: "5xl" }
+    ? { base: "2xl", sm: "3xl", md: "5xl", lg: "4xl" }
     : small
-    ? { base: "md", sm: "lg", md: "xl", lg: "2xl" }
-    : { base: "lg", sm: "2xl", md: "3xl", lg: "4xl" };
+    ? { base: "md", sm: "lg", md: "xl", lg: "xl" }
+    : { base: "lg", sm: "2xl", md: "3xl", lg: "3xl" };
 
   return (
     <Heading
@@ -46,7 +46,7 @@ const RText = ({
 }: Props) => {
   const fontSize = small
     ? { base: "xs", sm: "xs", md: "sm", lg: "sm" }
-    : { base: "xs", sm: "sm", md: "md", lg: "lg" };
+    : { base: "xs", sm: "sm", md: "md", lg: "md" };
 
   return (
     <Text

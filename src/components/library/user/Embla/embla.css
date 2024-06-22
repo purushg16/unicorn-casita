@@ -111,7 +111,7 @@
   content: "";
 }
 .embla__dot--selected:after {
-  box-shadow: inset 0 0 0 0.2rem purple;
+  box-shadow: inset 0 0 0 0.2rem black;
 }
 .embla__parallax {
   border-radius: 1.8rem;

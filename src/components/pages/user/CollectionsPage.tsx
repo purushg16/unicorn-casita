@@ -26,7 +26,7 @@ const CollectionsPage = () => {
           <RHeading
             small
             text={category?.name || "All Collections"}
-            color="primary.800"
+            color="black"
           />
           <CategoriesStack />
         </VStack>

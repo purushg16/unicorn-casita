@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import UserNavbar from "../library/user/home/UserNavbar";
 import Footer from "../library/user/Footer";
+import OfferBanner from "../library/user/home/OfferBanner";
 // import UserLandingImageBanner from "../library/user/home/UserLandingImageBanner";
 // import LandingGrid from "../library/user/home/LandingGrid";
 const UserHomeLayout = () => {
@@ -10,6 +11,7 @@ const UserHomeLayout = () => {
   const splittedPath = pathname.split("/");
   return (
     <Flex flexDir="column" gap={0}>
+      <OfferBanner />
       <UserNavbar />
       <Flex
         flexDir="column"

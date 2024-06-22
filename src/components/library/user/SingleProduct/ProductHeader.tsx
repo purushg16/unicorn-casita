@@ -1,5 +1,5 @@
 import { Box, HStack, Text, VStack } from "@chakra-ui/react";
-import { Label, RHeading } from "../../../Utilities/Typography";
+import { RHeading } from "../../../Utilities/Typography";
 import { ProductAttribute, ProductResponse } from "../../../entities/product";
 import { Link } from "react-router-dom";
 
@@ -19,18 +19,20 @@ const ProductHeader = ({
       borderBottom="1px solid"
       borderColor="gray.100"
     >
-      <Label
+      {/* <Label
         small
         text={product.category.name}
         color="primary.800"
         textTransform="uppercase"
-      />
-      <RHeading
-        big
-        textTransform="uppercase"
-        text={product.name}
-        color="primary.800"
-      />
+      /> */}
+      <Box maxW="100%">
+        <RHeading
+          big
+          textTransform="uppercase"
+          text={product.name}
+          color="black"
+        />
+      </Box>
       <HStack>
         <Text
           children={`Rs. ${product.mrp.toFixed(2)}`}

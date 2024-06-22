@@ -25,11 +25,11 @@ const NewArrivals = () => {
     >
       <HStack w="100%" gap={12}>
         <VStack align="start" flex={1} gap={4} alignSelf="start">
-          <Heading fontSize={{ base: "xl", lg: "2xl" }} color="primary.800">
+          <Heading fontSize={{ base: "lg", lg: "xl" }} color="primary.800">
             New Arrivals ✨
           </Heading>
           <Text
-            fontSize={{ base: "lg", lg: "xl" }}
+            fontSize={{ base: "sm", lg: "md" }}
             maxW="100%"
             color="primary.800"
             children="We update our collections almost single everyday with curation."

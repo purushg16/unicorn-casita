@@ -1,4 +1,4 @@
-import { Box, HStack, Heading, Show, VStack } from "@chakra-ui/react";
+import { Box, HStack, Image, Show, VStack } from "@chakra-ui/react";
 import { Link, useLocation } from "react-router-dom";
 import MobileMenu from "../Mobilemenu/MobileMenu";
 import CartButton from "./CartButton";
@@ -6,6 +6,7 @@ import NavigationLinkStack from "./NavigationLinkStack";
 import ProductSearchInput from "./ProductSearch/ProductSearchInput";
 import { useEffect, useState } from "react";
 import ProductSearchResultModal from "./ProductSearch/ProductSearchResultModal";
+import unicorn from "../../../../assets/unicorn_casita.png";
 
 const UserNavbar = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -47,18 +48,11 @@ const UserNavbar = () => {
             <MobileMenu />
           </Show>
           <Link to="/">
-            <HStack align="baseline" gap={0}>
-              <Heading fontSize={{ base: "xl", md: "3xl" }}>Unicorn</Heading>
-              <Heading color="#E19FB4" fontSize={{ base: "xl", md: "3xl" }}>
-                Casita
-              </Heading>
-              <Heading
-                color="gray"
-                fontSize={{ base: "xs", md: "md", lg: "xl" }}
-              >
-                .com
-              </Heading>
-            </HStack>
+            <Image
+              src={unicorn}
+              w={{ base: 100, md: 150 }}
+              alt="unicorn casita"
+            />
           </Link>
           <HStack align="center" gap={4}>
             <ProductSearchInput

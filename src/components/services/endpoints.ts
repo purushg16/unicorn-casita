@@ -31,6 +31,8 @@ export const _addDeliveryPartner = "/admin/deliveryPartner/add";
 export const _deleteDeliveryPartner = "/admin/deliveryPartner/delete";
 export const _allDeliveryPartners = "/admin/deliveryPartner/all";
 
+export const _addOffer = "/admin/webData/addOffer";
+
 // ===== User =====  //
 export const _allUserReviews = "/user/websiteData/allReviews";
 export const _allUserCategories = "/user/websiteData/allCategory";
@@ -39,3 +41,4 @@ export const _singleUserProducts = "/user/websiteData/singleProduct";
 export const _searchUserProducts = "/user/websiteData/search";
 export const _cartCheckout = "/user/checkout/order";
 export const _verifyOrder = "/user/checkout/verifyOrder";
+export const _getOffer = "/user/websiteData/getOffer";

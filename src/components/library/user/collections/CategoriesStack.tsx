@@ -20,7 +20,7 @@ const CategoriesStack = () => {
             h="100%"
             borderRadius="full"
             onClick={() => setCategory(category)}
-            colorScheme={isCategoryQueried ? "green" : "primary"}
+            colorScheme={isCategoryQueried ? "green" : "gray"}
             order={isCategoryQueried ? -1 : undefined}
             minW="max-content"
           >

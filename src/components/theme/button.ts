@@ -2,6 +2,13 @@ import { defineStyleConfig } from "@chakra-ui/react";
 
 export default defineStyleConfig({
   variants: {
+    black: {
+      bg: "black",
+      color: "white",
+      _hover: {
+        bg: "#0000008",
+      },
+    },
     primary: {
       bg: "primary.700",
       color: "primary.100",
@@ -29,10 +36,6 @@ export default defineStyleConfig({
       _hover: {
         bg: "primary.200",
       },
-    },
-    outline: {
-      borderColor: "primary.300",
-      color: "primary.700",
     },
     secondary: {
       bg: "primary.200",

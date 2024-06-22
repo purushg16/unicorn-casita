@@ -20,6 +20,7 @@ import cloudinaryUpload from "../../../functions/cloudinaryUpload";
 
 const AddCategoryModal = () => {
   const [name, setName] = useState<string>("");
+  const [pickup, setPickup] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const images = useImageStore((s) => s.images);
@@ -27,6 +28,7 @@ const AddCategoryModal = () => {
 
   const handleClose = () => {
     setName("");
+    setPickup("");
     onClose();
     clearImages();
     setLoading(false);
@@ -39,6 +41,7 @@ const AddCategoryModal = () => {
     cloudinaryUpload(images.map((img) => img.image)).then((res) =>
       mutate({
         name,
+        pickup,
         imageLink: res[0]?.secure_url || "",
       })
     );
@@ -84,6 +87,11 @@ const AddCategoryModal = () => {
                 label="Category"
                 value={name}
                 onTextChange={setName}
+              />
+              <LabelledInput
+                label="Pick Up Line"
+                value={pickup}
+                onTextChange={setPickup}
               />
               <NewImageUploader limit={1} />
             </VStack>

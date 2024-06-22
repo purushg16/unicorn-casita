@@ -1,4 +1,4 @@
-import { SimpleGrid, VStack, Box, FormLabel } from "@chakra-ui/react";
+import { SimpleGrid, VStack, Box } from "@chakra-ui/react";
 import AddtoCartButton from "./AddtoCartButton";
 import AttributeSelector from "./AttributeSelector";
 import ColorSelector from "./ColorSelector";
@@ -92,11 +92,7 @@ const SingleProductGridDetails = ({
           />
         </VStack>
         <VStack w="100%" align="start">
-          <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
-            Product Description
-          </FormLabel>
-          <RText text={product.description} color="primary.800" />
-
+          <RText text={product.description} color="black" />
           <SpecificationsTable specifications={product.specifications} />
         </VStack>
       </VStack>

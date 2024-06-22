@@ -36,6 +36,7 @@ const CategoryCard = ({ category }: { category: Category }) => {
         variant="secondary"
         rightIcon={<Icon as={ArrowRight} />}
         size={{ base: "sm", md: "md" }}
+        textTransform="capitalize"
       >
         {category.name}
       </Button>

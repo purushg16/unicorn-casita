@@ -11,6 +11,7 @@ import { RHeading } from "../../../Utilities/Typography";
 import SideBarBtn from "./SideBarBtn";
 import ChangePasswordModal from "../auth/ChangePasswordModal";
 import LogoutButton from "../auth/LogoutButton";
+import OfferModal from "../offer/OfferModal";
 
 const Sidebar = () => {
   return (
@@ -24,6 +25,7 @@ const Sidebar = () => {
         <SideBarBtn label="categories" icon={Blocks} />
         <SideBarBtn label="orders" icon={ShoppingBag} />
         <SideBarBtn label="reviews" icon={Smile} />
+        <OfferModal />
       </VStack>
       <VStack
         borderRadius={10}

@@ -15,7 +15,7 @@ const Head = () => {
       <HStack w="100%" gap={4}>
         <Image src={img} alt="logo" boxSize={8} />
         <Heading
-          fontSize={{ base: "md", lg: "lg" }}
+          fontSize={{ base: "sm", lg: "md" }}
           fontWeight={600}
           color="primary.800"
         >

@@ -53,11 +53,11 @@ const CuratedGrid = () => {
                 </Show>
                 <Show above="md">
                   <RHeading small text="View all Categories" />
-                  <RText
-                    small
-                    text="We have made the best that fits for everyone of you out there!"
-                  />
                 </Show>
+                <RText
+                  small
+                  text="We have made the best that fits for everyone of you out there!"
+                />
               </VStack>
               <Link to="categories" style={{ alignSelf: "end" }}>
                 <Button

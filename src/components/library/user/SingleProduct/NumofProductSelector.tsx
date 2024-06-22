@@ -31,7 +31,7 @@ const NumofProductSelector = ({
 
   return (
     <VStack align="start" gap={4}>
-      <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+      <FormLabel fontSize="xs" color="black" fontWeight="bold">
         Quantity
       </FormLabel>
 
@@ -46,7 +46,7 @@ const NumofProductSelector = ({
       >
         <IconButton
           aria-label="minus"
-          icon={<Icon as={Minus} />}
+          icon={<Icon as={Minus} color="black" />}
           onClick={() =>
             Number.isNaN(count)
               ? setCount(1)
@@ -74,7 +74,7 @@ const NumofProductSelector = ({
         />
         <IconButton
           aria-label="minus"
-          icon={<Icon as={Plus} />}
+          icon={<Icon as={Plus} color="black" />}
           onClick={() =>
             Number.isNaN(count) ? setCount(1) : setCount(count + 1)
           }

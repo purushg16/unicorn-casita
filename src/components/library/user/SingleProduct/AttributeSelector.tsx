@@ -14,7 +14,7 @@ const AttributeSelector = ({
 }) => {
   return (
     <VStack gap={4} align="start">
-      <FormLabel fontSize="xs" color="primary.800" fontWeight="bold">
+      <FormLabel fontSize="xs" color="black" fontWeight="bold">
         {"Available " + attributeName + "s"}
       </FormLabel>
 
@@ -24,10 +24,9 @@ const AttributeSelector = ({
             textTransform="capitalize"
             variant={
               selectedAttribute && attr._id === selectedAttribute._id
-                ? "primary"
+                ? "black"
                 : "outline"
             }
-            colorScheme="primary"
             onClick={() => setAttribute(attr)}
           >
             {attr.value}

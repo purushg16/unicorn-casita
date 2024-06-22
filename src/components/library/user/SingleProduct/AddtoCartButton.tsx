@@ -46,7 +46,7 @@ const AddtoCartButton = ({
   return (
     <Button
       w="100%"
-      variant="primary"
+      variant="black"
       isDisabled={
         soldOut ||
         (isAttribute && !attribute) ||

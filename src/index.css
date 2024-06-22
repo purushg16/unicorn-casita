@@ -13,10 +13,13 @@
 }
 
 * {
-  font-family: "Archivo", sans-serif !important;
+  font-family: "PT Sans", sans-serif !important;
+  text-transform: uppercase !important;
 }
 
-*:not(#cart-notification):not(.chakra-spinner):not(.dot):not(.embla__button) {
+*:not(#cart-notification):not(.chakra-spinner):not(.dot):not(
+    .embla__button
+  ):not(#variants-tag) {
   border-radius: 0px !important;
 }
 

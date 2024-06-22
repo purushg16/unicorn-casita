@@ -19,9 +19,18 @@ const Footer = () => {
         <SimpleGrid w="100%" columns={{ base: 1, md: 1, lg: 3 }} spacingY={8}>
           <VStack align="start">
             <RText text="Useful Links" weight="bolder" small />
-            <RText text="New Arrivals" small />
-            <RText text="Categories" small />
-            <RText text="Collections" small />
+            <Link to="/bestSellings">
+              <RText text="Best Selling" small />
+            </Link>
+            <Link to="/categories">
+              <RText text="Categories" small />
+            </Link>
+            <Link to="/collections">
+              <RText text="Collections" small />
+            </Link>
+            <Link to="/wholesale">
+              <RText text="Wholesale" small />
+            </Link>
           </VStack>
 
           <VStack align="start">

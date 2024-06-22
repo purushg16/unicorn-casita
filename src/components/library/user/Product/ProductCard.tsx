@@ -54,7 +54,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         <Flex minH={30} w="100%" justify="space-between">
           <VStack align="start" gap={1}>
             <RText text={product.name} color="gray.700" weight="semibold" />
-            <HStack align="baseline">
+            <HStack align="baseline" flexWrap="wrap">
               {product.isAttribute ? (
                 <RText text="Starts from" color="black" small />
               ) : (

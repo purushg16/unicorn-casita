@@ -47,7 +47,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               colorScheme="purple"
               fontWeight="bold"
             >
-              {`${product.attributes.length} variants avaiable`}
+              {`${product.attributes.length} ${product.attributeName}`}
             </Tag>
           )}
         </Box>

@@ -1,8 +1,10 @@
 import {
+  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
+  HStack,
   Icon,
   IconButton,
   VStack,
@@ -19,17 +21,21 @@ const MobileMenu = () => {
 
   return (
     <>
-      <IconButton
-        size="sm"
-        aria-label="menu-btn"
-        icon={<Icon as={MenuIcon} boxSize={5} color="primary.800" />}
-        onClick={onOpen}
-        ref={btnRef}
-        bg="white"
-        _hover={{ bg: "white" }}
-        _focus={{ bg: "white" }}
-        _active={{ bg: "white" }}
-      />
+      <HStack>
+        <IconButton
+          size="sm"
+          aria-label="menu-btn"
+          icon={<Icon as={MenuIcon} boxSize={5} color="primary.800" />}
+          onClick={onOpen}
+          ref={btnRef}
+          bg="white"
+          _hover={{ bg: "white" }}
+          _focus={{ bg: "white" }}
+          _active={{ bg: "white" }}
+        />
+        <Box w={2} />
+      </HStack>
+
       <Drawer
         isOpen={isOpen}
         placement="left"

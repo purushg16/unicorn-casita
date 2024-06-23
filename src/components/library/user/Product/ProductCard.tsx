@@ -15,7 +15,14 @@ const ProductCard = ({ product }: { product: Product }) => {
         pos="relative"
       >
         {product.stock === "sold-out" && (
-          <Tag size="sm" pos="absolute" top={2} left={2} colorScheme="red">
+          <Tag
+            size="sm"
+            pos="absolute"
+            top={2}
+            left={2}
+            colorScheme="red"
+            zIndex={1}
+          >
             Sold Out
           </Tag>
         )}

@@ -48,7 +48,7 @@ const ProductsGrid = ({ category }: { category: Category }) => {
       </SimpleGrid>
 
       <Button
-        variant="primary"
+        bg="#FCECEF"
         size="sm"
         rightIcon={<Icon as={ArrowUpRight} />}
         lineHeight={0}
@@ -56,6 +56,7 @@ const ProductsGrid = ({ category }: { category: Category }) => {
           navigate("collections");
           setCategory(category);
         }}
+        _hover={{ opacity: 0.7 }}
       >
         View All
       </Button>

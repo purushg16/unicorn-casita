@@ -29,7 +29,12 @@ const OrderSummary = ({ order }: { order: Order }) => {
           <AccordionButton borderTopRadius="xl" py={4}>
             <VStack align="start">
               <RText small text="Order Summary" weight="bold" />
+
               <OrderPaymentStatusTag order={order} expanded />
+
+              {order.paymentId && (
+                <RText small text={`Payment ID: ${order.paymentId}`} />
+              )}
             </VStack>
           </AccordionButton>
           <AccordionPanel>

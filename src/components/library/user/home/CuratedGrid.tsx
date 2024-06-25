@@ -34,7 +34,8 @@ const CuratedGrid = () => {
             <VStack
               w="100%"
               h="100%"
-              bg="primary.100"
+              bg="#ffecef"
+              color="#ED67C5"
               borderRadius="xl"
               p={4}
               justify="space-between"
@@ -43,9 +44,8 @@ const CuratedGrid = () => {
             >
               <VStack
                 align="start"
-                gap={0}
+                gap={2}
                 alignSelf="start"
-                color="primary.700"
                 maxW={{ base: "100%", md: "80%" }}
               >
                 <Show below="md">
@@ -61,7 +61,7 @@ const CuratedGrid = () => {
               </VStack>
               <Link to="categories" style={{ alignSelf: "end" }}>
                 <Button
-                  variant="primary"
+                  variant="text"
                   rightIcon={<Icon as={ArrowUpRight} />}
                   size={{ base: "sm", md: "md" }}
                 >

@@ -11,7 +11,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         gap={4}
         w="100%"
         minH="100%"
-        aspectRatio="6/7"
+        aspectRatio={{ base: "4/6", md: "1/1" }}
         pos="relative"
       >
         {product.stock === "sold-out" && (
@@ -51,7 +51,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               bottom={2}
               right={2}
               size="sm"
-              colorScheme="purple"
+              bg="pink"
               fontWeight="bold"
             >
               {`${product.attributes.length} ${product.attributeName}`}
@@ -62,21 +62,8 @@ const ProductCard = ({ product }: { product: Product }) => {
           <VStack align="start" gap={1}>
             <RText text={product.name} color="gray.700" weight="semibold" />
             <HStack align="baseline" flexWrap="wrap">
-              {product.isAttribute ? (
+              {product.isAttribute && (
                 <RText text="Starts from" color="black" small />
-              ) : (
-                <>
-                  {product.mrp && product.mrp > 0 && (
-                    <Box textDecor="line-through" textDecorationColor="skyblue">
-                      <RText
-                        weight="bold"
-                        text={"Rs." + product.mrp.toFixed(2)}
-                        color="skyblue"
-                        small
-                      />
-                    </Box>
-                  )}
-                </>
               )}
               <RText
                 text={`Rs. ${
@@ -84,9 +71,25 @@ const ProductCard = ({ product }: { product: Product }) => {
                     ? product.attributes[0].salesPrice.toFixed(2)
                     : product.salesPrice.toFixed(2)
                 }`}
-                color="red"
+                color="#ED63C3"
                 weight="semibold"
               />
+
+              {!product.isAttribute && (
+                <>
+                  {product.mrp && product.mrp > 0 && (
+                    <Box textDecor="line-through" textDecorationColor="#d4d4d4">
+                      <RText
+                        weight="bold"
+                        text={"Rs." + product.mrp.toFixed(2)}
+                        color="gray.200"
+                        small
+                      />
+                    </Box>
+                  )}
+                </>
+              )}
+
               {!product.isAttribute && product.mrp && product.mrp > 0 && (
                 <RText
                   weight="bold"

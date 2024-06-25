@@ -13,7 +13,7 @@ const CartButton = () => {
         as={ShoppingBag}
         boxSize={5}
         strokeWidth={2}
-        color="primary.700"
+        color="black"
       />
       {quantity > 0 && (
         <Box

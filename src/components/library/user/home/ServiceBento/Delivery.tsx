@@ -7,7 +7,7 @@ const Delivery = () => {
       rowSpan={1}
       colSpan={{ base: 3, md: 3, lg: 2 }}
       p={8}
-      bg="primary.50"
+      bg="#ffecef"
       border="1px solid"
       borderColor="primary.100"
       borderRadius="xl"
@@ -15,13 +15,13 @@ const Delivery = () => {
       pos="relative"
     >
       <VStack align="start" flex={1} gap={4}>
-        <Heading fontSize={{ base: "lg", lg: "xl" }} color="primary.800">
+        <Heading fontSize={{ base: "lg", lg: "xl" }} color="black">
           Free & Fast Shipping
         </Heading>
         <Text
           fontSize={{ base: "sm", lg: "md" }}
           maxW="100%"
-          color="primary.800"
+          color="#EF89D2"
           children="We offer fast & free shipping for out lovable & loyal customers."
         />
       </VStack>

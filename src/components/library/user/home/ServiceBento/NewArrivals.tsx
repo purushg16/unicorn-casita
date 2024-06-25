@@ -16,7 +16,7 @@ const NewArrivals = () => {
       rowSpan={1}
       colSpan={{ base: 6, md: 6, lg: 4 }}
       p={8}
-      bg="primary.50"
+      bg="#ffecef"
       border="1px solid"
       borderColor="primary.100"
       borderRadius="xl"
@@ -25,13 +25,13 @@ const NewArrivals = () => {
     >
       <HStack w="100%" gap={12}>
         <VStack align="start" flex={1} gap={4} alignSelf="start">
-          <Heading fontSize={{ base: "lg", lg: "xl" }} color="primary.800">
+          <Heading fontSize={{ base: "lg", lg: "xl" }} color="black">
             New Arrivals ✨
           </Heading>
           <Text
             fontSize={{ base: "sm", lg: "md" }}
             maxW="100%"
-            color="primary.800"
+            color="#EF89D2"
             children="We update our collections almost single everyday with curation."
           />
         </VStack>

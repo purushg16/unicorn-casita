@@ -4,7 +4,7 @@ const currencyFormatter = (value: number) => {
     currency: "INR",
   });
 
-  return currencyFormatter.format(value);
+  return currencyFormatter.format(value).replace("₹", "");
 };
 
 export default currencyFormatter;

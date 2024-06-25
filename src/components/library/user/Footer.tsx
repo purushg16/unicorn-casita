@@ -7,10 +7,14 @@ const Footer = () => {
     <Box
       px={{ base: 6, md: 10, lg: 16 }}
       py={8}
-      bg="primary.100"
+      bg="#FCECEF"
       color="primary.700"
     >
-      <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={8}>
+      <SimpleGrid
+        columns={{ base: 1, md: 1, lg: 2 }}
+        spacing={8}
+        color="#ED67C5"
+      >
         <VStack align="start" h="100%" w="70%">
           <RHeading text="Unicorn Casita" />
           <RText text="Specialises in providing high quality & stylish products for you wardrobe" />
@@ -69,11 +73,15 @@ const Footer = () => {
 
       <Divider my={8} />
       <VStack textAlign="center">
-        <RText text="Copyrights @2024 Unicorn. All rights reserved" small />
+        <RText
+          text="Copyrights @2024 Unicorn. All rights reserved"
+          small
+          color="#ED67C5"
+        />
         <HStack gap={1}>
-          <RText text="powered by" small />
+          <RText text="powered by" small color="#ED67C5" />
           <Link to="https://macdasy.com/" target="_blank">
-            <RText text="Macdasy" small weight="bold" />
+            <RText text="Macdasy" small weight="bold" color="#ED67C5" />
           </Link>
         </HStack>
       </VStack>

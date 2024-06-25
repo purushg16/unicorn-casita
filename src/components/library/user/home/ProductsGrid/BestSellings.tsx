@@ -42,7 +42,10 @@ const BestSellings = ({ inPage = false }: { inPage?: boolean }) => {
 
       {!inPage && (
         <Button
-          variant="primary"
+          bg="#FCECEF"
+          _hover={{ bg: "#F9DCDC" }}
+          _active={{ bg: "#F9DCDC" }}
+          _focus={{ bg: "#F9DCDC" }}
           size="sm"
           rightIcon={<Icon as={ArrowUpRight} />}
           lineHeight={0}

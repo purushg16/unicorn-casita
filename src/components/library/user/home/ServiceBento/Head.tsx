@@ -7,7 +7,7 @@ const Head = () => {
       rowSpan={1}
       colSpan={6}
       p={4}
-      bg="primary.50"
+      bg="#ffecef"
       border="1px solid"
       borderColor="primary.100"
       borderRadius={10}
@@ -17,7 +17,7 @@ const Head = () => {
         <Heading
           fontSize={{ base: "sm", lg: "md" }}
           fontWeight={600}
-          color="primary.800"
+          color="black"
         >
           The excellent hub of beautiful products
         </Heading>

@@ -38,18 +38,22 @@ const ProductCard = ({ product }: { product: Product }) => {
         <RText
           text={product.name}
           weight="semibold"
-          color="primary.700"
+          color="black"
           textTransform="capitalize"
         />
         <HStack w="100%" justify="space-between">
-          <HStack gap={{ base: 1, md: 2 }}>
-            <Icon
-              as={BadgeIndianRupee}
-              color="primary.500"
-              boxSize={{ base: 3, md: 5 }}
-            />
-            <RText text={` ${product.mrp}`} color="primary.600" />
-          </HStack>
+          {product.isAttribute ? (
+            <Box />
+          ) : (
+            <HStack gap={{ base: 1, md: 2 }}>
+              <Icon
+                as={BadgeIndianRupee}
+                color="primary.500"
+                boxSize={{ base: 3, md: 5 }}
+              />
+              <RText text={` ${product.mrp}`} color="primary.700" />
+            </HStack>
+          )}
           <DeleteProductButton productId={product._id!} />
         </HStack>
       </VStack>

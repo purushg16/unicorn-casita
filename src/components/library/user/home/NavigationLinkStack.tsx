@@ -6,16 +6,16 @@ const NavigationLinkStack = () => {
   return (
     <HStack gap={12} align="center">
       <Link to="/collections">
-        <Label text="Collections 🌏" color="primary.800" />
+        <Label text="Collections 🌏" color="#ed63c3" />
       </Link>
       <Link to="/categories">
-        <Label text="Categories 💫" color="primary.800" />
+        <Label text="Categories 💫" color="#ed63c3" />
       </Link>
       <Link to="/bestsellings">
-        <Label text="Best Sellings 😍" color="primary.800" />
+        <Label text="Best Sellings 😍" color="#ed63c3" />
       </Link>
       <Link to="/wholesale">
-        <Label text="Buy in Wholesale 📦" color="primary.800" />
+        <Label text="Buy in Wholesale 📦" color="#ed63c3" />
       </Link>
     </HStack>
   );

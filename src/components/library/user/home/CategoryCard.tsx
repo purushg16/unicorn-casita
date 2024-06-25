@@ -33,7 +33,10 @@ const CategoryCard = ({ category }: { category: Category }) => {
       <Button
         w="100%"
         justifyContent="space-between"
-        variant="secondary"
+        bg="#FCECEF"
+        _hover={{ bg: "#F9DCDC" }}
+        _active={{ bg: "#F9DCDC" }}
+        _focus={{ bg: "#F9DCDC" }}
         rightIcon={<Icon as={ArrowRight} />}
         size={{ base: "sm", md: "md" }}
         textTransform="capitalize"

@@ -8,7 +8,7 @@ const ProductSearchInput = ({ onClick }: { onClick: () => void }) => {
       as={Search}
       boxSize={5}
       strokeWidth={2}
-      color="primary.700"
+      color="black"
       onClick={onClick}
     />
   );

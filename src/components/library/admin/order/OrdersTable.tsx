@@ -66,7 +66,8 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
                 <OrderShippingStatusTag order={order} />
               </Td>
               <Td isNumeric>
-                {currencyFormatter(parseFloat(order.totalBill.toFixed(2)))}
+                {`Rs.` +
+                  currencyFormatter(parseFloat(order.totalBill.toFixed(2)))}
               </Td>
             </Tr>
           ))}

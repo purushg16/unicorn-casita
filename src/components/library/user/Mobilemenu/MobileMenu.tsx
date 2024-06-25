@@ -25,7 +25,7 @@ const MobileMenu = () => {
         <IconButton
           size="sm"
           aria-label="menu-btn"
-          icon={<Icon as={MenuIcon} boxSize={5} color="primary.800" />}
+          icon={<Icon as={MenuIcon} boxSize={5} color="black" />}
           onClick={onOpen}
           ref={btnRef}
           bg="white"

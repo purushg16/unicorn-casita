@@ -1,7 +1,6 @@
-import { Box, Button, Icon, SimpleGrid, VStack } from "@chakra-ui/react";
-import { RHeading, RText } from "../../../Utilities/Typography";
-import { ArrowRight } from "lucide-react";
+import { Box, Button, SimpleGrid, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { RHeading, RText } from "../../../Utilities/Typography";
 
 const MarketBanner = () => {
   return (
@@ -25,24 +24,24 @@ const MarketBanner = () => {
       <Box
         w="100%"
         h="100%"
-        bg="primary.200"
-        color="primary.700"
+        bg="#ffecef"
+        color="#ED67C5"
         p={8}
         borderBottomRightRadius={10}
         borderBottomLeftRadius={{ base: 10, md: 0 }}
         borderTopRightRadius={{ base: 0, md: 10 }}
       >
         <VStack align="start" justify="center" w="80%" h="100%">
-          <RText color="primary.700" small text="WHOLESALE IS LIVE!" />
+          <RText color="primary.300" small text="WHOLESALE IS LIVE!" />
           <RHeading big text="Want to buy in wholesale?" />
-          <Link to="wholesale">
+          <Link to="wholesale" style={{ padding: 0 }}>
             <Button
               mt={4}
-              variant="primary"
               justifyContent="space-between"
-              rightIcon={<Icon as={ArrowRight} />}
               gap={8}
               size={{ base: "sm", md: "md" }}
+              variant="text"
+              px={0}
             >
               Click Here!
             </Button>

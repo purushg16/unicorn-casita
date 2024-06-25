@@ -33,7 +33,7 @@ const AdminProductsPage = () => {
       <HStack w="100%" justify="space-between" flexWrap="wrap">
         <RHeading text="Your Products" color="primary.700" small />
 
-        <HStack gap={4} w="max-content">
+        <HStack gap={4} w="max-content" flexWrap="wrap">
           <AdminProductSearchInput />
           <Button
             zIndex={999}

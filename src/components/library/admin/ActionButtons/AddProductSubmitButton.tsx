@@ -27,6 +27,8 @@ const AddProductSubmitButton = () => {
   const images = useImageStore((s) => s.images);
   const clearImages = useImageStore((s) => s.clearImages);
 
+  console.log(product);
+
   const handleSuccess = () => {
     resetEntry();
     setLoading(false);

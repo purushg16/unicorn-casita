@@ -3,6 +3,6 @@ export interface RejectRefund {
 }
 
 export interface InitiateRefund extends RejectRefund {
-  refundOption: "full" | "partial";
+  refundOption: "full" | "partial" | "no-refund";
   partialAmount?: number;
 }

@@ -68,6 +68,14 @@ const CategorySelector = ({
           </ModalBody>
           <ModalFooter>
             <Button
+              variant="ghost"
+              colorScheme="primary"
+              onClick={onClose}
+              mr={4}
+            >
+              Cancel
+            </Button>
+            <Button
               variant="primary"
               isDisabled={!selectedCategory}
               onClick={handleClick}

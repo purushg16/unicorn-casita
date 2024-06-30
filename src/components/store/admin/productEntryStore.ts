@@ -7,6 +7,8 @@ interface ProductEntry {
   referenceProduct: Product | undefined;
 }
 
+export type stock = "in-stock" | "sold-out";
+
 interface ProductEntryAction {
   resetEntry: () => void;
   appendNewEntry: (product: Product) => void;
@@ -26,7 +28,7 @@ interface ProductEntryAction {
   setWholesale: (wholesale: boolean) => void;
   setBestSeller: (bestSeller: boolean) => void;
   setMrp: (mrp: number) => void;
-  toggleStockAvaiability: () => void;
+  toggleStockAvaiability: (stock: stock) => void;
   setCategory: (category: string) => void;
   removeImage: (img: string) => void;
   resetImage: () => void;
@@ -164,16 +166,18 @@ const useProductEntryStore = create<ProductEntry & ProductEntryAction>(
     setMrp: (mrp) =>
       set((store) => ({ product: { ...store.product!, mrp: mrp } })),
 
-    toggleStockAvaiability: () =>
+    toggleStockAvaiability: (stock) =>
       set((store) => ({
         product: {
           ...store.product!,
-          stock: store.product?.stock === "sold-out" ? "in-stock" : "sold-out",
+          stock: stock,
         },
       })),
 
     setSalesPrice: (price) =>
-      set((store) => ({ product: { ...store.product!, salesPrice: price } })),
+      set((store) => ({
+        product: { ...store.product!, salesPrice: price, isAttribute: false },
+      })),
 
     setCategory: (category) =>
       set((store) => ({

@@ -6,7 +6,9 @@ import {
   Stack,
   VStack,
 } from "@chakra-ui/react";
-import useProductEntryStore from "../../../store/admin/productEntryStore";
+import useProductEntryStore, {
+  stock,
+} from "../../../store/admin/productEntryStore";
 
 const StockSelector = ({ editMode }: { editMode: boolean }) => {
   const value = useProductEntryStore((s) => s.product)?.stock;
@@ -23,7 +25,11 @@ const StockSelector = ({ editMode }: { editMode: boolean }) => {
         </Button>
       )}
       {editMode && (
-        <RadioGroup onChange={setValue} colorScheme="primary" value={value}>
+        <RadioGroup
+          onChange={(e) => setValue(e as stock)}
+          colorScheme="primary"
+          value={value}
+        >
           <Stack direction="row" gap={4}>
             <Radio value="in-stock" isDisabled={!editMode}>
               In Stock

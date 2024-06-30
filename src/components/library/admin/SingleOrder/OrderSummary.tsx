@@ -57,16 +57,17 @@ const OrderSummary = ({ order }: { order: Order }) => {
           text={orderCaptionFinder(order) + "."}
           small
         />
-        {order.orderStatus !== "completed" &&
-          order.orderStatus !== "cancelled" && (
-            <HStack>
-              <RefundModal order={order} />
+
+        <HStack>
+          {order.orderStatus !== "cancelled" && <RefundModal order={order} />}
+          {order.orderStatus !== "completed" &&
+            order.orderStatus !== "cancelled" && (
               <ConfirmOrderModal
                 orderId={order._id!}
                 isDisabled={order.orderStatus === "confirmed"}
               />
-            </HStack>
-          )}
+            )}
+        </HStack>
       </HStack>
     </Accordion>
   );

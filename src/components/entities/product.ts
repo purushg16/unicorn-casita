@@ -1,3 +1,4 @@
+import { stock } from "../store/admin/productEntryStore";
 import Category from "./category";
 import Specification from "./specification";
 
@@ -15,7 +16,7 @@ export default interface Product {
   salesPrice: number;
   wholesale: boolean;
   bestSeller: boolean;
-  stock: "in-stock" | "sold-out";
+  stock: stock;
 }
 
 export interface ProductResponse extends Product {

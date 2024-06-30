@@ -11,7 +11,7 @@ const AdminReviewsPage = () => {
   const { data: reviews, status, fetchStatus } = useGetAllReviews();
 
   return (
-    <VStack align="start">
+    <VStack align="start" h="100%">
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Reviews" color="primary.700" small />
         <AddReviewModal />

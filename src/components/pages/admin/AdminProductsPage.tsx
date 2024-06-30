@@ -29,7 +29,7 @@ const AdminProductsPage = () => {
     data?.pages.reduce((total, page) => total + page.data.docs.length, 0) || 0;
 
   return (
-    <VStack align="start">
+    <VStack align="start" h="100%">
       <HStack w="100%" justify="space-between" flexWrap="wrap">
         <RHeading text="Your Products" color="primary.700" small />
 

@@ -11,7 +11,7 @@ const AdminCategoriesPage = () => {
   const { data: categories, status, fetchStatus } = useGetAllCategories();
 
   return (
-    <VStack align="start">
+    <VStack align="start" h="100%">
       <HStack w="100%" justify="space-between">
         <RHeading text="Your Categories" color="primary.700" small />
         <AddCategoryModal />

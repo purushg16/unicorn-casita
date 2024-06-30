@@ -8,7 +8,6 @@ const NoDataDisplay = ({ img, title }: { img: string; title: string }) => {
       h="100%"
       justify="center"
       align="center"
-      pos="absolute"
       flexDir="column"
       gap={12}
       left={0}

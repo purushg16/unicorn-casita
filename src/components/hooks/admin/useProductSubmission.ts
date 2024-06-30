@@ -26,7 +26,7 @@ const useProductSubmission = () => {
   )
     return true;
 
-  if (product.specifications.length > 0)
+  if (product.specifications && product.specifications.length > 0)
     return product.specifications.some((spec) => !spec.key || !spec.value);
 
   return false;

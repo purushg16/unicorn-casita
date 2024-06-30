@@ -20,7 +20,7 @@ import { RHeading } from "../../../Utilities/Typography";
 import { Order } from "../../../entities/order";
 import { useInitiateRefund } from "../../../hooks/admin/useRefund";
 
-type refundOption = "full" | "partial";
+type refundOption = "full" | "partial" | "no-refund";
 
 const RefundModal = ({ order }: { order: Order }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,11 +42,9 @@ const RefundModal = ({ order }: { order: Order }) => {
         onClick={onOpen}
         variant="white"
         size="sm"
-        isDisabled={
-          order.orderStatus === "completed" || order.orderStatus === "cancelled"
-        }
+        isDisabled={order.orderStatus === "cancelled"}
       >
-        Cancel Order
+        {order.orderStatus === "completed" ? "Initiate Refund" : "Cancel Order"}
       </Button>
 
       <Modal
@@ -84,6 +82,9 @@ const RefundModal = ({ order }: { order: Order }) => {
                   <Stack direction="row" gap={4}>
                     <Radio value="full"> Full </Radio>
                     <Radio value="partial"> Partial</Radio>
+                    {order.orderStatus !== "completed" && (
+                      <Radio value="no-refund"> No Refund </Radio>
+                    )}
                   </Stack>
                 </RadioGroup>
               </VStack>
@@ -94,7 +95,7 @@ const RefundModal = ({ order }: { order: Order }) => {
                 onNumberChange={(value) => {
                   if (value < order.totalBill) setAmount(value);
                 }}
-                isDisabled={paymentOption === "full"}
+                isDisabled={paymentOption !== "partial"}
               />
             </VStack>
           </ModalBody>

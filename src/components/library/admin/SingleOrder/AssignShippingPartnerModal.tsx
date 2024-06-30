@@ -9,6 +9,7 @@ import {
   ModalOverlay,
   VStack,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import LabelledInput from "../../../Utilities/LabelledInput";
@@ -24,6 +25,7 @@ import ShippedTag from "./ShippingTag";
 
 const AssignShippingPartnerModal = ({ order }: { order: Order }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
+  const toast = useToast();
 
   const [shippingDetails, setShippingDetails] = useState<AdminShipOrder>({
     mongooseOrderId: order._id || "",
@@ -45,7 +47,16 @@ const AssignShippingPartnerModal = ({ order }: { order: Order }) => {
   return (
     <>
       <Box
-        onClick={() => order.shippingStatus === "unshipped" && onOpen()}
+        onClick={() =>
+          order.orderStatus === "confirmed" &&
+          order.shippingStatus === "unshipped"
+            ? onOpen()
+            : toast({
+                title: "Please confirm the order first!",
+                position: "top",
+                duration: 2000,
+              })
+        }
         textDecor="underline"
         textDecorationColor={order.shippingProvider ? "green" : "red"}
       >

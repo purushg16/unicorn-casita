@@ -51,7 +51,10 @@ const ProductCard = ({ product }: { product: Product }) => {
                 color="primary.500"
                 boxSize={{ base: 3, md: 5 }}
               />
-              <RText text={` ${product.mrp}`} color="primary.700" />
+              <RText
+                text={` ${product.salesPrice.toFixed(2)}`}
+                color="primary.700"
+              />
             </HStack>
           )}
           <DeleteProductButton productId={product._id!} />
